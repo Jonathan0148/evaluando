@@ -7,7 +7,7 @@ import { PageDto } from "../dtos-globals/page.dto";
  */
 export enum Order {
   ASC = "ASC",
-  DESC = "DESC",
+  DESC = "DESC", 
 }
 export const ApiPaginatedResponse = <TModel extends Type<any>>(
   model: TModel

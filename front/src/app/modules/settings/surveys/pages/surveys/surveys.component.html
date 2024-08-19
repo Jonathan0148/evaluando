@@ -1,0 +1,89 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <h4>Encuestas</h4>
+      <p-table #dt [value]="surveys" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name', 'date']"
+        [paginator]="true" [rowsPerPageOptions]="[10, 20, 30]" styleClass="p-datatable-sm"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+        selectionMode="multiple" [rowHover]="true" dataKey="id" [loading]="loading">
+        <ng-template pTemplate="caption">
+          <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+            <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success w-full sm:w-auto"
+              (click)="openNew()" [disabled]="!canCreate"></button>
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."
+                class="w-full" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="date">
+              Fecha <p-sortIcon field="date"></p-sortIcon>
+            </th>
+            <th pSortableColumn="name">
+              Encuestas <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="is_active">
+              Activo <p-sortIcon field="is_active"></p-sortIcon>
+            </th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-survey>
+          <tr>
+            <td style="width: 30%; min-width: 10rem">
+              <span class="p-column-title">Fecha</span>
+              {{ survey.date | date : "dd/MM/yyyy" }}
+            </td>
+            <td style="width: 70%; min-width: 10rem">
+              <span class="p-column-title">Encuesta</span>
+              {{ survey.name }}
+            </td>
+            <td style="width: 5%; min-width: 10rem">
+              <i class="pi" [ngClass]="{
+                  'true-icon pi-check-circle text-green-600': survey.is_active,
+                  'false-icon pi-times-circle text-pink-500': !survey.is_active
+                }"></i>
+            </td>
+            <td>
+              <div class="flex">
+                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary mr-2"
+                  (click)="seeItem(survey)" [disabled]="!canSee"></button>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                  (click)="editItem(survey)" [disabled]="!canEdit"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                  (click)="deleteItem(survey)" [disabled]="!canDelete"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <p-dialog [maximizable]="true" [(visible)]="surveyDialog" [style]="{ width: '65%' }" header="Encuesta"
+      [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" class="p-fluid">
+      <app-add-surveys [submitted]="submitted" [survey]="survey" [isDetail]="isDetail"></app-add-surveys>
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+          (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-success" [disabled]="isDetail"
+          (click)="onSubmit(survey)"></button>
+      </ng-template>
+    </p-dialog>
+    <p-dialog [(visible)]="deleteSurveyDialog" header="Confirmar" [modal]="true"
+      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '450px' }">
+      <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="survey">¿Está seguro de eliminar a <b>{{ survey.name }}</b>?</span>
+      </div>
+      <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+          (click)="deleteSurveyDialog = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-success" label="Sí"
+          (click)="confirmDelete()"></button>
+      </ng-template>
+    </p-dialog>
+  </div>
+</div>

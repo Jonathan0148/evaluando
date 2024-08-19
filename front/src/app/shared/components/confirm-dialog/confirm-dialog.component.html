@@ -1,0 +1,14 @@
+<p-dialog class="p-fluid" [(visible)]="visible" [style]="{ width: width }" [modal]="modal" [breakpoints]="breakpoints"
+  (onHide)="cancel()">
+  <ng-template pTemplate="header">
+    <span class="p-dialog-title">{{ header }}</span>
+  </ng-template>
+  <div class="flex align-items-center justify-content-center">
+    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+    <span>{{ message }}</span>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="cancel()"></button>
+    <button pButton pRipple icon="pi pi-check" class="p-button-success" label="Sí" (click)="confirm()"></button>
+  </ng-template>
+</p-dialog>

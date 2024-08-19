@@ -1,0 +1,15 @@
+<div class="flex flex-column align-items-center">
+    <div class="font-bold text-xl mb-2">Autentica tu cuenta</div>
+    <p class="text-color-secondary block mb-5">
+        Ingrese el código enviado a su correo.
+    </p>
+    <p-inputOtp [(ngModel)]="code" style="gap: 0">
+        <ng-template pTemplate="input" let-token let-events="events" let-index="index">
+            <input pInputText type="text" [maxLength]="1" (input)="events.input($event)"
+                (keydown)="events.keydown($event)" [attr.value]="token" class="custom-otp-input" />
+        </ng-template>
+    </p-inputOtp>
+    <div class="flex justify-content-end mt-5 align-self-stretch">
+        <p-button label="Verificar Código" (onClick)="onClickVerifyCode()" />
+    </div>
+</div>

@@ -1,0 +1,117 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <h4>Usuarios</h4>
+      <p-table #dt [value]="users" responsiveLayout="scroll" [rows]="10"
+        [globalFilterFields]="['name', 'email', 'role.description']" [paginator]="true"
+        [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas" selectionMode="multiple"
+        [rowHover]="true" dataKey="id" [loading]="loading">
+        <ng-template pTemplate="caption">
+          <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+            <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success w-full sm:w-auto"
+              (click)="openNew()" [disabled]="!canCreate"></button>
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."
+                class="w-full" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Imagen</th>
+            <th pSortableColumn="name">
+              Nombre <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="role.description">
+              Rol <p-sortIcon field="role.description"></p-sortIcon>
+            </th>
+            <th pSortableColumn="phone">
+              Teléfono <p-sortIcon field="phone"></p-sortIcon>
+            </th>
+            <th pSortableColumn="email">
+              Correo <p-sortIcon field="email"></p-sortIcon>
+            </th>
+            <th pSortableColumn="created">
+              Fecha creación <p-sortIcon field="created"></p-sortIcon>
+            </th>
+            <th pSortableColumn="is_active">
+              Activo <p-sortIcon field="is_active"></p-sortIcon>
+            </th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <tr>
+            <td style="width: 1%">
+              <span class="p-column-title">Imagen</span>
+              <img [src]="user?.avatar ?? 'assets/layout/images/logoevaluando.png'" [alt]="user.name" width="50" class="shadow-4" style="border-radius: 50%" />
+            </td>
+            <td style="width: 15%">
+              <span class="p-column-title">Nombre</span>
+              {{ user.name }}
+            </td>
+            <td style="width: 10%">
+              <span class="p-column-title">Rol</span>
+              {{ user.role.description }}
+            </td>
+            <td style="width: 15%">
+              <span class="p-column-title">Teléfono</span>
+              {{ user.phone }}
+            </td>
+            <td style="width: 5%">
+              <span class="p-column-title">Correo</span>
+              {{ user.email }}
+            </td>
+            <td style="width: 15%">
+              <span class="p-column-title">Creado</span>
+              {{ user.created | date : 'dd/MM/yyyy' }}
+            </td>
+            <td style="width: 5%">
+              <i class="pi" [ngClass]="{
+                  'true-icon pi-check-circle text-green-600': user.is_active,
+                  'false-icon pi-times-circle text-pink-500': !user.is_active
+                }"></i>
+            </td>
+            <td>
+              <div class="flex">
+                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary mr-2"
+                  (click)="seeItem(user)" [disabled]="!canSee"></button>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                  (click)="editItem(user)" [disabled]="!canEdit"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                  (click)="deleteItem(user)" [disabled]="!canDelete"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <p-dialog [(visible)]="userDialog" [style]="{ width: '800px' }" header="Usuarios" [modal]="true" 
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"  class="p-fluid">
+      <app-modal-user [submitted]="submitted" [user]="user" [roles]="roles" [changePass]="changePass"
+        [isDetail]="isDetail"></app-modal-user>
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+          (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" [disabled]="isDetail" icon="pi pi-check" class="p-button-success"
+          (click)="onSubmit(user)"></button>
+      </ng-template>
+    </p-dialog>
+    <p-dialog [(visible)]="deleteUserDialog" header="Confirmar" [modal]="true" 
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"  [style]="{ width: '450px' }">
+      <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="user">¿Está seguro de eliminar a <b>{{ user.name }}</b>?</span>
+      </div>
+      <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+          (click)="deleteUserDialog = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-success" label="Sí"
+          (click)="confirmDelete()"></button>
+      </ng-template>
+    </p-dialog>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<form [formGroup]="form">
+    <!-- Información del Paciente -->
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-6">
+            <label for="names">Nombre</label>
+            <input id="names" formControlName="names" pInputText [readonly]="isDetail" />
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="document">Documento</label>
+            <input id="document" formControlName="document" pInputText [readonly]="isDetail" />
+        </div>
+    </div>
+
+    <ng-container formArrayName="surveysAnswer">
+        <p-table [value]="surveysAnswerControls" [tableStyle]="{ 'min-width': '50rem' }"
+            styleClass="p-datatable-striped">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Encuesta</th>
+                    <th>Pregunta</th>
+                    <th>Puntaje Mínimo</th>
+                    <th>Puntaje Máximo</th>
+                    <th>Calificación</th>
+                    <th>Fecha</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowIndex="rowIndex">
+                <tr [formGroupName]="rowIndex">
+                    <td>
+                        {{ surveysAnswerControls[rowIndex].get("survey.name")?.value }}
+                    </td>
+                    <td>
+                        {{
+                        surveysAnswerControls[rowIndex].get("surveyQuestion.description")
+                        ?.value
+                        }}
+                    </td>
+                    <td>
+                        {{
+                        surveysAnswerControls[rowIndex].get(
+                        "surveyQuestion.minimun_scroe"
+                        )?.value
+                        }}
+                    </td>
+                    <td>
+                        {{
+                        surveysAnswerControls[rowIndex].get(
+                        "surveyQuestion.maximun_score"
+                        )?.value
+                        }}
+                    </td>
+                    <td>
+                        <p-rating [stars]="calculateStars(surveysAnswerControls[rowIndex])" [readonly]="true"
+                            [formControl]="surveysAnswerControls[rowIndex].get('score')" [cancel]="false"></p-rating>
+                    </td>
+                    <td>
+                        {{
+                        surveysAnswerControls[rowIndex].get("created")
+                        ?.value | date : "dd/MM/yyyy" : "UTC"
+                        }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </ng-container>
+</form>

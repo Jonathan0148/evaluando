@@ -1,0 +1,99 @@
+<form [formGroup]="form">
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-6">
+            <label for="name">Nombre</label>
+            <input type="text" formControlName="name" pInputText id="name" [(ngModel)]="survey.name" required
+                [readOnly]="isDetail" maxlength="255"
+                [ngClass]="{ 'ng-invalid ng-dirty': submitted && !survey.name }" />
+            <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !survey.name">Nombre es obligatorio.</small>
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="date">Fecha</label>
+            <p-calendar [showIcon]="!isDetail" formControlName="date" dateFormat="dd/mm/yy" [showOnFocus]="!isDetail"
+                [readonlyInput]="true" id="date" [(ngModel)]="survey.date" required appendTo="body" [ngClass]="{
+          'ng-invalid ng-dirty': submitted && !survey.date
+        }" />
+            <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !survey.date">Fecha es obligatoria.</small>
+        </div>
+    </div>
+    <div class="field">
+        <label for="description">Descripción</label>
+        <input type="text" formControlName="description" pInputText id="description" [(ngModel)]="survey.description"
+            required [readOnly]="isDetail" maxlength="255"
+            [ngClass]="{ 'ng-invalid ng-dirty': submitted && !survey.description }" />
+        <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !survey.description">Descripción es
+            obligatoria.</small>
+    </div>
+    <div class="formgrid grid">
+        <div class="col-8 field-checkbox">
+            <p-inputSwitch formControlName="is_active" [readonly]="isDetail"></p-inputSwitch>
+            <label for="is_active">Activo</label>
+        </div>
+    </div>
+
+    <ng-container formArrayName="surveyQuestion">
+        <p-table *ngIf="surveyQuestion.controls.length" [value]="surveyQuestion.controls"
+            [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 5%">Código</th>
+                    <th style="width: 70%">Preguntas</th>
+                    <th style="width: 7%">Puntaje mínimo</th>
+                    <th style="width: 7%">Puntaje máximo</th>
+                    <th style="width: 7%">Órden pregunta</th>
+                    <th style="width: 2%">Activo</th>
+                    <th style="width: 2%">Eliminar</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-surveyQuestionForm let-rowIndex="rowIndex">
+                <tr [formGroup]="surveyQuestionForm">
+                    <td>
+                        <input type="text" formControlName="code" pInputText id="code" [readOnly]="true"
+                            maxlength="10" />
+                    </td>
+                    <td>
+                        <input type="text" formControlName="description" pInputText id="description"
+                            [readOnly]="isDetail" maxlength="255" required />
+                    </td>
+                    <td>
+                        <p-inputNumber pTooltip="Mínimo 1" type="number" formControlName="minimun_scroe"
+                            [readonly]="isDetail" class="input-number" min="1" max="10" locale="en-US" required
+                            [ngClass]="{
+                'ng-invalid ng-dirty':
+                  submitted && surveyQuestionForm.get('minimun_scroe').invalid
+              }" />
+                    </td>
+                    <td>
+                        <p-inputNumber pTooltip="Máximo 10" type="number" formControlName="maximun_score"
+                            [readonly]="isDetail" class="input-number"
+                            [min]="surveyQuestionForm.get('minimun_scroe').value" max="10" locale="en-US" required
+                            [ngClass]="{
+                'ng-invalid ng-dirty':
+                  submitted && surveyQuestionForm.get('maximun_score').invalid
+              }" />
+                    </td>
+                    <td>
+                        <p-inputNumber type="number" formControlName="question_order" [readonly]="isDetail"
+                            class="input-number" locale="en-US" required [ngClass]="{
+                'ng-invalid ng-dirty':
+                  submitted && surveyQuestionForm.get('question_order').invalid
+              }" />
+                    </td>
+                    <td>
+                        <p-inputSwitch formControlName="is_active" [readonly]="isDetail"></p-inputSwitch>
+                    </td>
+                    <td>
+                        <button [disabled]="isDetail" pButton pRipple icon="pi pi-trash"
+                            class="p-button-rounded p-button-warning" (click)="deleteQuestion(rowIndex)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </ng-container>
+    <div class="formgrid grid">
+        <div class="col-4 my-3">
+            <button pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-secondary" [disabled]="isDetail"
+                (click)="addQuestions(true)"></button>
+        </div>
+    </div>
+</form>

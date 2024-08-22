@@ -116,6 +116,7 @@ export class RolesService {
     if (!data) throw new NotFoundException({message: 'No existe el rol solicitado'});
 
     await this.roleRepository.update(id, {
+      name: dto.name,
       description: dto.description,
       updated_at: this.formatDate(new Date()),
       updated_by: user.userId

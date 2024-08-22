@@ -41,7 +41,7 @@ export class LoginComponent {
         this.authSvc.loginAdmin(this.form.value).pipe((finalize(() => this.loading = false))).subscribe(res => {
             const { token, user } = res;
             this.authSvc.setToken(token);
-            this.router.navigate([ '/admin' ])
+            this.router.navigate([ '/admin/usuarios' ])
         })
     }
 

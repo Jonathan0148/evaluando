@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { RolesService } from '../../../roles/services/roles.service';
 import { Rol } from '../../../roles/models/rol.model';
 import { FilterModuleService } from 'src/app/shared/services/filter-module.service';
+import { HeadquartersService } from '../../../headquarters/services/headquarters.service';
+import { Headquarter } from '../../../headquarters/models/headquarter.model';
 
 
 @Component({
@@ -21,6 +23,7 @@ export class UsersComponent implements OnInit {
     id: number;
     userDialog: boolean = false;
     isDetail: boolean = false;
+    isEdit: boolean = false;
     deleteUserDialog: boolean = false;
     users: User[] = [];
     paramsData: IParamsIndex = { take: 10, page: 1 };
@@ -28,14 +31,15 @@ export class UsersComponent implements OnInit {
     user: User = {};
     submitted: boolean = false;
     roles: Rol[] = [];
+    headquarters: Headquarter[] = [];
     canSee: boolean = false;
     canCreate: boolean = false;
     canEdit: boolean = false;
     canDelete: boolean = false;
-    changePass: boolean = false;
 
     constructor(
         private readonly _usersSvc: UsersService,
+        private readonly _headquartersSvc: HeadquartersService,
         public readonly router: Router,
         private readonly rolesSvc: RolesService,
         private readonly _filterModuleService: FilterModuleService
@@ -43,7 +47,8 @@ export class UsersComponent implements OnInit {
 
     ngOnInit() {
         this.getParamsData();
-        this.getRoles();
+        this.getRoles({ page: 1, take: 50 });
+        this.getHeadquarters({ page: 1, take: 50 });
         this.modulePermissions();
     }
 
@@ -64,16 +69,23 @@ export class UsersComponent implements OnInit {
         });
     }
 
-    private getRoles(): void {
-        this.rolesSvc.findAll(this.paramsData).subscribe((response: any) => {
+    private getRoles(paramsData?: IParamsIndex): void {
+        this.rolesSvc.findAll(paramsData).subscribe((response: any) => {
             const { data } = response;
             this.roles = data;
         })
     }
 
+    private getHeadquarters(paramsData?: IParamsIndex): void {
+        this._headquartersSvc.findAll(paramsData).subscribe((response: any) => {
+            const { data } = response;
+            this.headquarters = data;
+        })
+    }
+
     openNew() {
+        this.isEdit = false;
         this.isDetail = false;
-        this.changePass = false;
         this.user = {};
         this.submitted = false;
         this.userDialog = true;
@@ -88,13 +100,13 @@ export class UsersComponent implements OnInit {
 
     editItem(user: User) {
         this.isDetail = false;
-        this.changePass = true;
+        this.isEdit = true;
         this.userDialog = true;
         this.user = { ...user };
     }
 
     seeItem(user: User) {
-        this.changePass = false;
+        this.isEdit = false;
         this.isDetail = true;
         this.userDialog = true;
         this.user = { ...user };

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from "jwt-decode";
-import { setting } from './menu.options';
+import { administration, setting } from './menu.options';
 
 @Component({
     selector: 'app-menu',
@@ -39,10 +39,14 @@ export class AppMenuComponent implements OnInit {
         };
 
         const settingItems = setting?.items[ 0 ]?.items || [];
+        const administrationItems = administration?.items[ 0 ]?.items || [];
+
         const filteredSettingItems = filterMenuItems(settingItems);
+        const filteredAdministrationItems = filterMenuItems(administrationItems);
 
         setting.items[ 0 ].items = filteredSettingItems;
+        administration.items[ 0 ].items = filteredAdministrationItems;
 
-        return [ setting ];
+        return [ setting, administration ];
     }
 }

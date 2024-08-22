@@ -27,7 +27,7 @@
               pRipple
               label="Nuevo"
               icon="pi pi-plus"
-              class="p-button-success w-full sm:w-auto"
+              class="p-button-primary w-full sm:w-auto"
               (click)="onNew.emit()"
             ></button>
             <span class="block mt-2 md:mt-0 p-input-icon-left">
@@ -82,7 +82,7 @@
                   pButton
                   pRipple
                   icon="pi pi-pencil"
-                  class="p-button-rounded p-button-success mr-2"
+                  class="p-button-rounded p-button-primary mr-2"
                   (click)="onEdit.emit(rowData)"
                 ></button>
                 <button
@@ -90,7 +90,7 @@
                   pButton
                   pRipple
                   icon="pi pi-trash"
-                  class="p-button-rounded p-button-warning"
+                  class="p-button-rounded p-button-danger"
                   (click)="onDelete.emit(rowData)"
                 ></button>
               </div>

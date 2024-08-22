@@ -1,26 +1,18 @@
 <form [formGroup]="form">
   <div class="formgrid grid">
     <div class="field col-12 md:col-6">
-      <label for="names">Imágen de usuario</label>
-      <p-fileUpload [auto]="true" nameControl="avatar" mode="basic" chooseLabel="Seleccionar" names="demo[]"
-        [disabled]="isDetail" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000"
-        (onUpload)="onBasicUploadAuto($event, form)"></p-fileUpload>
-    </div>
-    <div class="field col-12 md:col-6">
-      <img *ngIf="user.avatar" [src]="user.avatar" alt="Imagen de usuario" maxlength="255"
-        style="max-width: 80px; max-height: 80px; border-radius: 50%" />
-    </div>
-  </div>
-  <div class="formgrid grid">
-    <div class="field col-12 md:col-6">
-      <label for="names">Nombre</label>
-      <input type="text" formControlName="names" pInputText id="names" [(ngModel)]="user.names" required maxlength="120"
-        [readOnly]="isDetail" [ngClass]="{ 'ng-invalid ng-dirty': submitted && !user.names }" />
-      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !user.names">Nombre es obligatorio.</small>
+      <label for="status">Sede</label>
+      <p-dropdown [showClear]="!isDetail" [filter]="true" inputId="headquarters_id" optionLabel="name"
+        [(ngModel)]="user.headquarters_id" required [readonly]="isDetail" formControlName="headquarters_id"
+        optionValue="id" [options]="headquarters" placeholder="Seleccione la sede" appendTo="body" [ngClass]="{
+          'ng-invalid ng-dirty': submitted && !user.headquarters_id
+        }">
+      </p-dropdown>
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !user.headquarters_id">Sede es obligatorio.</small>
     </div>
     <div class="field col-12 md:col-6">
       <label for="status">Rol</label>
-      <p-dropdown [showClear]="!isDetail" [filter]="true" inputId="roles_id" optionLabel="description"
+      <p-dropdown [showClear]="!isDetail" [filter]="true" inputId="roles_id" optionLabel="name"
         [(ngModel)]="user.roles_id" required [readonly]="isDetail" formControlName="roles_id" optionValue="id"
         [options]="roles" placeholder="Seleccione el rol" appendTo="body"
         [ngClass]="{ 'ng-invalid ng-dirty': submitted && !user.roles_id }">
@@ -30,23 +22,39 @@
   </div>
   <div class="formgrid grid">
     <div class="field col-12 md:col-6">
-      <label for="phone">Teléfono</label>
-      <input type="text" id="phone" pInputText formControlName="phone" [(ngModel)]="user.phone" required maxlength="20"
-        [readOnly]="isDetail" [ngClass]="{ 'ng-invalid ng-dirty': submitted && !user.phone }" />
-      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !user.phone">Teléfono es obligatorio.</small>
+      <label for="names">Nombres</label>
+      <input type="text" formControlName="names" pInputText id="names" [(ngModel)]="user.names" required maxlength="100"
+        [readOnly]="isDetail" [ngClass]="{ 'ng-invalid ng-dirty': submitted && !user.names }" />
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !user.names">Nombres son obligatorios.</small>
+    </div>
+    <div class="field col-12 md:col-6">
+      <label for="surnames">Apellidos</label>
+      <input type="text" formControlName="surnames" pInputText id="surnames" [(ngModel)]="user.surnames" required
+        maxlength="100" [readOnly]="isDetail" [ngClass]="{ 'ng-invalid ng-dirty': submitted && !user.surnames }" />
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !user.surnames">Apellidos son obligatorios.</small>
+    </div>
+  </div>
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+      <label for="user_name">Nombre de Usuario</label>
+      <input type="text" formControlName="user_name" pInputText id="user_name" [(ngModel)]="user.user_name" required
+        maxlength="50" [readOnly]="isDetail" [ngClass]="{ 'ng-invalid ng-dirty': submitted && !user.user_name }" />
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !user.user_name">Nombre de Usuario es
+        obligatorio.</small>
     </div>
     <div class="field col-12 md:col-6">
       <label for="email">Correo</label>
       <input type="text" formControlName="email" pInputText id="email" [(ngModel)]="user.email" required maxlength="255"
         [readOnly]="isDetail" [ngClass]="{ 'ng-invalid ng-dirty': submitted && !user.email }" />
       <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !user.email">Correo es obligatorio.</small>
-      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && form.get('email').hasError('invalidEmail')">Correo no es válido.</small>
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && form.get('email').hasError('invalidEmail')">Correo
+        no es válido.</small>
     </div>
   </div>
   <div class="formgrid grid">
-    <div *ngIf="!changePass && !isDetail" class="field col-12 md:col-6">
+    <div *ngIf="!isDetail && !isEdit" class="field col-12 md:col-6">
       <label for="email">Contraseña</label>
-      <p-password formControlName="password" [(ngModel)]="user.password" id="password" placeholder="Contraseña"
+      <p-password appendTo="body" formControlName="password" [(ngModel)]="user.password" id="password" placeholder="Contraseña"
         maxlength="255" minlength="5" [toggleMask]="true" weakLabel="Débil" mediumLabel="Segura"
         strongLabel="Muy Segura" styleClass="mb-2" inputStyleClass="w-full" promptLabel="Ingresa tu contraseña"
         [ngClass]="{ 'ng-invalid ng-dirty': submitted && !user.password }">
@@ -54,47 +62,9 @@
       <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !user.password">Contraseña es obligatoria.</small>
     </div>
     <div class="field-checkbox">
-      <label for="is_active">Activo</label>
-      <p-inputSwitch class="mx-2" [readonly]="isDetail" formControlName="is_active"
-        [(ngModel)]="user.is_active"></p-inputSwitch>
+      <label for="active">Activo</label>
+      <p-inputSwitch class="mx-2" [readonly]="isDetail" formControlName="active"
+        [(ngModel)]="user.active"></p-inputSwitch>
     </div>
   </div>
 </form>
-<div *ngIf="changePass" class="my-3">
-  <h5>Cambiar Contraseña</h5>
-  <p-inputSwitch class="my-3" [(ngModel)]="changePassSwitch">¿Cambiar?</p-inputSwitch>
-  <form *ngIf="changePass && changePassSwitch" [formGroup]="passwordForm">
-    <div class="formgrid grid my-3">
-      <div class="field col-12 md:col-6">
-        <label for="phone">Nueva Contraseña</label>
-        <p-password formControlName="newPassword" weakLabel="Débil" mediumLabel="Segura" strongLabel="Muy Segura"
-          [(ngModel)]="newPassword" id="newPassword" promptLabel="Ingresa tu contraseña" [toggleMask]="true"
-          styleClass="my-2" [ngClass]="{
-          'ng-invalid ng-dirty':
-            passwordForm.hasError('passwordsNotMatch') &&
-            passwordForm.get('newPassword').dirty &&
-            passwordForm.get('repetPassword').dirty
-        }" inputStyleClass="w-full"></p-password>
-      </div>
-      <div class="field col-12 md:col-6">
-        <label for="phone">Repita Nueva Contraseña</label>
-        <p-password [feedback]="false" formControlName="repetPassword" [(ngModel)]="repetPassword" id="repetPassword"
-          [toggleMask]="true" styleClass="my-2" [ngClass]="{
-          'ng-invalid ng-dirty':
-            passwordForm.hasError('passwordsNotMatch') &&
-            passwordForm.get('newPassword').dirty &&
-            passwordForm.get('repetPassword').dirty
-        }" inputStyleClass="w-full"></p-password>
-      </div>
-      <div class="field col-12 md:col-6" *ngIf="
-        passwordForm.hasError('passwordsNotMatch') &&
-        (passwordForm.get('newPassword').dirty ||
-          passwordForm.get('repetPassword').dirty)
-      ">
-        <small class="ng-dirty p-error ng-invalid">Las contraseñas no coinciden.</small>
-      </div>
-      <button class="field my-3" pButton label="Validar Contraseña" (click)="changePassword()"
-        [disabled]="passwordForm.invalid"></button>
-    </div>
-  </form>
-</div>

@@ -1,0 +1,51 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="grid">
+  <div class="col-12">
+    <app-global-table
+      [data]="typeResults"
+      [columns]="columns"
+      [loading]="loading"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[10, 20, 30]"
+      [globalFilterFields]="columns"
+      [currentPageReportTemplate]="
+        'Mostrando {first} a {last} de {totalRecords} entradas'
+      "
+      [canSee]="canSee"
+      [canCreate]="canCreate"
+      [canEdit]="canEdit"
+      [canDelete]="canDelete"
+      (onNew)="crudDialogService.openNew()"
+      (onEdit)="crudDialogService.editItem($event)"
+      (onView)="crudDialogService.viewItem($event)"
+      (onDelete)="crudDialogService.deleteItem($event)"
+    >
+      <h4 table-header>Tipos de Exámenes</h4>
+      >
+    </app-global-table>
+    <app-form-dialog
+      [(visible)]="entityDialog"
+      [header]="'Tipos de Exámenes'"
+      [submitted]="submitted"
+      [isDetail]="isDetail"
+      [data]="entityData"
+      (onCancel)="crudDialogService.hideDialog()"
+      (onSubmit)="onSubmit($event)"
+    >
+      <app-add-types-results
+        [submitted]="submitted"
+        [typeResult]="entityData"
+        [isDetail]="isDetail"
+        #entityFormComponent
+      ></app-add-types-results>
+    </app-form-dialog>
+    <app-confirm-dialog
+      [(visible)]="deleteDialog"
+      [message]="deleteMessage"
+      (onCancel)="crudDialogService.hideDialog(); this.deleteDialog = false"
+      (onConfirm)="confirmDelete()"
+    >
+    </app-confirm-dialog>
+  </div>
+</div>

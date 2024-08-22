@@ -19,7 +19,6 @@ export class AddRolesComponent implements OnInit {
 
   paymentOptions = [
     { name: 'Ver', value: 1, constant: true },
-    { name: 'Consultar', value: 5 },
     { name: 'Crear', value: 2 },
     { name: 'Editar', value: 3 },
     { name: 'Eliminar', value: 4 },
@@ -42,7 +41,8 @@ export class AddRolesComponent implements OnInit {
   ngOnInit(): void {
     this.getModules();
     this.form = this.formBuilder.group({
-      description: [ null, [ Validators.required, Validators.maxLength(45) ] ],
+      name: [ null, [ Validators.required, Validators.maxLength(50) ] ],
+      description: [ null, [ Validators.required, Validators.maxLength(255) ] ],
       rolesModules: this.formBuilder.array([]),
     });
   }
@@ -119,7 +119,6 @@ export class AddRolesComponent implements OnInit {
       } else {
         newOptions = [
           { name: 'Ver', value: 1, constant: true },
-          { name: 'Consultar', value: 5 },
           { name: 'Crear', value: 2 },
           { name: 'Editar', value: 3 },
           { name: 'Eliminar', value: 4 },
@@ -136,7 +135,6 @@ export class AddRolesComponent implements OnInit {
     const selectedModule = this.rolesModules.at(index).get('modules_id')?.value;
     return this.paymentOptionsMap.get(selectedModule) || [
       { name: 'Ver', value: 1, constant: true },
-      { name: 'Consultar', value: 5 },
       { name: 'Crear', value: 2 },
       { name: 'Editar', value: 3 },
       { name: 'Eliminar', value: 4 },

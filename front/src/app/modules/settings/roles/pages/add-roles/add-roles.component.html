@@ -1,16 +1,21 @@
 <ng-container form>
   <form [formGroup]="form">
-    <div class="row">
-      <div class="col-12">
-        <div class="field">
-          <label for="description">Descripción</label>
-          <input [readOnly]="isDetail" type="text" [(ngModel)]="rol.description" formControlName="description"
-            pInputText id="description" required maxlength="45" />
-          <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !rol.description">Nombre es
-            obligatorio.</small>
-        </div>
+    <div class="formgrid grid mb-5">
+      <div class="field col-12 md:col-6">
+        <label for="name">Nombre</label>
+        <input [readOnly]="isDetail" type="text" [(ngModel)]="rol.name" formControlName="name" pInputText id="name"
+          required maxlength="50" />
+        <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !rol.name">Nombre es obligatorio.</small>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label for="description">Descripción</label>
+        <input [readOnly]="isDetail" type="text" [(ngModel)]="rol.description" formControlName="description" pInputText
+          id="description" required maxlength="255" />
+        <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !rol.description">Descripción es
+          obligatoria.</small>
       </div>
     </div>
+    <div class="row"></div>
     <div class="formgrid grid mb-5">
       <div class="col-9 mt-3">
         <b><span>Módulos y permisos</span></b>
@@ -24,7 +29,7 @@
       <ng-container *ngFor="let rolesModulesForm of rolesModules.controls; let i = index">
         <ng-container [formGroup]="rolesModulesForm">
           <div class="formgrid grid mb-2">
-            <div class="col-5 ">
+            <div class="col-5">
               <div class="form-group">
                 <p-dropdown [readonly]="isDetail" (onChange)="validateExist($event.value, i)" [filter]="true"
                   inputId="modules_id" required optionLabel="name" formControlName="modules_id" optionValue="id"
@@ -37,7 +42,7 @@
               </p-selectButton>
             </div>
             <div class="col-1">
-              <button [disabled]="isDetail" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+              <button [disabled]="isDetail" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                 (click)="deleteRoleModule(i)"></button>
             </div>
           </div>

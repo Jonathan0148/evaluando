@@ -86,7 +86,7 @@ export abstract class BaseCrudComponent implements OnInit, OnDestroy {
     const formData = this.entityFormComponent.getFormData();
     if (!formData) return;
     this.entityService.create(formData).subscribe(() => {
-      this.loadEntities();
+    this.getParamsData();
       this.hideDialog();
     });
   }
@@ -98,7 +98,7 @@ export abstract class BaseCrudComponent implements OnInit, OnDestroy {
     if (!formData) return;
     const updatedFormData = { ...item, ...formData };
     this.entityService.update(item.id, updatedFormData).subscribe(() => {
-      this.loadEntities();
+    this.getParamsData();
       this.hideDialog();
     });
   }
@@ -106,7 +106,7 @@ export abstract class BaseCrudComponent implements OnInit, OnDestroy {
   confirmDelete() {
     this.deleteDialog = false;
     this.entityService.delete(this.entityData.id).subscribe(() => {
-      this.loadEntities();
+    this.getParamsData();
     });
     this.entityData = {};
   }

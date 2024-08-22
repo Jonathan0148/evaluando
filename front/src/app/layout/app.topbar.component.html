@@ -1,6 +1,6 @@
 <div class="layout-topbar">
-  <a class="layout-topbar-logo" [routerLink]="''">
-    <img src="assets/layout/images/logoevaluando.png" alt="logo" />
+  <a class="layout-topbar-logo" [routerLink]="'/admin/usuarios'">
+    <img src="assets/layout/images/logo_evaluando_2.png" alt="logo" />
   </a>
 
   <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
@@ -22,7 +22,7 @@
       user?.role === "admin" ? "Administrador" : user?.role ?? "Admin"
       }}</span>
     <button class="p-link layout-topbar-button m-2" (click)="op.toggle($event)">
-      <p-avatar shape="circle" [image]="user?.avatar ?? 'assets/layout/images/logoevaluando.png'" severity="danger"
+      <p-avatar shape="circle" [image]="user?.avatar ?? 'assets/layout/images/logo.png'" severity="danger"
         size="large" />
       <span class="m-3">{{ user?.role ?? "Admin" }}</span>
       <p-overlayPanel #op>

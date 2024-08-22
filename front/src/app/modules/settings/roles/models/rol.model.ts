@@ -1,5 +1,6 @@
 export interface Rol {
   id?:  number;
+  name?: string;
   description?: string;
   rolesModules?: RolesModule[]
 }
@@ -9,7 +10,6 @@ export interface RolesForModule {
   can_create?: boolean;
   can_edit?: boolean;
   can_delete: boolean;
-  can_view: boolean;
 }
 
 export interface Module {

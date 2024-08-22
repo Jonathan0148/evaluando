@@ -11,28 +11,39 @@ export const setting = {
                     routerLink: [ '/admin/roles' ]
                 },
                 {
+                    code: '03',
+                    label: 'Usuarios',
+                    icon: 'pi pi-fw pi-users',
+                    routerLink: [ '/admin/usuarios' ]
+                },
+            ]
+        }
+    ]
+};
+
+export const administration = {
+    items: [
+        {
+            label: 'Administración',
+            icon: 'pi pi-cog',
+            items: [
+                {
                     code: '02',
                     label: 'Sedes',
                     icon: 'pi pi-fw pi-building',
                     routerLink: [ '/admin/sedes' ]
                 },
                 {
-                    code: '03',
-                    label: 'Usuarios',
+                    code: '04',
+                    label: 'Tipos de Exámenes',
                     icon: 'pi pi-fw pi-users',
-                    routerLink: [ '/admin/usuarios' ]
+                    routerLink: [ '/admin/tipos-examenes' ]
                 },
                 {
-                    code: '14',
-                    label: 'Encuestas',
-                    icon: 'pi pi-fw pi-ticket',
-                    routerLink: [ '/encuestas' ]
-                },
-                {
-                    code: '14',
-                    label: 'Calificaciones',
-                    icon: 'pi pi-fw pi-check',
-                    routerLink: [ '/respuestas' ]
+                    code: '05',
+                    label: 'Tipos de Resultados',
+                    icon: 'pi pi-fw pi-users',
+                    routerLink: [ '/admin/tipos-resultados' ]
                 },
             ]
         }

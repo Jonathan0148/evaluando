@@ -1,0 +1,21 @@
+<form [formGroup]="form">
+  <div class="field">
+    <label for="description">Descripción</label>
+    <input
+      type="text"
+      formControlName="description"
+      pInputText
+      id="description"
+      [(ngModel)]="typeExam.description"
+      required
+      maxlength="255"
+      [readOnly]="isDetail"
+      [ngClass]="{ 'ng-invalid ng-dirty': submitted && !typeExam.description }"
+    />
+    <small
+      class="ng-dirty p-error ng-invalid"
+      *ngIf="submitted && !typeExam.description"
+      >Nombre es obligatorio.</small
+    >
+  </div>
+</form>

@@ -2,11 +2,15 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { AuthService } from '../modules/auth/services/auth.service';
 import { UserTokenDecode } from '../modules/auth/models/user.model';
- 
+
 @Component({
   selector: 'app-topbar',
   templateUrl: './app.topbar.component.html',
-  styles: [],
+  styles: [ `
+    :host ::ng-deep .layout-topbar .layout-topbar-logo img {
+      height: 7.5rem;
+      margin-right: 0.5rem;
+  }`]
 })
 
 export class AppTopBarComponent {
@@ -23,6 +27,8 @@ export class AppTopBarComponent {
   ) { }
 
   logout() {
+    console.log('logout');
+    
     this._authSvc.clearCookies();
     this._authSvc.isAuthenticated();
   }

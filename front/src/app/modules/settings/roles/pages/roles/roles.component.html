@@ -3,13 +3,13 @@
   <div class="col-12">
     <div class="card px-6 py-6">
       <h4>Roles</h4>
-      <p-table #dt [value]="roles" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['description']"
+      <p-table #dt [value]="roles" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','description']"
         [paginator]="true" [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true"
         currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas" selectionMode="multiple"
         [rowHover]="true" dataKey="id" [loading]="loading">
         <ng-template pTemplate="caption">
           <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-            <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success w-full sm:w-auto"
+            <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-primary w-full sm:w-auto"
               (click)="openNew()" [disabled]="!canCreate"></button>
             <span class="block mt-2 md:mt-0 p-input-icon-left">
               <i class="pi pi-search"></i>
@@ -20,15 +20,22 @@
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
+            <th pSortableColumn="name">
+              Nombre <p-sortIcon field="name"></p-sortIcon>
+            </th>
             <th pSortableColumn="description">
-              Nombre <p-sortIcon field="description"></p-sortIcon>
+              Descripción <p-sortIcon field="description"></p-sortIcon>
             </th>
             <th>Acciones</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rol>
           <tr>
-            <td style="width: 100%; min-width: 10rem">
+            <td style="width: 50%; min-width: 10rem">
+              <span class="p-column-title">Nombre</span>
+              {{ rol.name }}
+            </td>
+            <td style="width: 50%; min-width: 10rem">
               <span class="p-column-title">Descripción</span>
               {{ rol.description }}
             </td>
@@ -36,9 +43,9 @@
               <div class="flex">
                 <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary mr-2"
                   (click)="seeItem(rol)" [disabled]="!canSee"></button>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-primary mr-2"
                   (click)="editItem(rol)" [disabled]="!canEdit"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                   (click)="deleteItem(rol)" [disabled]="!canDelete"></button>
               </div>
             </td>
@@ -46,14 +53,14 @@
         </ng-template>
       </p-table>
     </div>
-    <p-dialog [(visible)]="rolDialog" [style]="{ width: '980px' }" [maximizable]="true" header="Roles"
+    <p-dialog [(visible)]="rolDialog" [style]="{ width: '50%' }" [maximizable]="true" header="Roles"
       [modal]="true" 
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"  class="p-fluid">
       <app-add-roles [submitted]="submitted" [rol]="rol" [isDetail]="isDetail" ></app-add-roles>
       <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
           (click)="hideDialog()"></button>
-        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-success" [disabled]="isDetail"
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary" [disabled]="isDetail"
           (click)="onSubmit(rol)"></button>
       </ng-template>
     </p-dialog>
@@ -61,12 +68,12 @@
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"  [style]="{ width: '450px' }">
       <div class="flex align-items-center justify-content-center">
         <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-        <span *ngIf="rol">¿Está seguro de eliminar a <b>{{ rol.description }}</b>?</span>
+        <span *ngIf="rol">¿Está seguro de eliminar a <b>{{ rol.name }}</b>?</span>
       </div>
       <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
           (click)="deleteRolDialog = false"></button>
-        <button pButton pRipple icon="pi pi-check" class="p-button-success" label="Sí" (click)="confirmDelete()"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-primary" label="Sí" (click)="confirmDelete()"></button>
       </ng-template>
     </p-dialog>
   </div>

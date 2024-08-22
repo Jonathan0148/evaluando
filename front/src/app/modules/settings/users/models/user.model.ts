@@ -1,19 +1,13 @@
 export interface User {
-  id?:  number;
+  id?: number;
   names?: string;
+  surnames?: string;
+  user_name?: string;
+  headquarters_id?: string;
   roles_id?: string;
-  avatar?: string;
   email?: string;
   password?: string;
-  phone?: string;
-  document?: string;
-  address?: string;
-  is_active?: boolean;
-  state?: boolean;
-  document_types_id?: number;
-  regions_id?: number;
-  companies_id?: number;
-  projects_id?: number;
+  active?: boolean;
 }
 
 export interface UserTokenDecode {

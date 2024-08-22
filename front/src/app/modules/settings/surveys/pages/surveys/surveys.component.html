@@ -9,7 +9,7 @@
         selectionMode="multiple" [rowHover]="true" dataKey="id" [loading]="loading">
         <ng-template pTemplate="caption">
           <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-            <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success w-full sm:w-auto"
+            <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-primary w-full sm:w-auto"
               (click)="openNew()" [disabled]="!canCreate"></button>
             <span class="block mt-2 md:mt-0 p-input-icon-left">
               <i class="pi pi-search"></i>
@@ -52,9 +52,9 @@
               <div class="flex">
                 <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary mr-2"
                   (click)="seeItem(survey)" [disabled]="!canSee"></button>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-primary mr-2"
                   (click)="editItem(survey)" [disabled]="!canEdit"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                   (click)="deleteItem(survey)" [disabled]="!canDelete"></button>
               </div>
             </td>
@@ -68,7 +68,7 @@
       <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
           (click)="hideDialog()"></button>
-        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-success" [disabled]="isDetail"
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary" [disabled]="isDetail"
           (click)="onSubmit(survey)"></button>
       </ng-template>
     </p-dialog>
@@ -81,7 +81,7 @@
       <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
           (click)="deleteSurveyDialog = false"></button>
-        <button pButton pRipple icon="pi pi-check" class="p-button-success" label="Sí"
+        <button pButton pRipple icon="pi pi-check" class="p-button-primary" label="Sí"
           (click)="confirmDelete()"></button>
       </ng-template>
     </p-dialog>

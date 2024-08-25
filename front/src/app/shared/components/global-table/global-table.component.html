@@ -16,13 +16,14 @@
         [rowHover]="true"
         dataKey="id"
         [loading]="loading"
+        styleClass="p-datatable-sm"
       >
         <ng-template pTemplate="caption">
           <div
             class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
           >
             <button
-              [disabled]="!canCreate"
+              *ngIf="canCreate"
               pButton
               pRipple
               label="Nuevo"
@@ -73,12 +74,12 @@
                   pButton
                   pRipple
                   icon="pi pi-eye"
-                  [disabled]="!canSee"
+                  *ngIf="canSee"
                   class="p-button-rounded p-button-secondary mr-2"
                   (click)="onView.emit(rowData)"
                 ></button>
                 <button
-                  [disabled]="!canEdit"
+                  *ngIf="canEdit"
                   pButton
                   pRipple
                   icon="pi pi-pencil"
@@ -86,7 +87,7 @@
                   (click)="onEdit.emit(rowData)"
                 ></button>
                 <button
-                  [disabled]="!canDelete"
+                  *ngIf="canDelete"
                   pButton
                   pRipple
                   icon="pi pi-trash"

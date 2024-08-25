@@ -1,113 +1,33 @@
-<!-- 
-<div class="bg-bluegray-900 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap">
-  <div class="font-bold mr-8">🔥 Hot Deals!</div>
-  <div class="align-items-center hidden lg:flex">
-      <span class="line-height-3">Libero voluptatum atque exercitationem praesentium provident odit.</span>
-  </div>
-  <a class="flex align-items-center ml-2 mr-8">
-      <a class="text-white" href="#"><span class="underline font-bold">Learn More</span></a>
-  </a>
-  <a pRipple class="flex align-items-center no-underline justify-content-center border-circle text-gray-50 hover:bg-bluegray-700 cursor-pointer transition-colors transition-duration-150" style="width:2rem; height: 2rem">
-      <i class="pi pi-times"></i>
-  </a>
-</div>
-<div
-  class="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 flex align-items-center justify-content-between relative lg:static mb-3">
-  <a class="flex align-items-center" (click)="router.navigate(['/landing'])">
-    <img src="assets/layout/images/{{
-        layoutService.config().colorScheme === 'light'
-          ? 'logo-dark'
-          : 'logo-white'
-      }}.svg" alt="Sakai Logo" height="50" class="mr-0 lg:mr-2" /><span
-      class="text-900 font-medium text-2xl line-height-3 mr-8">SAKAI</span>
-  </a>
-  <a pRipple class="cursor-pointer block lg:hidden text-700" pStyleClass="@next" enterClass="hidden"
-    leaveToClass="hidden" [hideOnOutsideClick]="true">
-    <i class="pi pi-bars text-4xl"></i>
-  </a>
-  <div
-    class="align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-6 lg:px-0 z-2"
-    style="top: 120px">
-    <ul class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
-      <li>
-        <a (click)="router.navigate(['/institutional'])" pRipple
-          class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
-          <span>Institucional</span>
-        </a>
-      </li>
-      <li>
-        <a (click)="router.navigate(['/normativity'])" pRipple
-          class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
-          <span>Normatividad</span>
-        </a>
-      </li>
-      <li>
-        <a (click)="router.navigate(['/contact'])" pRipple
-          class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
-          <span>Contáctenos</span>
-        </a>
-      </li>
-      <li>
-        <a (click)="router.navigate(['/results'])" pRipple
-          class="flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3">
-          <span>Resultados</span>
-        </a>
-      </li>
-    </ul>
-    <div
-      class="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">
-      <button pButton pRipple label="Login"
-        class="p-button-text p-button-rounded border-none font-light line-height-2 text---green-500"></button>
+<app-top-banner></app-top-banner>
 
-      <button pButton pRipple label="Ingreso"
-        class="p-button-rounded border-none ml-5 font-light line-height-2 bg---green-500 text-white"></button>
-    </div>
-  </div>
-</div> -->
-
-<div
-  class="bg-bluegray-900 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap">
-  <div class="font-bold mr-8">🔥 Hot Deals!</div>
-  <div class="align-items-center hidden lg:flex">
-    <span class="line-height-3">Libero voluptatum atque exercitationem praesentium provident odit.</span>
-  </div>
-  <a class="flex align-items-center ml-2 mr-8">
-    <a class="text-white" href="#"><span class="underline font-bold">Learn More</span></a>
-  </a>
-  <a pRipple
-    class="flex align-items-center no-underline justify-content-center border-circle text-gray-50 hover:bg-bluegray-700 cursor-pointer transition-colors transition-duration-150"
-    style="width: 2rem; height: 2rem">
-    <i class="pi pi-times"></i>
-  </a>
-</div>
-
-<p-menubar [model]="items">
-  <ng-template pTemplate="item" let-item>
-    <ng-container *ngIf="item.route; else urlRef">
-      <a [routerLink]="item.route" class="p-menuitem-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label }}</span>
+<!-- Navbar Start -->
+<div class="container-fluid sticky-top bg-white shadow-sm">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light py-lg-0">
+      <a class="layout-topbar-logo" [routerLink]="''">
+        <img src="assets/layout/images/logo_evaluando_2.png" width="200px" alt="logo" />
       </a>
-    </ng-container>
-    <ng-template #urlRef>
-      <a *ngIf="item.url; else noLink" [href]="item.url" class="p-menuitem-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label }}</span>
-      </a>
-    </ng-template>
-    <ng-template #noLink>
-      <div class="p-menuitem-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label }}</span>
-        <span class="pi pi-fw pi-angle-down ml-2"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0">
+          <a routerLink="/" class="nav-item nav-link active">Inicio</a>
+          <a routerLink="/institutional" class="nav-item nav-link">Institucional</a>
+          <a routerLink="/services" class="nav-item nav-link">Servicios</a>
+          <a routerLink="/blogs" class="nav-item nav-link">Blog</a>
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sedes</a>
+            <div class="dropdown-menu m-1">
+              <a routerLink="/headquarters" class="dropdown-item">Blog Grid</a>
+            </div>
+          </div>
+          <a routerLink="/contact" class="nav-item nav-link">Contacto</a>
+          <p-button (click)="onResultsClick()" pButton pRipple label="Resultados " class="p-button-text"></p-button>
+          <p-button (click)="onLogin()" pButton pRipple label="Ingreso" class="p-button-text"></p-button>
+        </div>
       </div>
-    </ng-template>
-  </ng-template>
-  <ng-template pTemplate="end">
-    <button (click)="onResultsClick()" pButton pRipple label="Resultados "
-      class="p-button-text p-button-rounded border-none font-light line-height-2 text---green-500"></button>
-
-    <button (click)="onLogin()" pButton pRipple label="Ingreso"
-      class="p-button-rounded border-none ml-5 font-light line-height-2 bg---green-500 text-white"></button>
-  </ng-template>
-</p-menubar>
+    </nav>
+  </div>
+</div>
+<!-- Navbar End -->

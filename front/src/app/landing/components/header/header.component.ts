@@ -16,24 +16,24 @@ export class HeaderComponent {
     ngOnInit() {
         this.items = [
             {
-                label: 'institutional',
+                label: 'Institucional',
                 icon: 'pi pi-palette',
                 route: '/institutional'
 
             },
             {
-                label: 'results',
+                label: 'Resultados',
                 icon: 'pi pi-palette',
                 route: '/results'
 
             },
             {
-                label: 'contact',
+                label: 'Contacto',
                 icon: 'pi pi-home',
                 route: '/contact'
             },
             {
-                label: 'normativity',
+                label: 'Normatividad',
                 icon: 'pi pi-home',
                 route: '/normativity'
             }

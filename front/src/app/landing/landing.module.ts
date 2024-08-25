@@ -10,13 +10,28 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { InstitutionalComponent } from './pages/institutional/institutional.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { NormativityComponent } from './pages/normativity/normativity.component';
-import { ResultsComponent } from './pages/results/results.component';
 import { SharedModule } from '../shared/shared.module';
+import { TopBannerComponent } from './components/top-banner/top-banner.component';
+import { HeadquartersComponent } from './pages/headquarters/headquarters.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { BlogsComponent } from './pages/blogs/blogs.component';
 
 
 @NgModule({
-  declarations: [ LandingComponent, HeaderComponent, CarouselComponent, InitialModalComponent, FooterComponent, LayoutComponent, InstitutionalComponent, ContactComponent, NormativityComponent, ResultsComponent ],
+  declarations: [
+    LandingComponent,
+    HeaderComponent,
+    CarouselComponent,
+    InitialModalComponent,
+    FooterComponent,
+    LayoutComponent,
+    InstitutionalComponent,
+    HeadquartersComponent,
+    ServicesComponent,
+    BlogsComponent,
+    ContactComponent,
+    TopBannerComponent
+  ],
   imports: [
     CommonModule,
     LandingRoutingModule,

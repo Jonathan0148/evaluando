@@ -3,15 +3,19 @@
   <div class="col-12">
     <div class="card px-6 py-6">
       <h4>Usuarios</h4>
-      <p-table #dt [value]="users" responsiveLayout="scroll" [rows]="10"
-        [globalFilterFields]="['names', 'surnames','user_name', 'email', 'role.name']" [paginator]="true"
-        [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas" selectionMode="multiple"
-        [rowHover]="true" dataKey="id" [loading]="loading">
+      <p-table #dt [value]="users" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="[
+          'names',
+          'surnames',
+          'user_name',
+          'email',
+          'role.name'
+        ]" [paginator]="true" [rowsPerPageOptions]="[10, 20, 30]" styleClass="p-datatable-sm"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+        selectionMode="multiple" [rowHover]="true" dataKey="id" [loading]="loading">
         <ng-template pTemplate="caption">
           <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-            <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-primary w-full sm:w-auto"
-              (click)="openNew()" [disabled]="!canCreate"></button>
+            <button *ngIf="canCreate" pButton pRipple label="Nuevo" icon="pi pi-plus"
+              class="p-button-primary w-full sm:w-auto" (click)="openNew()"></button>
             <span class="block mt-2 md:mt-0 p-input-icon-left">
               <i class="pi pi-search"></i>
               <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."
@@ -71,7 +75,7 @@
               <span class="p-column-title">Correo</span>
               {{ user.email }}
             </td>
-            <td style="width: 8%">
+            <td style="width: 10%">
               <i class="pi" [ngClass]="{
                   'true-icon pi-check-circle text-green-600': user.active,
                   'false-icon pi-times-circle text-pink-500': !user.active
@@ -79,12 +83,12 @@
             </td>
             <td>
               <div class="flex">
-                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary mr-2"
-                  (click)="seeItem(user)" [disabled]="!canSee"></button>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-primary mr-2"
-                  (click)="editItem(user)" [disabled]="!canEdit"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                  (click)="deleteItem(user)" [disabled]="!canDelete"></button>
+                <button *ngIf="canSee" pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary mr-2"
+                  (click)="seeItem(user)"></button>
+                <button *ngIf="canEdit" pButton pRipple icon="pi pi-pencil"
+                  class="p-button-rounded p-button-primary mr-2" (click)="editItem(user)"></button>
+                <button *ngIf="canDelete" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                  (click)="deleteItem(user)"></button>
               </div>
             </td>
           </tr>
@@ -96,9 +100,9 @@
       <app-modal-user [submitted]="submitted" [user]="user" [roles]="roles" [headquarters]="headquarters"
         [isDetail]="isDetail" [isEdit]="isEdit"></app-modal-user>
       <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text mr-2"
           (click)="hideDialog()"></button>
-        <button pButton pRipple label="Guardar" [disabled]="isDetail" icon="pi pi-check" class="p-button-primary"
+        <button pButton pRipple label="Guardar" [disabled]="isDetail" icon="pi pi-check" class="p-button-primary mr-2"
           (click)="onSubmit(user)"></button>
       </ng-template>
     </p-dialog>
@@ -109,9 +113,9 @@
         <span *ngIf="user">¿Está seguro de eliminar a <b>{{ user.names }}</b>?</span>
       </div>
       <ng-template pTemplate="footer">
-        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+        <button pButton pRipple icon="pi pi-times" class="p-button-text mr-2" label="No"
           (click)="deleteUserDialog = false"></button>
-        <button pButton pRipple icon="pi pi-check" class="p-button-primary" label="Sí"
+        <button pButton pRipple icon="pi pi-check" class="p-button-primary mr-2" label="Sí"
           (click)="confirmDelete()"></button>
       </ng-template>
     </p-dialog>

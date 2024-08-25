@@ -28,9 +28,10 @@ export class AppTopBarComponent {
 
   logout() {
     console.log('logout');
-    
     this._authSvc.clearCookies();
-    this._authSvc.isAuthenticated();
+    setTimeout(() => {
+      this._authSvc.isAuthenticated();
+    }, 100);
   }
 
 }

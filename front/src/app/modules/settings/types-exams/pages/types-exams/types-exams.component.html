@@ -21,12 +21,12 @@
       (onView)="crudDialogService.viewItem($event)"
       (onDelete)="crudDialogService.deleteItem($event)"
     >
-      <h4 table-header>Tipos de Resultados</h4>
+      <h4 table-header>Tipos de Exámenes</h4>
       >
     </app-global-table>
     <app-form-dialog
       [(visible)]="entityDialog"
-      [header]="'Tipos de Resultados'"
+      [header]="'Tipos de Exámenes'"
       [submitted]="submitted"
       [isDetail]="isDetail"
       [data]="entityData"

@@ -12,17 +12,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
-          <a routerLink="/" class="nav-item nav-link active">Inicio</a>
-          <a routerLink="/institutional" class="nav-item nav-link">Institucional</a>
-          <a routerLink="/services" class="nav-item nav-link">Servicios</a>
-          <a routerLink="/blogs" class="nav-item nav-link">Blog</a>
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sedes</a>
-            <div class="dropdown-menu m-1">
-              <a routerLink="/headquarters" class="dropdown-item">Blog Grid</a>
-            </div>
-          </div>
-          <a routerLink="/contact" class="nav-item nav-link">Contacto</a>
+          <a routerLink="/landing" routerLinkActive="active" class="nav-item nav-link">Inicio</a>
+          <a routerLink="/institutional" routerLinkActive="active" class="nav-item nav-link">Institucional</a>
+          <a routerLink="/services" routerLinkActive="active" class="nav-item nav-link">Servicios</a>
+          <a routerLink="/blogs" routerLinkActive="active" class="nav-item nav-link">Blog</a>
+          <a routerLink="/headquarters" routerLinkActive="active" class="nav-item nav-link">Sedes</a>
+          <a routerLink="/contact" routerLinkActive="active" class="nav-item nav-link">Contacto</a>
           <p-button (click)="onResultsClick()" pButton pRipple label="Resultados " class="p-button-text"></p-button>
           <p-button (click)="onLogin()" pButton pRipple label="Ingreso" class="p-button-text"></p-button>
         </div>

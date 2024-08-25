@@ -25,7 +25,7 @@ export const administration = {
     items: [
         {
             label: 'Administración',
-            icon: 'pi pi-cog',
+            icon: 'pi pi-book',
             items: [
                 {
                     code: '02',
@@ -36,13 +36,13 @@ export const administration = {
                 {
                     code: '04',
                     label: 'Tipos de Exámenes',
-                    icon: 'pi pi-fw pi-users',
+                    icon: 'pi pi-fw pi-list',
                     routerLink: [ '/admin/tipos-examenes' ]
                 },
                 {
                     code: '05',
                     label: 'Tipos de Resultados',
-                    icon: 'pi pi-fw pi-users',
+                    icon: 'pi pi-fw pi-check',
                     routerLink: [ '/admin/tipos-resultados' ]
                 },
             ]

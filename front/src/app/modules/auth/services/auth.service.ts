@@ -55,14 +55,14 @@ export class AuthService {
   public isAuthenticated(url?: string): boolean {
     const hasSessionActive = this.verifyToken();
     if (!hasSessionActive) {
-      (url) ? window.location.href = `${url}/auth/selection` : this.router.navigate(['/','auth','selection']);
+      (url) ? window.location.href = `${url}/auth/selection` : this.router.navigate([ '/', 'auth', 'selection' ]);
     }
     return hasSessionActive;
   }
 
   public authenticated(): boolean {
     const hasExpired = this.verifyToken();
-    if (hasExpired) this.router.navigate(['/admin']);
+    if (hasExpired) this.router.navigate([ '/admin' ]);
     return !hasExpired;
   }
 
@@ -81,7 +81,9 @@ export class AuthService {
   }
 
   public clearCookies(): void {
-    this._cookieSvc.delete('token');
+    if (this._cookieSvc.check('token')) {
+      this._cookieSvc.delete('token', '/');
+    }
   }
 
   public getCookie(key: string): string {

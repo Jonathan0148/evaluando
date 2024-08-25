@@ -4,13 +4,13 @@
     <div class="card px-6 py-6">
       <h4>Roles</h4>
       <p-table #dt [value]="roles" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','description']"
-        [paginator]="true" [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true"
-        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas" selectionMode="multiple"
-        [rowHover]="true" dataKey="id" [loading]="loading">
+        [paginator]="true" [rowsPerPageOptions]="[10, 20, 30]" styleClass="p-datatable-sm"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+        selectionMode="multiple" [rowHover]="true" dataKey="id" [loading]="loading">
         <ng-template pTemplate="caption">
           <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-            <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-primary w-full sm:w-auto"
-              (click)="openNew()" [disabled]="!canCreate"></button>
+            <button *ngIf="canCreate" pButton pRipple label="Nuevo" icon="pi pi-plus"
+              class="p-button-primary w-full sm:w-auto" (click)="openNew()"></button>
             <span class="block mt-2 md:mt-0 p-input-icon-left">
               <i class="pi pi-search"></i>
               <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."
@@ -41,39 +41,39 @@
             </td>
             <td>
               <div class="flex">
-                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary mr-2"
-                  (click)="seeItem(rol)" [disabled]="!canSee"></button>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-primary mr-2"
-                  (click)="editItem(rol)" [disabled]="!canEdit"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                  (click)="deleteItem(rol)" [disabled]="!canDelete"></button>
+                <button *ngIf="canSee" pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary mr-2"
+                  (click)="seeItem(rol)"></button>
+                <button *ngIf="canEdit" pButton pRipple icon="pi pi-pencil"
+                  class="p-button-rounded p-button-primary mr-2" (click)="editItem(rol)"></button>
+                <button *ngIf="canDelete" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                  (click)="deleteItem(rol)"></button>
               </div>
             </td>
           </tr>
         </ng-template>
       </p-table>
     </div>
-    <p-dialog [(visible)]="rolDialog" [style]="{ width: '50%' }" [maximizable]="true" header="Roles"
-      [modal]="true" 
-    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"  class="p-fluid">
-      <app-add-roles [submitted]="submitted" [rol]="rol" [isDetail]="isDetail" ></app-add-roles>
+    <p-dialog [(visible)]="rolDialog" [style]="{ width: '50%' }" [maximizable]="true" header="Roles" [modal]="true"
+      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" class="p-fluid">
+      <app-add-roles [submitted]="submitted" [rol]="rol" [isDetail]="isDetail"></app-add-roles>
       <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text mr-2"
           (click)="hideDialog()"></button>
-        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary" [disabled]="isDetail"
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary mr-2" [disabled]="isDetail"
           (click)="onSubmit(rol)"></button>
       </ng-template>
     </p-dialog>
-    <p-dialog [(visible)]="deleteRolDialog" header="Confirmar" [modal]="true" 
-    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"  [style]="{ width: '450px' }">
+    <p-dialog [(visible)]="deleteRolDialog" header="Confirmar" [modal]="true"
+      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '450px' }">
       <div class="flex align-items-center justify-content-center">
         <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
         <span *ngIf="rol">¿Está seguro de eliminar a <b>{{ rol.name }}</b>?</span>
       </div>
       <ng-template pTemplate="footer">
-        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+        <button pButton pRipple icon="pi pi-times" class="p-button-text mr-2" label="No"
           (click)="deleteRolDialog = false"></button>
-        <button pButton pRipple icon="pi pi-check" class="p-button-primary" label="Sí" (click)="confirmDelete()"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-primary mr-2" label="Sí"
+          (click)="confirmDelete()"></button>
       </ng-template>
     </p-dialog>
   </div>

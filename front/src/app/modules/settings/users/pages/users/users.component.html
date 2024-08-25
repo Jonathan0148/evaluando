@@ -25,7 +25,6 @@
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
-            <th>Imagen</th>
             <th pSortableColumn="names">
               Nombre <p-sortIcon field="names"></p-sortIcon>
             </th>
@@ -50,11 +49,6 @@
         </ng-template>
         <ng-template pTemplate="body" let-user>
           <tr>
-            <td style="width: 1%">
-              <span class="p-column-title">Imagen</span>
-              <img [src]="user?.avatar ?? 'assets/layout/images/logo.png'" [alt]="user.names" width="50"
-                class="shadow-4" style="border-radius: 50%" />
-            </td>
             <td style="width: 15%">
               <span class="p-column-title">Nombre</span>
               {{ user.names }}

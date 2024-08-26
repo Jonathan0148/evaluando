@@ -8,6 +8,7 @@ import { PageDto } from 'src/dtos-globals/page.dto';
 import { PageMetaDto } from 'src/dtos-globals/page-meta.dto';
 import { ExamPatient } from './entities/exams-patient.entity';
 import { FindAllEPDto } from './dto/find-all-ep.dto';
+import * as moment from 'moment';
 
 @Injectable()
 export class ExamsPatientsService {
@@ -17,6 +18,10 @@ export class ExamsPatientsService {
 
   async findAll(pageOptionsDto: PageOptionsDto, findAllEPDto: FindAllEPDto): Promise<PageDto<ExamPatient>> {
     const queryBuilder = this.examPatientRepository.createQueryBuilder("query")
+      .leftJoinAndSelect("query.patient", "patient")
+      .leftJoinAndSelect("query.headquarters", "headquarters")
+      .leftJoinAndSelect("query.typesExam", "typesExam")
+      .leftJoinAndSelect("query.typesResult", "typesResult")
       .where("query.patient_id= :patient_id", { patient_id: findAllEPDto.patientId })
       .andWhere(qb => {
         qb.where('(query.internal_code LIKE :term)', {
@@ -29,6 +34,11 @@ export class ExamsPatientsService {
 
     const itemCount = await queryBuilder.getCount();
     const { entities } = await queryBuilder.getRawAndEntities();
+
+    entities.map((entity) => {
+      entity.date_exam = moment(entity.date_exam).format('YYYY-MM-DD');
+      entity.date_delivery = moment(entity.date_delivery).format('YYYY-MM-DD');
+    });
 
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
@@ -96,7 +106,9 @@ export class ExamsPatientsService {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-    
-    return `${year}-${month}-${day}`;
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
   }
 }

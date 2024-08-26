@@ -1,22 +1,26 @@
 import { IsNotEmpty, IsString } from "class-validator";
 
-export class CreateHeadquartersDto {
+export class CreatePatientDto {
     @IsNotEmpty()
     @IsString()
-    code: string;
+    document: string;
     
     @IsNotEmpty()
     @IsString()
-    name: string;
-
+    names: string;
+    
+    @IsNotEmpty()
+    @IsString()
+    surnames: string;
+    
     @IsNotEmpty()
     @IsString()
     address: string;
-
+    
     @IsNotEmpty()
     @IsString()
     cellphone: string;
-
+    
     @IsNotEmpty()
     @IsString()
     email: string;

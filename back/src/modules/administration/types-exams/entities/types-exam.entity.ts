@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ExamPatient } from "../../exams-patients/entities/exams-patient.entity";
 
 @Entity('types_exams')
 export class TypesExam {
@@ -19,4 +20,7 @@ export class TypesExam {
 
     @Column()
     updated_by: number;
+
+    @OneToMany(() => ExamPatient, (examPatient) => examPatient.typesExam)
+    examPatient: ExamPatient[];
 }

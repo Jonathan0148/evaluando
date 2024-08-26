@@ -11,6 +11,10 @@ export class CreateUserDto {
 
     @IsString()
     @IsNotEmpty()
+    document: string;
+
+    @IsString()
+    @IsNotEmpty()
     names: string;
 
     @IsString()
@@ -27,7 +31,7 @@ export class CreateUserDto {
 
     @IsEmail()
     @IsOptional()
-    email: string;
+    email?: string;
 
     @IsBoolean()
     @IsNotEmpty()

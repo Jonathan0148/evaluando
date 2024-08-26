@@ -92,6 +92,7 @@ export class UsersService {
     const data = this.userRepository.create({
       headquarters_id: dto.headquarters_id,
       roles_id: dto.roles_id,
+      document: dto.document,
       names: dto.names,
       surnames: dto.surnames,
       user_name: dto.user_name,

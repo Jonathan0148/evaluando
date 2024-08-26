@@ -6,12 +6,16 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './modules/administration/auth/auth.module';
-import { UsersModule } from './modules/administration/users/users.module';
-import { RolesModule } from './modules/administration/roles/roles.module';
 import { HeadquartersModule } from './modules/administration/headquarters/headquarters.module';
 import { TypesExamsModule } from './modules/administration/types-exams/types-exams.module';
 import { TypesResultsModule } from './modules/administration/types-results/types-results.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { UsersModule } from './modules/setting/users/users.module';
+import { RolesModule } from './modules/setting/roles/roles.module';
+import { PatientsModule } from './modules/administration/patients/patients.module';
+import { ReportsPatientsModule } from './modules/administration/reports-patients/reports-patients.module';
+import { ExamsPatientsModule } from './modules/administration/exams-patients/exams-patients.module';
+import { FileModule } from './modules/file/file.module';
 
 @Module({
   imports: [
@@ -29,6 +33,10 @@ import { TypesResultsModule } from './modules/administration/types-results/types
     HeadquartersModule,
     TypesExamsModule,
     TypesResultsModule,
+    PatientsModule,
+    ReportsPatientsModule,
+    ExamsPatientsModule,
+    FileModule
   ],
   controllers: [AppController],
   providers: [AppService],

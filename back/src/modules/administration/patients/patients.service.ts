@@ -1,23 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateHeadquartersDto } from './dto/create-headquarters.dto';
+import { CreatePatientDto } from './dto/create-patient.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserLoginDto } from 'src/dtos-globals/user-login.dto';
 import { PageOptionsDto } from 'src/dtos-globals/page-options.dto';
 import { PageDto } from 'src/dtos-globals/page.dto';
 import { PageMetaDto } from 'src/dtos-globals/page-meta.dto';
-import { Headquarters } from './entities/headquarters.entity';
+import { Patient } from './entities/patient.entity';
+import * as crypto from 'crypto';
 
 @Injectable()
-export class HeadquartersService {
+export class PatientsService {
   constructor(
-    @InjectRepository(Headquarters) private headquartersRepository: Repository<Headquarters>
+    @InjectRepository(Patient) private patientRepository: Repository<Patient>
   ) { }
 
-  async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<Headquarters>> {
-    const queryBuilder = this.headquartersRepository.createQueryBuilder("query")
+  async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<Patient>> {
+    const queryBuilder = this.patientRepository.createQueryBuilder("query")
       .andWhere(qb => {
-        qb.where('(query.name LIKE :term)', {
+        qb.where('(query.names LIKE :term)', {
           term: `%${pageOptionsDto.term}%`
         })
       })
@@ -34,37 +35,41 @@ export class HeadquartersService {
   }
 
   async findOne(id: number) {
-    const data = await this.headquartersRepository.createQueryBuilder("query")
+    const data = await this.patientRepository.createQueryBuilder("query")
       .where("query.id= :id", { id: id })
       .getOne();
 
-    if (!data) throw new NotFoundException('No existe la sede con el id '+id);
+    if (!data) throw new NotFoundException('No existe el paciente con el id '+id);
 
     return data;
   }
 
-  async create(dto: CreateHeadquartersDto, user: UserLoginDto): Promise<Headquarters | any> {
-    const data = this.headquartersRepository.create({
-      code: dto.code,
-      name: dto.name,
+  async create(dto: CreatePatientDto, user: UserLoginDto): Promise<Patient | any> {
+    const password = crypto.randomBytes(4).toString('hex');
+    const data = this.patientRepository.create({
+      document: dto.document,
+      names: dto.names,
+      surnames: dto.surnames,
       address: dto.address,
       cellphone: dto.cellphone,
       email: dto.email,
+      password: password,
       created_at: this.formatDate(new Date()),
       created_by: user.userId
     });
-    await this.headquartersRepository.save(data);
+    await this.patientRepository.save(data);
 
-    return {message: 'Sede registrada exitosamente'};
+    return {message: 'Paciente registrado exitosamente'};
   }
 
-  async update(id:number, dto: CreateHeadquartersDto, user: UserLoginDto): Promise<any> {
+  async update(id:number, dto: CreatePatientDto, user: UserLoginDto): Promise<any> {
     const data = await this.findOne(id);
 
-    if (!data) throw new NotFoundException({message: 'No existe la sede solicitada'});
+    if (!data) throw new NotFoundException({message: 'No existe el paciente solicitado'});
 
-    await this.headquartersRepository.update(id, {
-      name: dto.name,
+    await this.patientRepository.update(id, {
+      names: dto.names,
+      surnames: dto.surnames,
       address: dto.address,
       cellphone: dto.cellphone,
       email: dto.email,
@@ -72,15 +77,15 @@ export class HeadquartersService {
       updated_by: user.userId
     });
 
-    return {message: 'Sede actualizada exitosamente'};
+    return {message: 'Paciente actualizado exitosamente'};
   }
 
   async remove(id: number) {
     await this.findOne(id);
 
-    await this.headquartersRepository.delete(id);
+    await this.patientRepository.delete(id);
 
-    return {message: 'Sede eliminada exitosamente'};
+    return {message: 'Paciente eliminado exitosamente'};
   }
 
   private formatDate(date: Date): string {

@@ -22,6 +22,9 @@ export class User {
     role: Role;
 
     @Column()
+    document: string;
+
+    @Column()
     names: string;
 
     @Column()

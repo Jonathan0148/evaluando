@@ -12,7 +12,6 @@ import { InstitutionalComponent } from './pages/institutional/institutional.comp
 import { ContactComponent } from './pages/contact/contact.component';
 import { SharedModule } from '../shared/shared.module';
 import { TopBannerComponent } from './components/top-banner/top-banner.component';
-import { HeadquartersComponent } from './pages/headquarters/headquarters.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { BlogsComponent } from './pages/blogs/blogs.component';
 
@@ -26,7 +25,6 @@ import { BlogsComponent } from './pages/blogs/blogs.component';
     FooterComponent,
     LayoutComponent,
     InstitutionalComponent,
-    HeadquartersComponent,
     ServicesComponent,
     BlogsComponent,
     ContactComponent,

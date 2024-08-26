@@ -41,8 +41,8 @@
               Correo <p-sortIcon field="email"></p-sortIcon>
             </th>
 
-            <th pSortableColumn="is_active">
-              Activo <p-sortIcon field="is_active"></p-sortIcon>
+            <th pSortableColumn="active">
+              Activo <p-sortIcon field="active"></p-sortIcon>
             </th>
             <th>Acciones</th>
           </tr>
@@ -104,7 +104,7 @@
       [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '450px' }">
       <div class="flex align-items-center justify-content-center">
         <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-        <span *ngIf="user">¿Está seguro de eliminar a <b>{{ user.names }}</b>?</span>
+        <span *ngIf="user">¿Está seguro de eliminar <b>{{ user.names }}</b>?</span>
       </div>
       <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-times" class="p-button-text mr-2" label="No"

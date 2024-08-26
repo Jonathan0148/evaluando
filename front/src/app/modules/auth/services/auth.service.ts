@@ -52,11 +52,9 @@ export class AuthService {
     this.userRestorePassObject$.next(user);
   }
 
-  public isAuthenticated(url?: string): boolean {
+  public isAuthenticated(): boolean {
     const hasSessionActive = this.verifyToken();
-    if (!hasSessionActive) {
-      (url) ? window.location.href = `${url}/auth/selection` : this.router.navigate([ '/', 'auth', 'selection' ]);
-    }
+    if(!hasSessionActive) this.router.navigate(['/','auth','selection'])
     return hasSessionActive;
   }
 

@@ -64,7 +64,7 @@ export abstract class BaseCrudComponent implements OnInit, OnDestroy {
 
   deleteItem(item: any) {
     this.deleteDialog = true;
-    this.deleteMessage = `¿Está seguro de eliminar a ${item.name}?`;
+    this.deleteMessage = `¿Está seguro de eliminar ${item.name || item.description}?`;
     this.entityData = { ...item };
   }
 

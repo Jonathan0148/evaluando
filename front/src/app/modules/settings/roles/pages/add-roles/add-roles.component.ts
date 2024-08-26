@@ -22,9 +22,8 @@ export class AddRolesComponent implements OnInit {
     { name: 'Crear', value: 2 },
     { name: 'Editar', value: 3 },
     { name: 'Eliminar', value: 4 },
+    { name: 'Exportar PDF', value: 5 }
   ];
-
-  paymentOptionsMap = new Map<number, any[]>();
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -73,15 +72,17 @@ export class AddRolesComponent implements OnInit {
   }
 
   public setRolesModulesForm(rolesModulesArr: any, firstLoad: boolean): void {
-    if (!firstLoad) { this.rolesModules.clear(); }
+    if (!firstLoad) {
+      this.rolesModules.clear();
+    }
     rolesModulesArr.forEach((roleModule: any) => {
       const modules_id = roleModule.modules_id;
       const selectedValue = roleModule.selectedValue;
-      const lessonForm = this.formBuilder.group({ modules_id: [ modules_id ], selectedValue: [ selectedValue ] });
+      const lessonForm = this.formBuilder.group({
+        modules_id: [ modules_id ],
+        selectedValue: [ selectedValue ]
+      });
       this.rolesModules.push(lessonForm);
-      if (modules_id) {
-        this.validateExist(modules_id, this.rolesModules.length - 1);
-      }
     });
   }
 
@@ -105,39 +106,6 @@ export class AddRolesComponent implements OnInit {
       this._notificationSvc.show('info', 'Ha ocurrido algo...', 'El módulo seleccionado ya se encuentra asignado');
       this.rolesModules.controls[ i ].get('modules_id').setValue(null);
       this.rolesModules.controls[ i ].get('selectedValue').setValue([]);
-    } else {
-      const selectedModuleName = this.modules.find(module => module.id === id)?.name;
-
-      let newOptions;
-      if (selectedModuleName === 'Comanda') {
-        newOptions = [
-          { name: 'Autorizar', value: 6 },
-          { name: 'Preparar', value: 7 },
-          { name: 'Emplatar', value: 8 },
-          { name: 'Despachar', value: 9 }
-        ];
-      } else {
-        newOptions = [
-          { name: 'Ver', value: 1, constant: true },
-          { name: 'Crear', value: 2 },
-          { name: 'Editar', value: 3 },
-          { name: 'Eliminar', value: 4 },
-        ];
-      }
-      this.paymentOptionsMap.set(id, newOptions);
-      if (this.rolesModules.controls[ i ].get('selectedValue')?.value.length === 0) {
-        this.rolesModules.controls[ i ].get('selectedValue').setValue([ newOptions.find(option => option.constant) ]);
-      }
-    }
-  }
-
-  public getPaymentOptions(index: number) {
-    const selectedModule = this.rolesModules.at(index).get('modules_id')?.value;
-    return this.paymentOptionsMap.get(selectedModule) || [
-      { name: 'Ver', value: 1, constant: true },
-      { name: 'Crear', value: 2 },
-      { name: 'Editar', value: 3 },
-      { name: 'Eliminar', value: 4 },
-    ];
+    } 
   }
 }

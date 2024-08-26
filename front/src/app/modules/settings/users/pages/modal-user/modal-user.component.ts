@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
 import { User } from '../../models/user.model';
 import { Rol } from '../../../roles/models/rol.model';
@@ -11,7 +11,7 @@ import { UsersService } from '../../services/users.service';
   styleUrls: [ './modal-user.component.scss' ]
 })
 
-export class ModalUserComponent implements OnInit {
+export class ModalUserComponent implements OnChanges {
   form!: UntypedFormGroup;
   passwordForm!: UntypedFormGroup;
 
@@ -27,10 +27,6 @@ export class ModalUserComponent implements OnInit {
     public readonly _fileSvc: FileService,
     private readonly _usersSvc: UsersService,
   ) { }
-
-  ngOnInit(): void {
-    this.fb();
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes[ 'user' ] && changes[ 'user' ].currentValue) {

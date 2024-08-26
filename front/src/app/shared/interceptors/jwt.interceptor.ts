@@ -13,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let access_token = this.cookieService.get('api_key');
+        let access_token = this.cookieService.get('token');
         if (access_token) {
             request = request.clone({
                 setHeaders: {

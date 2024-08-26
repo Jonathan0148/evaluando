@@ -53,7 +53,7 @@
         </ng-template>
       </p-table>
     </div>
-    <p-dialog [(visible)]="rolDialog" [style]="{ width: '50%' }" [maximizable]="true" header="Roles" [modal]="true"
+    <p-dialog [(visible)]="rolDialog" [style]="{ width: '60%' }" [maximizable]="true" header="Roles" [modal]="true"
       [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" class="p-fluid">
       <app-add-roles [submitted]="submitted" [rol]="rol" [isDetail]="isDetail"></app-add-roles>
       <ng-template pTemplate="footer">
@@ -67,7 +67,7 @@
       [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '450px' }">
       <div class="flex align-items-center justify-content-center">
         <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-        <span *ngIf="rol">¿Está seguro de eliminar a <b>{{ rol.name }}</b>?</span>
+        <span *ngIf="rol">¿Está seguro de eliminar <b>{{ rol.name }}</b>?</span>
       </div>
       <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-times" class="p-button-text mr-2" label="No"

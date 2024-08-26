@@ -29,16 +29,16 @@
       <ng-container *ngFor="let rolesModulesForm of rolesModules.controls; let i = index">
         <ng-container [formGroup]="rolesModulesForm">
           <div class="formgrid grid mb-2">
-            <div class="col-5">
+            <div class="col-4">
               <div class="form-group">
                 <p-dropdown [readonly]="isDetail" (onChange)="validateExist($event.value, i)" [filter]="true"
                   inputId="modules_id" required optionLabel="name" formControlName="modules_id" optionValue="id"
                   [options]="modules" placeholder="Seleccione el módulo" appendTo="body"></p-dropdown>
               </div>
             </div>
-            <div class="col-6">
-              <p-selectButton [options]="getPaymentOptions(i)" formControlName="selectedValue" [multiple]="true"
-                optionLabel="name" optionDisabled="constant">
+            <div class="col-7">
+              <p-selectButton [options]="paymentOptions" formControlName="selectedValue" optionLabel="name"
+                [style]="{ height: '50px' }" optionDisabled="constant" [multiple]="true">
               </p-selectButton>
             </div>
             <div class="col-1">

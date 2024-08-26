@@ -76,7 +76,7 @@
       [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '450px' }">
       <div class="flex align-items-center justify-content-center">
         <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-        <span *ngIf="survey">¿Está seguro de eliminar a <b>{{ survey.name }}</b>?</span>
+        <span *ngIf="survey">¿Está seguro de eliminar <b>{{ survey.name }}</b>?</span>
       </div>
       <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"

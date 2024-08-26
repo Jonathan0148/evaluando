@@ -149,7 +149,6 @@ export class UsersComponent implements OnInit {
         if (!this.modalUserComponent) return;
         const formData = this.modalUserComponent.getFormData();
         if (!formData) return;
-        formData.is_active = true;
         this._usersSvc.create(formData).subscribe((data: IResponse) => {
             this.getParamsData();
         });

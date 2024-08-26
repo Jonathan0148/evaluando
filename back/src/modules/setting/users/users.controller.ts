@@ -3,7 +3,6 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ApiPaginatedResponse } from 'src/config/constanst';
 import { PageOptionsDto } from 'src/dtos-globals/page-options.dto';
-import { PageDto } from 'src/dtos-globals/page.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/jwt/jwt-auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';

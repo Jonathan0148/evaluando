@@ -4,8 +4,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
-import { User } from '../users/entities/user.entity';
-import { Role } from '../roles/entities/role.entity';
+import { User } from '../setting/users/entities/user.entity';
+import { Role } from '../setting/roles/entities/role.entity';
 
 @Injectable()
 export class AuthService {

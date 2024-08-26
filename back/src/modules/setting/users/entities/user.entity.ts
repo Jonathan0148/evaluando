@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "../../roles/entities/role.entity";
-import { Headquarters } from "../../headquarters/entities/headquarters.entity";
+import { Headquarters } from "src/modules/administration/headquarters/entities/headquarters.entity";
 
 @Entity('users')
 export class User {

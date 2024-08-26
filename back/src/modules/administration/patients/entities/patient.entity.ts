@@ -1,17 +1,20 @@
-import { User } from "src/modules/setting/users/entities/user.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ReportPatient } from "../../reports-patients/entities/reports-patient.entity";
 import { ExamPatient } from "../../exams-patients/entities/exams-patient.entity";
 
-@Entity('headquarters')
-export class Headquarters {
+@Entity('patients')
+export class Patient {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    code: string;
+    document: string;
 
     @Column()
-    name: string;
+    names: string;
+
+    @Column()
+    surnames: string;
 
     @Column()
     address: string;
@@ -21,6 +24,9 @@ export class Headquarters {
 
     @Column()
     email: string;
+
+    @Column()
+    password: string;
 
     @Column()
     created_at: string;
@@ -34,9 +40,9 @@ export class Headquarters {
     @Column()
     updated_by: number;
 
-    @OneToMany(() => User, (user) => user.headquarters)
-    user: User[];
+    @OneToMany(() => ReportPatient, (reportPatient) => reportPatient.patient)
+    reportPatient: ReportPatient[];
 
-    @OneToMany(() => ExamPatient, (examPatient) => examPatient.headquarters)
+    @OneToMany(() => ExamPatient, (examPatient) => examPatient.patient)
     examPatient: ExamPatient[];
 }

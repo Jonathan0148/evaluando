@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateExamsPatientDto } from './dto/create-exams-patient.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Brackets, Repository } from 'typeorm';
 import { UserLoginDto } from 'src/dtos-globals/user-login.dto';
 import { PageOptionsDto } from 'src/dtos-globals/page-options.dto';
 import { PageDto } from 'src/dtos-globals/page.dto';
@@ -22,12 +22,12 @@ export class ExamsPatientsService {
       .leftJoinAndSelect("query.headquarters", "headquarters")
       .leftJoinAndSelect("query.typesExam", "typesExam")
       .leftJoinAndSelect("query.typesResult", "typesResult")
-      .where("query.patient_id= :patient_id", { patient_id: findAllEPDto.patientId })
-      .andWhere(qb => {
+      .where(new Brackets(qb => {
         qb.where('(query.internal_code LIKE :term)', {
           term: `%${pageOptionsDto.term}%`
         })
-      })
+      }))
+      .andWhere("query.patient_id= :patient_id", { patient_id: findAllEPDto.patientId })
       .orderBy("query.id", pageOptionsDto.order)
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take);

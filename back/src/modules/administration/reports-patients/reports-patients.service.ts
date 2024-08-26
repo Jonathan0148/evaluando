@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateReportsPatientDto } from './dto/create-reports-patient.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Brackets, Repository } from 'typeorm';
 import { UserLoginDto } from 'src/dtos-globals/user-login.dto';
 import { PageOptionsDto } from 'src/dtos-globals/page-options.dto';
 import { PageDto } from 'src/dtos-globals/page.dto';
@@ -15,14 +15,15 @@ export class ReportsPatientsService {
     @InjectRepository(ReportPatient) private reportPatientRepository: Repository<ReportPatient>
   ) { }
 
-  async findAll(pageOptionsDto: PageOptionsDto, findAllRPDto: FindAllRPDto): Promise<PageDto<ReportPatient>> {
+  async findAll(pageOptionsDto: PageOptionsDto, findAllRPDto: FindAllRPDto): Promise<any> {
     const queryBuilder = this.reportPatientRepository.createQueryBuilder("query")
-      .where("query.patient_id= :patient_id", { patient_id: findAllRPDto.patientId })
-      .andWhere(qb => {
+      .leftJoinAndSelect("query.patient", "patient")
+      .where(new Brackets(qb => {
         qb.where('(query.name LIKE :term)', {
           term: `%${pageOptionsDto.term}%`
         })
-      })
+      }))
+      .andWhere("query.patient_id= :patient_id", { patient_id: findAllRPDto.patientId })
       .orderBy("query.id", pageOptionsDto.order)
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take);

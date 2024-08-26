@@ -27,7 +27,6 @@ export class AppTopBarComponent {
   ) { }
 
   logout() {
-    console.log('logout');
     this._authSvc.clearCookies();
     setTimeout(() => {
       this._authSvc.isAuthenticated();

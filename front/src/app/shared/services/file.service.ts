@@ -49,17 +49,17 @@ export class FileService {
   }
 
   public validateFile(file: File): boolean {
-    // if(!file.type.startsWith('image/')){
-    //   this._notificationSvc.show('error','Ha ocurrido algo...','El ');
-    //   return false
-    // }
-
-    if (file.size > environment.maxFileSize) {
-      this._notificationSvc.show('error', 'Ha ocurrido algo...', 'El peso máximo de los archivos es ' + environment.maxFileSize);
-      return false
+    if (!file.type.includes('pdf')) {
+      this._notificationSvc.show('error', 'Archivo no permitido', 'Solo se permiten archivos PDF.');
+      return false;
     }
 
-    return true
+    if (file.size > environment.maxFileSize) {
+      this._notificationSvc.show('error', 'Archivo demasiado grande', `El tamaño máximo permitido es ${environment.maxFileSize / 1000000}MB.`);
+      return false;
+    }
+
+    return true;
   }
 
   public getUrlFile(name: string): string {

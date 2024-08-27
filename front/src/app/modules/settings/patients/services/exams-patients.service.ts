@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RestService } from 'src/app/shared/services/rest.service';
-import { environment } from 'src/environments/environment';
-import { TypeExam } from '../../types-exams/models/type-exam.model';
+import { environment } from 'src/environments/environment';import { ExamPatient } from '../models/exam-patient.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,19 +13,19 @@ export class ExamsPatientsService {
     this.setParams();
   }
 
-  public create(body: TypeExam): Observable<any> {
+  public create(body: ExamPatient): Observable<any> {
     this.setParams();
-    return this._restSvc.create<TypeExam>(body);
+    return this._restSvc.create<ExamPatient>(body);
   }
 
-  public update(id: number, body: TypeExam): Observable<any> {
+  public update(id: number, body: ExamPatient): Observable<any> {
     this.setParams();
-    return this._restSvc.update<TypeExam>(id, body);
+    return this._restSvc.update<ExamPatient>(id, body);
   }
 
-  public get(id: number): Observable<TypeExam> {
+  public get(id: number): Observable<ExamPatient> {
     this.setParams();
-    return this._restSvc.show<TypeExam>(id);
+    return this._restSvc.show<ExamPatient>(id);
   }
 
   public delete(id: number): Observable<any> {

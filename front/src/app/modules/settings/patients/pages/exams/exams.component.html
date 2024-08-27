@@ -10,15 +10,23 @@
                 <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
                 <div class="flex align-items-center">
                     <ul class="list-none p-0 m-0 flex-grow-1">
-                        <li class="flex justify-content-center  mb-2">
+                        <li class="flex justify-content-center mb-2">
                             <i class="pi pi-id-card text-green-500 my-1 ml-3 mr-1"></i>
-                            <span class=" font-medium text-600" >{{ patientExams[0].patient.document }}</span>
+                            <span class="font-medium text-600">{{
+                                patientExams[0].patient.document
+                                }}</span>
                             <i class="pi pi-phone text-green-500 my-1 ml-3 mr-1"></i>
-                            <span class=" font-medium text-600" >{{ patientExams[0].patient.cellphone }}</span>
+                            <span class="font-medium text-600">{{
+                                patientExams[0].patient.cellphone
+                                }}</span>
                             <i class="pi pi-map-marker text-green-500 my-1 ml-3 mr-1"></i>
-                            <span class=" font-medium text-600" >{{ patientExams[0].patient.address }}</span>
+                            <span class="font-medium text-600">{{
+                                patientExams[0].patient.address
+                                }}</span>
                             <i class="pi pi-envelope text-green-500 my-1 ml-3 mr-1"></i>
-                            <span  class=" font-medium text-600" >{{ patientExams[0].patient.email }}</span>
+                            <span class="font-medium text-600">{{
+                                patientExams[0].patient.email
+                                }}</span>
                         </li>
                         <span class="font-bold text-2xl text-900">{{
                             this.paramsData.take
@@ -34,12 +42,9 @@
             <p-table #dt [value]="patientExams" responsiveLayout="scroll" [rows]="10" [paginator]="true"
                 [globalFilterFields]="[
           'internal_code',
-          'patient_id',
-          'headquarter_id',
-          'type_exam_id',
-          'type_result_id',
-          'date_exam',
-          'date_delivery'
+          'headquarters.name',
+          'typesExam.description',
+          'typesResult.description'
         ]" [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
                 selectionMode="multiple" [rowHover]="true" dataKey="id" styleClass="p-datatable-sm" [loading]="loading">
@@ -60,15 +65,15 @@
                         <th pSortableColumn="internal_code">
                             Código Interno <p-sortIcon field="internal_code"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="headquarter_id">
-                            Sede <p-sortIcon field="headquarter_id"></p-sortIcon>
+                        <th pSortableColumn="headquarters.name">
+                            Sede <p-sortIcon field="headquarters.name"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="type_exam_id">
-                            Examen <p-sortIcon field="type_exam_id"></p-sortIcon>
+                        <th pSortableColumn="typesExam.description">
+                            Examen <p-sortIcon field="typesExam.description"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="type_result_id">
+                        <th pSortableColumn="typesResult.description">
                             Resultado
-                            <p-sortIcon field="type_result_id"></p-sortIcon>
+                            <p-sortIcon field="typesResult.description"></p-sortIcon>
                         </th>
                         <th pSortableColumn="date_exam">
                             Fecha de Examen <p-sortIcon field="date_exam"></p-sortIcon>
@@ -82,31 +87,31 @@
 
                 <ng-template pTemplate="body" let-patientExam>
                     <tr>
-                        <td   style="width: 12%; min-width: 8rem">
+                        <td style="width: 12%; min-width: 8rem">
                             <span class="p-column-title">Código Interno</span>
                             {{ patientExam.internal_code }}
                         </td>
-                        <td  style="width: 12%; min-width: 8rem">
+                        <td style="width: 12%; min-width: 8rem">
                             <span class="p-column-title">Sede</span>
                             {{ patientExam.headquarters.name }}
                         </td>
-                        <td  style="width: 12%; min-width: 8rem">
+                        <td style="width: 12%; min-width: 8rem">
                             <span class="p-column-title">Tipo de Examen</span>
                             {{ patientExam.typesExam.description }}
                         </td>
-                        <td  style="width: 12%; min-width: 8rem">
+                        <td style="width: 12%; min-width: 8rem">
                             <span class="p-column-title">Resultado del Examen</span>
                             {{ patientExam.typesResult.description }}
                         </td>
-                        <td  style="width: 12%; min-width: 8rem">
+                        <td style="width: 12%; min-width: 8rem">
                             <span class="p-column-title">Fecha de Examen</span>
-                            {{ patientExam.date_exam | date : "dd/MM/yyyy" }}
+                            {{ patientExam.date_exam | date : "dd/MM/yyyy" : "UTC"}}
                         </td>
-                        <td  style="width: 12%; min-width: 8rem">
+                        <td style="width: 12%; min-width: 8rem">
                             <span class="p-column-title">Fecha de Entrega</span>
-                            {{ patientExam.date_delivery | date : "dd/MM/yyyy" }}
+                            {{ patientExam.date_delivery | date : "dd/MM/yyyy" : "UTC"}}
                         </td>
-                        <td  style="width: 12%; min-width: 8rem">
+                        <td style="width: 12%; min-width: 8rem">
                             <div class="flex">
                                 <button *ngIf="canSee" pTooltip="Ver" tooltipPosition="top" pButton pRipple
                                     icon="pi pi-eye" class="p-button-rounded p-button-secondary mr-2"
@@ -124,9 +129,11 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="patientExamDialog" [style]="{ width: '50%' }" header="Exámen" [modal]="true"
+        <p-dialog [(visible)]="patientExamDialog" [style]="{ width: '50%' }" header="Exámen" [modal]="true" [maximizable]="true"
             [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" class="p-fluid">
-            <app-add-exams [headquarters]="headquarters" [typesExams]="typesExams" [id]="id" [typesResults]="typesResults" [submitted]="submitted" [patientExam]="patientExam" [isDetail]="isDetail"></app-add-exams>
+            <app-add-exams [headquarters]="headquarters" [typesExams]="typesExams" [id]="id"
+                [typesResults]="typesResults" [submitted]="submitted" [patientExam]="patientExam"
+                [isDetail]="isDetail"></app-add-exams>
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
                     (click)="hideDialog()"></button>

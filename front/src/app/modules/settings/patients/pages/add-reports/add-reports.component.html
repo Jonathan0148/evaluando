@@ -1,1 +1,36 @@
-<p>add-reports works!</p>
+<form [formGroup]="form">
+    <div class="field">
+        <label for="name">Nombre de archivo</label>
+        <input type="text" formControlName="name" pInputText id="name" [(ngModel)]="patientReport.name"
+            placeholder="Ingrese Nombre de archivo" required [readOnly]="isDetail" maxlength="20" [ngClass]="{
+        'ng-invalid ng-dirty': submitted && !patientReport.name
+      }" />
+        <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !patientReport.name">Nombre de archivo es
+            obligatorio.</small>
+    </div>
+    <div *ngIf="!isDetail || !patientReport.file_location" class="field">
+        <label for="name">Archivo</label>
+        <p-fileUpload [auto]="false" nameControl="file_location" mode="basic" uploadLabel="Subir archivo"
+            chooseLabel="Seleccionar" name="demo[]" [disabled]="isDetail"
+            url="https://www.primefaces.org/cdn/api/upload.php" accept="application/pdf" maxFileSize="1000000"
+            (onUpload)="onBasicUploadAuto($event, form)" [ngClass]="{
+        'ng-invalid ng-dirty': submitted && !patientReport.file_location
+      }"></p-fileUpload>
+        <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !patientReport.file_location">Archivo es
+            obligatorio.</small>
+    </div>
+    <div *ngIf="patientReport.file_location" class="field">
+        <label for="file_location"> Archivo</label>
+        <p-inputGroup>
+            <p-inputGroupAddon>
+                <i class="pi pi-file-pdf"></i>
+            </p-inputGroupAddon>
+            <input [style]="{ cursor: 'pointer' }" [value]="patientReport.name || 'archivo.pdf'" type="text" pInputText
+                id="file_location" [readOnly]="true" (click)="
+          patientReport.file_location
+            ? openWindow(patientReport.file_location)
+            : null
+        " />
+        </p-inputGroup>
+    </div>
+</form>

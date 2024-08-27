@@ -45,6 +45,13 @@ export const administration = {
                     icon: 'pi pi-fw pi-check',
                     routerLink: [ '/admin/tipos-resultados' ]
                 },
+                
+                {
+                    code: '06',
+                    label: 'Pacientes',
+                    icon: 'pi pi-fw pi-user',
+                    routerLink: [ '/admin/pacientes' ]
+                },
             ]
         }
     ]

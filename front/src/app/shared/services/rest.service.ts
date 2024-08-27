@@ -41,22 +41,20 @@ export class RestService {
     return `${this.apiUrl}${this.port}/api/${this.endPoint}`;
   }
 
+  private setHeaders(): HttpHeaders {
+    const token = this._cookieSvc.get('token');
+    return this.headers.set('Authorization', `Bearer ${token}`);
+  }
+  
   public getAll<T>(paramsData: any): Observable<T> {
-
     let params = new HttpParams();
-
-    params = params.set('take', paramsData?.take ?? 10)
+    params = params.set('take', paramsData?.take ?? 10);
     params = params.set('page', paramsData?.page ?? 1);
     params = params.set('term', paramsData?.term ?? "");
-
-    // if (paramsData.page) {
-    //   paramsData.term.forEach((filter: any) => {
-    //     params = params.set('term[' + filter.key + ']', filter.value);
-    //   });
-    // }
-
-    return this.httpClient.get<T>(this.getEndoint(), { params, headers: this.headers });
+  
+    return this.httpClient.get<T>(this.getEndoint(), { params, headers: this.setHeaders() });
   }
+  
 
   /**
    * Funcion que muestra un item dependiendo su ID
@@ -68,7 +66,7 @@ export class RestService {
   public show<T>(id: number): Observable<T> {
     return this.httpClient.get<T>(
       `${this.getEndoint()}/${id}`, {
-      headers: this.headers
+      headers: this.setHeaders()
     }
     )
   }
@@ -82,7 +80,7 @@ export class RestService {
     return this.httpClient.post<T>(
       this.getEndoint(),
       data, {
-      headers: this.headers
+      headers: this.setHeaders()
     }
     );
   }
@@ -99,7 +97,7 @@ export class RestService {
     return this.httpClient.put<T>(
       `${this.getEndoint()}/${id}`,
       data, {
-      headers: this.headers
+      headers: this.setHeaders()
     }
     );
   }
@@ -114,7 +112,7 @@ export class RestService {
   public destroy<T>(id: number): Observable<T> {
     return this.httpClient.delete<T>(
       `${this.getEndoint()}/${id}`, {
-      headers: this.headers
+      headers: this.setHeaders()
     });
   }
 
@@ -138,7 +136,7 @@ export class RestService {
       `${this.getEndoint()}/${url}`,
       data, {
       params,
-      headers: this.headers
+      headers: this.setHeaders()
     }
     );
   }
@@ -152,7 +150,7 @@ export class RestService {
   public get<T>(id: number, url: string): Observable<T> {
     return this.httpClient.get<T>(
       `${this.getEndoint()}/${url}/${id}`, {
-      headers: this.headers
+      headers: this.setHeaders()
     }
     );
   }
@@ -161,17 +159,24 @@ export class RestService {
   public getUrl<T>(url: string): Observable<T> {
     return this.httpClient.get<T>(
       `${this.getEndoint()}/${url}`, {
-      headers: this.headers
+      headers: this.setHeaders()
     });
   }
 
   public getPostUrl<T>(url: string): Observable<T> {
     return this.httpClient.post<T>(
       `${this.getEndoint()}/${url}`, {
-      headers: this.headers
+      headers: this.setHeaders()
     });
   }
 
+  public methodPost<T>(data: any, url: string): Observable<T> {
+    return this.httpClient.post<T>(
+      `${this.getEndoint()}/${url}`,
+      data, {
+      headers: this.setHeaders()
+    });
+  }
   // public getNextCode<T>(model: IModels): Observable<T> {
   // 	const params = new HttpParams().set('model', model)
   // 	return this.httpClient.get<T>(

@@ -157,7 +157,7 @@ export class ReportsComponent implements OnInit {
   }
 
   modulePermissions() {
-    const permissions = this._filterModuleService.modulePermissions('06');
+    const permissions = this._filterModuleService.modulePermissions('08');
 
     this.canSee = permissions.canSee;
     this.canCreate = permissions.canCreate;

@@ -184,7 +184,7 @@ export class ExamsComponent implements OnInit {
   }
 
   modulePermissions() {
-    const permissions = this._filterModuleService.modulePermissions('06');
+    const permissions = this._filterModuleService.modulePermissions('07');
 
     this.canSee = permissions.canSee;
     this.canCreate = permissions.canCreate;

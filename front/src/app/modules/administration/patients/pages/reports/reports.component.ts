@@ -152,6 +152,10 @@ export class ReportsComponent implements OnInit {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
 
+  onRowSelect(event: any){
+    this.addReportsComponent.openWindow(event.file_location);
+  }
+
   modulePermissions() {
     const permissions = this._filterModuleService.modulePermissions('06');
 

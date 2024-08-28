@@ -75,7 +75,7 @@ export class TypesResultsService {
 
     const dataTE = await this.examPatientRepository.findOneBy({patient_id: id});
 
-    if (dataTE) throw new NotFoundException({message: 'El tipo de examen no puede ser eliminado porque tiene exámenes relacionados'});
+    if (dataTE) throw new NotFoundException({message: 'El tipo de resultado no puede ser eliminado porque tiene exámenes relacionados'});
 
     await this.typesExamRepository.delete(id);
 

@@ -16,17 +16,22 @@ import { PatientsModule } from './modules/administration/patients/patients.modul
 import { ReportsPatientsModule } from './modules/administration/reports-patients/reports-patients.module';
 import { ExamsPatientsModule } from './modules/administration/exams-patients/exams-patients.module';
 import { FileModule } from './modules/file/file.module';
+import { PatientExamModule } from './modules/patient-rol/patient-exam/patient-exam.module';
+import { PatientReportModule } from './modules/patient-rol/patient-report/patient-report.module';
+import { PatientAuthModule } from './modules/patient-rol/patient-auth/patient-auth.module';
 
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(process.cwd(), 'public')
+      rootPath: join(process.cwd(), 'public'),
     }),
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
     }),
-    TypeOrmModule.forRoot( MySqlConfig(process.env.DB_HOST, process.env.DB_PORT, process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD) ),
+    TypeOrmModule.forRoot(
+      MySqlConfig(process.env.DB_HOST, process.env.DB_PORT, process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD),
+    ),
     AuthModule,
     UsersModule,
     RolesModule,
@@ -36,7 +41,10 @@ import { FileModule } from './modules/file/file.module';
     PatientsModule,
     ReportsPatientsModule,
     ExamsPatientsModule,
-    FileModule
+    FileModule,
+    PatientExamModule,
+    PatientReportModule,
+    PatientAuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

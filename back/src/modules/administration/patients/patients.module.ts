@@ -12,5 +12,6 @@ import { ExamPatient } from '../exams-patients/entities/exams-patient.entity';
   ],
   controllers: [PatientsController],
   providers: [PatientsService, JwtStrategy],
+  exports: [TypeOrmModule]
 })
 export class PatientsModule {}

@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class FormDialogComponent {
   @Input() visible: boolean = false;
   @Input() header: string = '';
-  @Input() width: string = '50%';
+  @Input() width: string = '40%';
   @Input() modal: boolean = true;
   @Input() breakpoints: any = { '1199px': '75vw', '575px': '90vw' };
   @Input() submitted: boolean = false;

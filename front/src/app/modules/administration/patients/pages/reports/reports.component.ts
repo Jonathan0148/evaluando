@@ -6,8 +6,8 @@ import { IParamsIndex, IResponse } from 'src/app/shared/utils';
 import { FilterModuleService } from 'src/app/shared/services/filter-module.service';
 import { Patient } from '../../models/patient.model';
 import { PatientsService } from '../../services/patients.service';
-import { AddReportsComponent } from '../add-reports/add-reports.component';
 import { Table } from 'primeng/table';
+import { AddReportsComponent } from '../../components/add-reports/add-reports.component';
 
 @Component({
   selector: 'app-reports',

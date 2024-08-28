@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AddPatientsComponent } from '../add-patients/add-patients.component';
 import { Patient } from '../../models/patient.model';
 import { IParamsIndex, IResponse } from 'src/app/shared/utils';
 import { PatientsService } from '../../services/patients.service';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { FilterModuleService } from 'src/app/shared/services/filter-module.service';
+import { AddPatientsComponent } from '../../components/add-patients/add-patients.component';
 
 @Component({
   selector: 'app-patients',

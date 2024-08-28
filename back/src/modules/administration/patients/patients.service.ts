@@ -8,11 +8,13 @@ import { PageDto } from 'src/dtos-globals/page.dto';
 import { PageMetaDto } from 'src/dtos-globals/page-meta.dto';
 import { Patient } from './entities/patient.entity';
 import * as crypto from 'crypto';
+import { ExamPatient } from '../exams-patients/entities/exams-patient.entity';
 
 @Injectable()
 export class PatientsService {
   constructor(
-    @InjectRepository(Patient) private patientRepository: Repository<Patient>
+    @InjectRepository(Patient) private patientRepository: Repository<Patient>,
+    @InjectRepository(ExamPatient) private examPatientRepository: Repository<ExamPatient>
   ) { }
 
   async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<Patient>> {
@@ -83,6 +85,10 @@ export class PatientsService {
   async remove(id: number) {
     await this.findOne(id);
 
+    const dataTE = await this.examPatientRepository.findOneBy({patient_id: id});
+
+    if (dataTE) throw new NotFoundException({message: 'El paciente no puede ser eliminado porque tiene exámenes relacionados'});
+    
     await this.patientRepository.delete(id);
 
     return {message: 'Paciente eliminado exitosamente'};

@@ -7,11 +7,13 @@ import { PageOptionsDto } from 'src/dtos-globals/page-options.dto';
 import { PageDto } from 'src/dtos-globals/page.dto';
 import { PageMetaDto } from 'src/dtos-globals/page-meta.dto';
 import { TypesExam } from './entities/types-exam.entity';
+import { ExamPatient } from '../exams-patients/entities/exams-patient.entity';
 
 @Injectable()
 export class TypesExamsService {
   constructor(
-    @InjectRepository(TypesExam) private typesExamRepository: Repository<TypesExam>
+    @InjectRepository(TypesExam) private typesExamRepository: Repository<TypesExam>,
+    @InjectRepository(ExamPatient) private examPatientRepository: Repository<ExamPatient>
   ) { }
 
   async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<TypesExam>> {
@@ -70,6 +72,10 @@ export class TypesExamsService {
 
   async remove(id: number) {
     await this.findOne(id);
+
+    const dataTE = await this.examPatientRepository.findOneBy({patient_id: id});
+
+    if (dataTE) throw new NotFoundException({message: 'El tipo de examen no puede ser eliminado porque tiene exámenes relacionados'});
 
     await this.typesExamRepository.delete(id);
 

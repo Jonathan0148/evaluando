@@ -67,6 +67,13 @@ export class UsersService {
 
     return data;
   }
+
+  async findByDocument(document: string): Promise<User> {
+    return await this.userRepository.createQueryBuilder('user')
+      .where("user.document = :document", { document: document })
+      .getOne();
+  }
+
   async findByEmail(email: string): Promise<User> {
     return await this.userRepository.createQueryBuilder('user')
       .where("user.email = :email", { email: email })
@@ -80,6 +87,9 @@ export class UsersService {
   }
 
   async create(dto: CreateUserDto, user: UserLoginDto): Promise<User | any> {
+    const existsDocument = await this.findByDocument(dto.document);
+    if (existsDocument) throw new NotFoundException('Ya existe un usuario con el documento ingresado');
+
     const existsEmail = await this.findByEmail(dto.email);
     if (existsEmail) throw new NotFoundException('Ya existe un usuario con el correo ingresado');
 

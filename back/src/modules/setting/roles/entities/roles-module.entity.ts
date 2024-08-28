@@ -34,9 +34,6 @@ export class RoleModule {
     can_delete: boolean;
 
     @Column()
-    can_export_pdf: boolean;
-
-    @Column()
     created_at: string;
 
     @Column()

@@ -1,0 +1,128 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <h4>Pacientes</h4>
+      <p-table #dt [value]="patients" responsiveLayout="scroll" [rows]="10" [paginator]="true" [globalFilterFields]="[
+          'names',
+          'document',
+          'surnames',
+          'address',
+          'cellphone',
+          'email'
+        ]" [rowsPerPageOptions]="[10, 20, 30]" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas" selectionMode="multiple"
+        [rowHover]="true" dataKey="id" styleClass="p-datatable-sm" [loading]="loading">
+        <ng-template pTemplate="caption">
+          <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+            <button *ngIf="canCreate" pButton pRipple label="Nuevo" icon="pi pi-plus"
+              class="p-button-primary w-full sm:w-auto" (click)="openNew()"></button>
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."
+                class="w-full" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="document">
+              Documento <p-sortIcon field="document"></p-sortIcon>
+            </th>
+            <th pSortableColumn="names">
+              Nombres <p-sortIcon field="names"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="surnames">
+              Apellidos <p-sortIcon field="surnames"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="address">
+              Dirección <p-sortIcon field="address"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="cellphone">
+              Teléfono <p-sortIcon field="cellphone"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="email">
+              Correo <p-sortIcon field="email"></p-sortIcon>
+            </th>
+
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-patient>
+          <tr>
+            <td style="width: 8%; min-width: 8rem">
+              <span class="p-column-title">Documento</span>
+              {{ patient.document }}
+            </td>
+            <td style="width: 12%; min-width: 8rem">
+              <span class="p-column-title">Nombres</span>
+              {{ patient.names }}
+            </td>
+
+            <td style="width: 12%; min-width: 8rem">
+              <span class="p-column-title">Apellidos</span>
+              {{ patient.surnames }}
+            </td>
+
+            <td style="width: 12%; min-width: 8rem">
+              <span class="p-column-title">Dirección</span>
+              {{ patient.address }}
+            </td>
+
+            <td style="width: 12%; min-width: 8rem">
+              <span class="p-column-title">Teléfono</span>
+              {{ patient.cellphone }}
+            </td>
+
+            <td style="width: 10%; min-width: 8rem">
+              <span class="p-column-title">Correo</span>
+              {{ patient.email }}
+            </td>
+
+            <td style="width: 15%; min-width: 8rem">
+              <div class="flex">
+                <button pTooltip="Exámenes" tooltipPosition="top" pButton pRipple icon="pi pi-book"
+                  class="p-button-rounded p-button-warning mr-2" (click)="exams(patient)"></button>
+                <button pTooltip="Reportes" tooltipPosition="top" pButton pRipple icon="pi pi-file-pdf"
+                  class="p-button-rounded p-button-info mr-2" (click)="reports(patient)"></button>
+                <button *ngIf="canSee" pTooltip="Ver" tooltipPosition="top" pButton pRipple icon="pi pi-eye"
+                  class="p-button-rounded p-button-secondary mr-2" (click)="seeItem(patient)"></button>
+                <button *ngIf="canEdit" pTooltip="Editar" tooltipPosition="top" pButton pRipple icon="pi pi-pencil"
+                  class="p-button-rounded p-button-primary mr-2" (click)="editItem(patient)"></button>
+                <button *ngIf="canDelete" pTooltip="Eliminar" tooltipPosition="top" pButton pRipple icon="pi pi-trash"
+                  class="p-button-rounded p-button-danger" (click)="deleteItem(patient)"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <p-dialog [(visible)]="patientDialog" [style]="{ width: '50%' }" header="Paciente" [modal]="true"
+      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" class="p-fluid">
+      <app-add-patients [submitted]="submitted" [patient]="patient" [isDetail]="isDetail"></app-add-patients>
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+          (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary" [disabled]="isDetail"
+          (click)="onSubmit(patient)"></button>
+      </ng-template>
+    </p-dialog>
+    <p-dialog [(visible)]="deletePatientDialog" header="Confirmar" [modal]="true"
+      [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '450px' }">
+      <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="patient">¿Está seguro de eliminar <b>{{ patient.names }}</b>?</span>
+      </div>
+      <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text mr-2" label="No"
+          (click)="deletePatientDialog = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-primary mr-2" label="Sí"
+          (click)="confirmDelete()"></button>
+      </ng-template>
+    </p-dialog>
+  </div>
+</div>

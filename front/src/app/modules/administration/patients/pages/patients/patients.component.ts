@@ -18,7 +18,7 @@ export class PatientsComponent implements OnInit {
   id: number;
   patientDialog: boolean = false;
   deletePatientDialog: boolean = false;
-  patientsDialog: Patient[] = [];
+  patients: Patient[] = [];
   paramsData: IParamsIndex = { take: 10, page: 1 };
   loading: boolean = false;
   patient: Patient = {};
@@ -52,23 +52,9 @@ export class PatientsComponent implements OnInit {
   private getPatients(): void {
     this._patientsSvc.findAll(this.paramsData).subscribe((response: any) => {
       const { data } = response;
-      this.patientsDialog = data;
-      data.forEach((element: any) => {
-        element.birth_date = new Date(element.birth_date + 'T00:00:00');
-        element.years = this.calculateAge(element.birth_date) + ' Años';
-      });
+      this.patients = data;
       this.loading = false;
     });
-  }
-
-  private calculateAge(birthDate: Date): number {
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
   }
 
   openNew() {
@@ -97,6 +83,16 @@ export class PatientsComponent implements OnInit {
     this.patient = { ...patient };
   }
 
+  exams(patient: Patient) {
+    this.router.navigate([ '/admin/pacientes/examenes', patient.id ])
+    this.patient = { ...patient };
+  }
+
+  reports(patient: Patient) {
+    this.router.navigate([ '/admin/pacientes/reportes', patient.id ])
+    this.patient = { ...patient };
+  }
+
   update(patient: Patient) {
     this.submitted = true;
     if (!this.addPatientsComponent) return;
@@ -108,6 +104,19 @@ export class PatientsComponent implements OnInit {
     });
     this.patient = {};
     this.patientDialog = false;
+  }
+
+  deleteItem(patient: Patient) {
+    this.deletePatientDialog = true;
+    this.patient = { ...patient };
+  }
+
+  confirmDelete() {
+    this.deletePatientDialog = false;
+    this._patientsSvc.delete(this.patient.id).subscribe(response => {
+      this.getParamsData();
+    })
+    this.patient = {};
   }
 
   hideDialog() {
@@ -133,7 +142,7 @@ export class PatientsComponent implements OnInit {
   }
 
   modulePermissions() {
-    const permissions = this._filterModuleService.modulePermissions('03');
+    const permissions = this._filterModuleService.modulePermissions('06');
 
     this.canSee = permissions.canSee;
     this.canCreate = permissions.canCreate;

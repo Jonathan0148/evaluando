@@ -1,0 +1,73 @@
+<form [formGroup]="form">
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+      <label for="internal_code">Código Interno</label>
+      <input type="text" formControlName="internal_code" pInputText id="internal_code"
+        [(ngModel)]="patientExam.internal_code" placeholder="Ingrese Código Interno" required [readOnly]="isDetail"
+        maxlength="20" [ngClass]="{
+          'ng-invalid ng-dirty': submitted && !patientExam.internal_code
+        }" />
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !patientExam.internal_code">Código Interno es
+        obligatorio.</small>
+    </div>
+    <div class="field col-12 md:col-6">
+      <label for="type_result_id">Tipo de Resultado</label>
+      <p-dropdown [showClear]="!isDetail" [filter]="true" inputId="type_result_id" optionLabel="description"
+        [(ngModel)]="patientExam.type_result_id" required [readonly]="isDetail" formControlName="type_result_id"
+        optionValue="id" [options]="typesResults" placeholder="Seleccione Tipo de Resultado" appendTo="body" [ngClass]="{
+          'ng-invalid ng-dirty': submitted && !patientExam.type_result_id
+        }">
+      </p-dropdown>
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !patientExam.type_result_id">Tipo de Resultado es
+        obligatorio.</small>
+    </div>
+  </div>
+
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+      <label for="headquarter_id">Sede</label>
+      <p-dropdown [showClear]="!isDetail" [filter]="true" inputId="headquarter_id" optionLabel="name"
+        [(ngModel)]="patientExam.headquarter_id" required [readonly]="isDetail" formControlName="headquarter_id"
+        optionValue="id" [options]="headquarters" placeholder="Seleccione la sede" appendTo="body" [ngClass]="{
+          'ng-invalid ng-dirty': submitted && !patientExam.headquarter_id
+        }">
+      </p-dropdown>
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !patientExam.headquarter_id">Sede es
+        obligatorio.</small>
+    </div>
+    <div class="field col-12 md:col-6">
+      <label for="type_exam_id">Tipo Exámen</label>
+      <p-dropdown [showClear]="!isDetail" [filter]="true" inputId="type_exam_id" optionLabel="description"
+        [(ngModel)]="patientExam.type_exam_id" required [readonly]="isDetail" formControlName="type_exam_id"
+        optionValue="id" [options]="typesExams" placeholder="Seleccione Tipo de exámen" appendTo="body" [ngClass]="{
+          'ng-invalid ng-dirty': submitted && !patientExam.type_exam_id
+        }">
+      </p-dropdown>
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !patientExam.type_exam_id">Tipo Exámen es
+        obligatorio.</small>
+    </div>
+  </div>
+
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+      <label for="date_exam">Fecha de Exámen</label>
+      <p-calendar [showIcon]="!isDetail" formControlName="date_exam" dateFormat="dd/mm/yy" [showOnFocus]="!isDetail"
+        [readonlyInput]="true" id="date_exam" [(ngModel)]="patientExam.date_exam" required appendTo="body" [ngClass]="{
+          'ng-invalid ng-dirty': submitted && !patientExam.date_exam
+        }" />
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !patientExam.date_exam">Fecha de Exámen es
+        obligatoria.</small>
+    </div>
+
+    <div class="field col-12 md:col-6">
+      <label for="date_delivery">Fecha de Entrega</label>
+      <p-calendar [showIcon]="!isDetail" formControlName="date_delivery" dateFormat="dd/mm/yy" [showOnFocus]="!isDetail"
+        [readonlyInput]="true" id="date_delivery" [(ngModel)]="patientExam.date_delivery" required appendTo="body"
+        [ngClass]="{
+          'ng-invalid ng-dirty': submitted && !patientExam.date_delivery
+        }" />
+      <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !patientExam.date_delivery">Fecha de Entrega es
+        obligatoria.</small>
+    </div>
+  </div>
+</form>

@@ -10,13 +10,13 @@ const routes: Routes = [
     path: 'admin', component: AppLayoutComponent, canActivate: [ authGuard ], data: { title: 'Inicio' },
     children: [
       { path: 'usuarios', data: { title: 'USUARIOS' }, loadChildren: () => import('./modules/settings/users/users.module').then(m => m.UsersModule) },
-      { path: 'sedes', data: { title: 'SEDES' }, loadChildren: () => import('./modules/settings/headquarters/headquarters.module').then(m => m.HeadquartersModule) },
+      { path: 'sedes', data: { title: 'SEDES' }, loadChildren: () => import('./modules/administration/headquarters/headquarters.module').then(m => m.HeadquartersModule) },
       { path: 'roles', data: { title: 'ROLES' }, loadChildren: () => import('./modules/settings/roles/roles.module').then(m => m.RolesModule) },
-      { path: 'tipos-examenes', data: { title: 'TIPOS DE EXAMEN' }, loadChildren: () => import('./modules/settings/types-exams/types-exams.module').then(m => m.TypesExamsModule) },
-      { path: 'tipos-resultados', data: { title: 'TIPOS DE RESULTADOS' }, loadChildren: () => import('./modules/settings/types-results/types-results.module').then(m => m.TypesResultsModule) },
-      { path: 'pacientes', data: { title: 'PACIENTES' }, loadChildren: () => import('./modules/settings/patients/patients.module').then(m => m.PatientsModule) },
-      { path: 'encuestas', data: { title: 'ENCUESTAS' }, loadChildren: () => import('./modules/settings/surveys/surveys.module').then(m => m.SurveysModule) },
-      { path: 'respuestas', data: { title: 'RESPUESTAS' }, loadChildren: () => import('./modules/settings/surveys-answers/surveys-answers.module').then(m => m.SurveysAnswersModule) },
+      { path: 'tipos-examenes', data: { title: 'TIPOS DE EXAMEN' }, loadChildren: () => import('./modules/administration/types-exams/types-exams.module').then(m => m.TypesExamsModule) },
+      { path: 'tipos-resultados', data: { title: 'TIPOS DE RESULTADOS' }, loadChildren: () => import('./modules/administration/types-results/types-results.module').then(m => m.TypesResultsModule) },
+      { path: 'pacientes', data: { title: 'PACIENTES' }, loadChildren: () => import('./modules/administration/patients/patients.module').then(m => m.PatientsModule) },
+      { path: 'encuestas', data: { title: 'ENCUESTAS' }, loadChildren: () => import('./modules/administration/surveys/surveys.module').then(m => m.SurveysModule) },
+      { path: 'respuestas', data: { title: 'RESPUESTAS' }, loadChildren: () => import('./modules/administration/surveys-answers/surveys-answers.module').then(m => m.SurveysAnswersModule) },
     ]
   },
 

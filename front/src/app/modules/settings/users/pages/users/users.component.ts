@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 import { RolesService } from '../../../roles/services/roles.service';
 import { Rol } from '../../../roles/models/rol.model';
 import { FilterModuleService } from 'src/app/shared/services/filter-module.service';
-import { HeadquartersService } from '../../../headquarters/services/headquarters.service';
-import { Headquarter } from '../../../headquarters/models/headquarter.model';
+import { Headquarter } from 'src/app/modules/administration/headquarters/models/headquarter.model';
+import { HeadquartersService } from 'src/app/modules/administration/headquarters/services/headquarters.service';
 
 
 @Component({

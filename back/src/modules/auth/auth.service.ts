@@ -44,8 +44,7 @@ export class AuthService {
           canSee: roleModule.can_see,
           canCreate: roleModule.can_create,
           canEdit: roleModule.can_edit,
-          canDelete: roleModule.can_delete,
-          can_export_pdf: roleModule.can_export_pdf,
+          canDelete: roleModule.can_delete
         };
 
         dataRoleModule.push(moduleData);

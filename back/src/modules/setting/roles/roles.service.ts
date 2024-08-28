@@ -70,12 +70,6 @@ export class RolesService {
                         value: 4
                     });
                 }
-                if (roleM.can_export_pdf) {
-                    moduleRole.selectedValue.push({
-                        name: 'Exportar PDF',
-                        value: 5
-                    });
-                }
                 moduleRoles.push(moduleRole);
             }
         }
@@ -146,7 +140,6 @@ export class RolesService {
         can_create: false,
         can_edit: false,
         can_delete: false,
-        can_export_pdf: false,
         created_at: this.formatDate(new Date()),
         created_by: user.userId
       };
@@ -163,9 +156,6 @@ export class RolesService {
             break;
           case 4:
             roleModule.can_delete = true;
-            break;
-          case 5:
-            roleModule.can_export_pdf = true;
             break;
         }
       }

@@ -47,6 +47,10 @@ export class PatientsService {
   }
 
   async create(dto: CreatePatientDto, user: UserLoginDto): Promise<Patient | any> {
+    const validateDocument = await this.patientRepository.findOneBy({document: dto.document});
+
+    if (validateDocument) throw new NotFoundException('Ya existe un paciente con el documento ingresado');
+
     const password = crypto.randomBytes(4).toString('hex');
     const data = this.patientRepository.create({
       document: dto.document,

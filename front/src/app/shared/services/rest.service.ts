@@ -25,16 +25,16 @@ export class RestService {
    * @memberof RestService
    */
   public port: number = environment.portsServices.api;
-  public isNeedToken:boolean = true;
+  public isNeedToken: boolean = true;
 
   constructor(
     private httpClient: HttpClient,
     private _cookieSvc: CookieService,
   ) {
     if (this.isNeedToken) {
-			const token =this._cookieSvc.get('token');
-			this.headers = this.headers.set('Authorization', `Bearer ${token}`)
-		}
+      const token = this._cookieSvc.get('token');
+      this.headers = this.headers.set('Authorization', `Bearer ${token}`)
+    }
   }
 
   private getEndoint(): string {
@@ -45,16 +45,15 @@ export class RestService {
     const token = this._cookieSvc.get('token');
     return this.headers.set('Authorization', `Bearer ${token}`);
   }
-  
+
   public getAll<T>(paramsData: any): Observable<T> {
     let params = new HttpParams();
     params = params.set('take', paramsData?.take ?? 10);
     params = params.set('page', paramsData?.page ?? 1);
     params = params.set('term', paramsData?.term ?? "");
-  
+
     return this.httpClient.get<T>(this.getEndoint(), { params, headers: this.setHeaders() });
   }
-  
 
   /**
    * Funcion que muestra un item dependiendo su ID
@@ -141,6 +140,15 @@ export class RestService {
     );
   }
 
+  public postPatient<T>(data: any, paramsData?: any): Observable<T> {
+    let params = new HttpParams();
+
+    params = params.set('take', paramsData?.take ?? 10)
+    params = params.set('page', paramsData?.page ?? 1);
+    params = params.set('term', paramsData?.term ?? "");
+
+    return this.httpClient.post<T>(`${this.getEndoint()}/`, data, { params });
+  }
 
   /**
  * Funcion que llama el metodo GET

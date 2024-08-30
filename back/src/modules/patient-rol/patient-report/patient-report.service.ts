@@ -1,24 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { PageOptionsDto } from 'src/dtos-globals/page-options.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ExamPatient } from 'src/modules/administration/exams-patients/entities/exams-patient.entity';
 import { Brackets, Repository } from 'typeorm';
 import { PageDto } from 'src/dtos-globals/page.dto';
-import * as moment from 'moment';
 import { PageMetaDto } from 'src/dtos-globals/page-meta.dto';
 import { PatientAuthDto } from '../patient-auth/dto/patient-auth.dto';
+import { ReportPatient } from 'src/modules/administration/reports-patients/entities/reports-patient.entity';
 
 @Injectable()
 export class PatientReportService {
   constructor(
-    @InjectRepository(ExamPatient) private examPatientRepository: Repository<ExamPatient>
+    @InjectRepository(ReportPatient) private reportPatientRepository: Repository<ReportPatient>
   ) { }
 
-  async findAll(pageOptionsDto: PageOptionsDto, patientAuthDto: PatientAuthDto): Promise<PageDto<ExamPatient>> {
-    const queryBuilder = this.examPatientRepository.createQueryBuilder("query")
+  async findAll(pageOptionsDto: PageOptionsDto, patientAuthDto: PatientAuthDto): Promise<PageDto<ReportPatient>> {
+    const queryBuilder = this.reportPatientRepository.createQueryBuilder("query")
       .leftJoinAndSelect("query.patient", "patient")
       .where(new Brackets(qb => {
-        qb.where('(query.internal_code LIKE :term)', {
+        qb.where('(query.name LIKE :term)', {
           term: `%${pageOptionsDto.term}%`
         })
       }))
@@ -29,11 +28,6 @@ export class PatientReportService {
 
     const itemCount = await queryBuilder.getCount();
     const { entities } = await queryBuilder.getRawAndEntities();
-
-    entities.map((entity) => {
-      entity.date_exam = moment(entity.date_exam).format('YYYY-MM-DD');
-      entity.date_delivery = moment(entity.date_delivery).format('YYYY-MM-DD');
-    });
 
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 

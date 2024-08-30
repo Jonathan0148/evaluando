@@ -3,6 +3,7 @@ export interface User {
   names?: string;
   surnames?: string;
   user_name?: string;
+  document?: string;
   headquarters_id?: string;
   roles_id?: string;
   email?: string;

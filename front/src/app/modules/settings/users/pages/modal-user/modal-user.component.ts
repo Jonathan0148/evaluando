@@ -41,6 +41,7 @@ export class ModalUserComponent implements OnChanges {
       names: [ this.user.names || null, [ Validators.required, Validators.maxLength(100) ] ],
       surnames: [ this.user.surnames || null, [ Validators.required, Validators.maxLength(100) ] ],
       user_name: [ this.user.user_name || null, [ Validators.required, Validators.maxLength(50) ] ],
+      document: [ this.user.document || null, [ Validators.required, Validators.maxLength(50) ] ],
       email: [ this.user.email || null, [ Validators.required, Validators.maxLength(255), Validators.email, ModalUserComponent.emailValidator ] ],
       password: [ this.user.password || null, [ Validators.maxLength(255) ] ],
       active: [ this.user.active !== undefined ? this.user.active : true, [ Validators.required ] ],

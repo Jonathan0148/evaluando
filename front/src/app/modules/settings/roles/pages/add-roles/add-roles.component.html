@@ -21,7 +21,7 @@
         <b><span>Módulos y permisos</span></b>
       </div>
       <div class="col-3">
-        <button pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-secondary" [disabled]="isDetail"
+        <button *ngIf="!isDetail" pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-secondary"
           (click)="addRolesModules(true)"></button>
       </div>
     </div>
@@ -42,7 +42,7 @@
               </p-selectButton>
             </div>
             <div class="col-1">
-              <button [disabled]="isDetail" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+              <button *ngIf="!isDetail" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
                 (click)="deleteRoleModule(i)"></button>
             </div>
           </div>

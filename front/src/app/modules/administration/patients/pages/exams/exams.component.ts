@@ -4,7 +4,6 @@ import { IParamsIndex, IResponse } from 'src/app/shared/utils';
 import { FilterModuleService } from 'src/app/shared/services/filter-module.service';
 import { ExamPatient } from '../../models/exam-patient.model';
 import { ExamsPatientsService } from '../../services/exams-patients.service';
-import { AddExamsComponent } from '../add-exams/add-exams.component';
 import { Table } from 'primeng/table';
 import { Headquarter } from '../../../headquarters/models/headquarter.model';
 import { HeadquartersService } from '../../../headquarters/services/headquarters.service';
@@ -12,6 +11,7 @@ import { TypesExamsService } from '../../../types-exams/services/types-exams.ser
 import { TypeExam } from '../../../types-exams/models/type-exam.model';
 import { TypeResult } from '../../../types-results/models/type-result.model';
 import { TypesResultsService } from '../../../types-results/services/types-results.service';
+import { AddExamsComponent } from '../../components/add-exams/add-exams.component';
 
 @Component({
   selector: 'app-exams',
@@ -184,7 +184,7 @@ export class ExamsComponent implements OnInit {
   }
 
   modulePermissions() {
-    const permissions = this._filterModuleService.modulePermissions('06');
+    const permissions = this._filterModuleService.modulePermissions('07');
 
     this.canSee = permissions.canSee;
     this.canCreate = permissions.canCreate;

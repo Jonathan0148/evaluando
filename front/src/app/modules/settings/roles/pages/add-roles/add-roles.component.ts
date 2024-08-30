@@ -22,7 +22,6 @@ export class AddRolesComponent implements OnInit {
     { name: 'Crear', value: 2 },
     { name: 'Editar', value: 3 },
     { name: 'Eliminar', value: 4 },
-    { name: 'Exportar PDF', value: 5 }
   ];
 
   constructor(

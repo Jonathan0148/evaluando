@@ -5,8 +5,8 @@
   </ng-template>
   <ng-content></ng-content>
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text mr-2" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary mr-2" [disabled]="isDetail"
+    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-warning mr-2" (click)="hideDialog()"></button>
+    <button *ngIf="!isDetail" pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary mr-2" [disabled]="isDetail"
       (click)="submitForm()"></button>
   </ng-template>
 </p-dialog>

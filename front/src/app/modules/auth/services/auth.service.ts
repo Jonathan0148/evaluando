@@ -10,7 +10,7 @@ import { rememberPassModel } from '../models/remember-pass';
 import { UserTokenDecode } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   apiUrl: string = environment.serverUrl;
@@ -41,7 +41,9 @@ export class AuthService {
   }
 
   public validateCode(body: rememberPassModel): Observable<any> {
-    return this.http.post<rememberPassModel>(`${this.apiUrl}${this.authPort}/api/auth/validate-code`, body);
+    return this.http.post<rememberPassModel>(
+      `${this.apiUrl}${this.authPort}/api/auth/validate-code`, body
+    );
   }
 
   public logout(): Observable<any> {
@@ -54,7 +56,7 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const hasSessionActive = this.verifyToken();
-    if(!hasSessionActive) this.router.navigate(['/','auth','selection'])
+    if (!hasSessionActive) this.router.navigate([ '/', 'auth', 'selection' ]);
     return hasSessionActive;
   }
 
@@ -85,6 +87,46 @@ export class AuthService {
   }
 
   public getCookie(key: string): string {
+    return this._cookieSvc.get(key);
+  }
+
+  public setTokenPatient(document: string, password: string): void {
+    const tokenData = JSON.stringify({ document, password });
+    this._cookieSvc.set('tokenPatient', tokenData, 2, '/');
+  }
+
+  public isAuthenticatedPatient(): boolean {
+    const hasSessionActive = this.getTokenPatient() !== null;
+    if (!hasSessionActive) { this.router.navigate([ '/', 'auth', 'selection' ]); }
+    return hasSessionActive;
+  }
+
+  public authenticatedPatient(): boolean {
+    const isAuthenticated = this.getTokenPatient() !== null;
+    if (!isAuthenticated) { this.router.navigate([ '/' ]); }
+    return isAuthenticated;
+  }
+
+  public verifyTokenPatient(): boolean {
+    const tokenPatient = this.getTokenPatient();
+    return tokenPatient !== null;
+  }
+
+  public getTokenPatient(): { document: string; password: string } | null {
+    const tokenPatient = this._cookieSvc.get('tokenPatient');
+    if (tokenPatient) {
+      return JSON.parse(tokenPatient);
+    }
+    return null;
+  }
+
+  public clearCookiesPatient(): void {
+    if (this._cookieSvc.check('tokenPatient')) {
+      this._cookieSvc.delete('tokenPatient', '/');
+    }
+  }
+
+  public getCookiePatient(key: string): string {
     return this._cookieSvc.get(key);
   }
 }

@@ -1,0 +1,41 @@
+<form [formGroup]="form">
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+      <label for="internal_code">Código Interno</label>
+      <input type="text" formControlName="internal_code" pInputText id="internal_code"
+        [(ngModel)]="patientExam.internal_code" placeholder="Ingrese Código Interno" [readOnly]="true" />
+    </div>
+    <div class="field col-12 md:col-6">
+      <label for="type_result_id">Tipo de Resultado</label>
+      <input type="text" id="type_result_id" pInputText [value]="patientExam.typesResult?.description" readonly
+        placeholder="Tipo de Resultado" />
+    </div>
+  </div>
+
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+      <label for="headquarter_id">Sede</label>
+      <input type="text" id="headquarter_id" pInputText [value]="patientExam.headquarters?.name" readonly
+        placeholder="Sede" />
+    </div>
+    <div class="field col-12 md:col-6">
+      <label for="type_exam_id">Tipo Exámen</label>
+      <input type="text" id="type_exam_id" pInputText [value]="patientExam.typesExam?.description" readonly
+        placeholder="Tipo Exámen" />
+    </div>
+  </div>
+
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+      <label for="date_exam">Fecha de Exámen</label>
+      <p-calendar [showIcon]="false" formControlName="date_exam" dateFormat="dd/mm/yy" [showOnFocus]="false"
+        [readonlyInput]="true" id="date_exam" [(ngModel)]="patientExam.date_exam" appendTo="body" />
+    </div>
+
+    <div class="field col-12 md:col-6">
+      <label for="date_delivery">Fecha de Entrega</label>
+      <p-calendar [showIcon]="false" formControlName="date_delivery" dateFormat="dd/mm/yy" [showOnFocus]="false"
+        [readonlyInput]="true" id="date_delivery" [(ngModel)]="patientExam.date_delivery" appendTo="body" />
+    </div>
+  </div>
+</form>

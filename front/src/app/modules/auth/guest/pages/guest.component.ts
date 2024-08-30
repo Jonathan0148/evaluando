@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { UntypedFormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import { Room, Location, Floor } from '../models/guest.model';
-// import { RestService } from 'src/app/modules/shared/services/rest.service';
 import { AuthService } from '../../services/auth.service';
 import { PatientLoginService } from '../services/patient-login.service';
 import { finalize } from 'rxjs';
@@ -31,29 +29,29 @@ export class GuestComponent {
     this._patientLoginSvc.setParams();
 
     this.form = this.formBuilder.group({
-      site: [ null, [ Validators.required ] ],
-      floor: [ null, [ Validators.required ] ],
-      room: [ null, [ Validators.required ] ],
+      document: [ null, [ Validators.required ] ],
+      password: [ null, [ Validators.required ] ],
     })
   }
 
   async onSubmit() {
     this.loading = true;
-    this._authSvc.loginPatient(this.form.value).pipe(
+    const payload = {
+      document: this.form.value.document,
+      password: this.form.value.password
+    };
+  
+    this._restSvc.methodPost(payload, '').pipe(
       finalize(() => this.loading = false)
     ).subscribe({
-      next: async (res) => {
-        const { token } = res;
-        await this._authSvc.setToken(token);
-        this.router.navigate(['/pacientes/calificaciones']);
+      next: async (res: any) => {
+        const { document, password } = res;
+        this._authSvc.setTokenPatient(document, password);
+        this.router.navigate(['/auth/guest/patient-exams']);
       },
-      error: (err) => {
-        // Manejo de errores aquí, si es necesario
-        console.error(err);
-      }
+      error: (err) => {        console.error(err);      }
     });
   }
-  
 
   public isInvalid(name: string): boolean {
     return this.form.controls[ name ].invalid && this.form.controls[ name ].touched;

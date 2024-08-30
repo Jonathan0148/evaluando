@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AddPatientsComponent } from '../add-patients/add-patients.component';
 import { Patient } from '../../models/patient.model';
 import { IParamsIndex, IResponse } from 'src/app/shared/utils';
 import { PatientsService } from '../../services/patients.service';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { FilterModuleService } from 'src/app/shared/services/filter-module.service';
+import { AddPatientsComponent } from '../../components/add-patients/add-patients.component';
+import { jwtDecode } from 'jwt-decode';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-patients',
@@ -28,9 +30,12 @@ export class PatientsComponent implements OnInit {
   canCreate: boolean = false;
   canEdit: boolean = false;
   canDelete: boolean = false;
+  canViewExam: boolean = false;
+  canViewReport: boolean = false;
 
   constructor(
     private readonly _patientsSvc: PatientsService,
+    private cookieService: CookieService,
     public readonly router: Router,
     private readonly _filterModuleService: FilterModuleService
   ) { }
@@ -142,8 +147,15 @@ export class PatientsComponent implements OnInit {
   }
 
   modulePermissions() {
-    const permissions = this._filterModuleService.modulePermissions('06');
 
+    const token = this.cookieService.get('token');
+    const decodedJwt: any = jwtDecode(token);
+    const modules = decodedJwt.modules;
+
+    this.canViewExam = modules.some(module => module.codeModule === '07');
+    this.canViewReport = modules.some(module => module.codeModule === '08');
+
+    const permissions = this._filterModuleService.modulePermissions('06');
     this.canSee = permissions.canSee;
     this.canCreate = permissions.canCreate;
     this.canEdit = permissions.canEdit;

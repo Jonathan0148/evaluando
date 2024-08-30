@@ -1,7 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { Patient } from '../../models/patient.model';
 import { FormBuilder, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
-import { ReportPatient } from '../../models/report-patient.model';
+import { Patient } from 'src/app/modules/administration/patients/models/patient.model';
+import { ReportPatient } from 'src/app/modules/administration/patients/models/report-patient.model';
 import { FileService } from 'src/app/shared/services/file.service';
 
 @Component({

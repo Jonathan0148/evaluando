@@ -66,9 +66,9 @@
       [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" class="p-fluid">
       <app-add-surveys [submitted]="submitted" [survey]="survey" [isDetail]="isDetail"></app-add-surveys>
       <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-warning mr-2"
           (click)="hideDialog()"></button>
-        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary" [disabled]="isDetail"
+        <button *ngIf="!isDetail" pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary" [disabled]="isDetail"
           (click)="onSubmit(survey)"></button>
       </ng-template>
     </p-dialog>
@@ -79,7 +79,7 @@
         <span *ngIf="survey">¿Está seguro de eliminar <b>{{ survey.name }}</b>?</span>
       </div>
       <ng-template pTemplate="footer">
-        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
+        <button pButton pRipple icon="pi pi-times" class="p-button-warning mr-2" label="No"
           (click)="deleteSurveyDialog = false"></button>
         <button pButton pRipple icon="pi pi-check" class="p-button-primary" label="Sí"
           (click)="confirmDelete()"></button>

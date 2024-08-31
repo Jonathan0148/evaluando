@@ -36,9 +36,9 @@ export class ExamsPatientsService {
     const { entities } = await queryBuilder.getRawAndEntities();
 
     entities.map((entity) => {
-      entity.date_exam = moment(entity.date_exam).format('YYYY-MM-DD');
-      entity.date_delivery = moment(entity.date_delivery).format('YYYY-MM-DD');
-    });
+      entity.date_exam = moment.utc(entity.date_exam).format('YYYY-MM-DD');
+      entity.date_delivery = moment.utc(entity.date_delivery).format('YYYY-MM-DD');
+    });    
 
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 

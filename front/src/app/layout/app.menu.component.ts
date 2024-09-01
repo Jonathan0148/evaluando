@@ -25,6 +25,7 @@ export class AppMenuComponent implements OnInit {
     private getAdminMenu(): any[] {
         const permissions = this.permissionsModules();
         return [
+            { label: 'INICIO', items: [ { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: [ '/inicio' ] } ] },
             ...permissions
         ];
     }

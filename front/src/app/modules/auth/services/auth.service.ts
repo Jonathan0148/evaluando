@@ -62,7 +62,7 @@ export class AuthService {
 
   public authenticated(): boolean {
     const hasExpired = this.verifyToken();
-    if (hasExpired) this.router.navigate([ '/admin' ]);
+    if (hasExpired) this.router.navigate([ '/admin/inicio' ]);
     return !hasExpired;
   }
 

@@ -9,6 +9,7 @@ const routes: Routes = [
   {
     path: 'admin', component: AppLayoutComponent, canActivate: [ authGuard ], data: { title: 'Inicio' },
     children: [
+      { path: 'inicio', data: { title: 'USUARIOS' }, loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'usuarios', data: { title: 'USUARIOS' }, loadChildren: () => import('./modules/settings/users/users.module').then(m => m.UsersModule) },
       { path: 'sedes', data: { title: 'SEDES' }, loadChildren: () => import('./modules/administration/headquarters/headquarters.module').then(m => m.HeadquartersModule) },
       { path: 'roles', data: { title: 'ROLES' }, loadChildren: () => import('./modules/settings/roles/roles.module').then(m => m.RolesModule) },

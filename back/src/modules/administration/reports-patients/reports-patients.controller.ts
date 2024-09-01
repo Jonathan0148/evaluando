@@ -4,7 +4,7 @@ import { CreateReportsPatientDto } from './dto/create-reports-patient.dto';
 import { PageOptionsDto } from 'src/dtos-globals/page-options.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/jwt/jwt-auth.guard';
-import { FindAllRPDto } from './dto/find-all-Rp.dto';
+import { FindAllRPDto } from './dto/find-all-rp.dto';
 
 @ApiBearerAuth()
 @ApiTags('reports-patients')

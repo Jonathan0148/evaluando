@@ -46,7 +46,7 @@ export class HeaderComponent {
                 route: '/auth/guest'
             },           
             {
-                label: 'Contacto',
+                label: 'Administrador',
                 icon: 'pi pi-user',
                 route: '/auth/login'
             },

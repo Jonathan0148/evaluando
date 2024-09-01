@@ -16,27 +16,40 @@ export class HeaderComponent {
     ngOnInit() {
         this.items = [
             {
+                label: 'Inicio',
+                icon: 'pi pi-palette',
+                route: '/'
+            },
+            {
                 label: 'Institucional',
                 icon: 'pi pi-palette',
                 route: '/institutional'
-
             },
             {
-                label: 'Resultados',
+                label: 'Servicios',
                 icon: 'pi pi-palette',
-                route: '/results'
-
+                route: '/services'
+            },
+            {
+                label: 'Blogs',
+                icon: 'pi pi-home',
+                route: '/blogs'
             },
             {
                 label: 'Contacto',
-                icon: 'pi pi-home',
+                icon: 'pi pi-envelope',
                 route: '/contact'
-            },
+            },            
             {
-                label: 'Normatividad',
-                icon: 'pi pi-home',
-                route: '/normativity'
-            }
+                label: 'Resultados',
+                icon: 'pi pi-book',
+                route: '/auth/guest'
+            },           
+            {
+                label: 'Contacto',
+                icon: 'pi pi-user',
+                route: '/auth/login'
+            },
         ];
     }
 

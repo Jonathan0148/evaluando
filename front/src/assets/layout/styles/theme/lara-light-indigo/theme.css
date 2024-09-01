@@ -1,8 +1,8 @@
 :root {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter var", sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   font-variation-settings: normal;
-  --font-family: "Poppins", sans-serif;
+  --font-family: "Inter var", sans-serif;
   --font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   --surface-a: #ffffff;
   --surface-b: #f9fafb;
@@ -52,7 +52,7 @@
 }
 
 @font-face {
-  font-family: "Poppins";
+  font-family: "Inter var";
   font-weight: 100 900;
   font-display: swap;
   font-style: normal;
@@ -60,7 +60,7 @@
   src: url("./fonts/Inter-roman.var.woff2?v=3.19") format("woff2");
 }
 @font-face {
-  font-family: "Poppins";
+  font-family: "Inter var";
   font-weight: 100 900;
   font-display: swap;
   font-style: italic;
@@ -5274,9 +5274,6 @@
   @media screen and (max-width: 960px) {
     .p-menubar img {
       display: none;
-    }
-    .p-menubar {
-      position: relative;
     }
     .p-menubar .p-menubar-button {
       display: flex;

@@ -1,27 +1,30 @@
-<app-top-banner></app-top-banner>
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" [routerLink]="''">
+        <img src="assets/layout/images/logo_evaluando_2.png" alt="logo" />
+    </a>
 
-<!-- Navbar Start -->
-<div class="container-fluid sticky-top bg-white shadow-sm">
-  <div class="container">
-    <nav class="navbar navbar-expand-lg bg-white navbar-light py-lg-0">
-      <a class="layout-topbar-logo" [routerLink]="''">
-        <img src="assets/layout/images/logo_evaluando_2.png" width="200px" alt="logo" />
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto py-0">
-          <a routerLink="/landing" routerLinkActive="active" class="nav-item nav-link">Inicio</a>
-          <a routerLink="/institutional" routerLinkActive="active" class="nav-item nav-link">Institucional</a>
-          <a routerLink="/services" routerLinkActive="active" class="nav-item nav-link">Servicios</a>
-          <a routerLink="/blogs" routerLinkActive="active" class="nav-item nav-link">Blog</a>
-          <a routerLink="/contact" routerLinkActive="active" class="nav-item nav-link">Contacto</a>
-          <p-button (click)="onResultsClick()" pButton pRipple label="Resultados " class="p-button-text"></p-button>
-          <p-button (click)="onLogin()" pButton pRipple label="Ingreso" class="p-button-text"></p-button>
-        </div>
-      </div>
-    </nav>
-  </div>
+    <p-menubar [model]="items">
+        <ng-template pTemplate="item" let-item>
+            <ng-container *ngIf="item.route; else urlRef">
+                <a [routerLink]="item.route" class="p-menuitem-link">
+                    <span [class]="item.icon"></span>
+                    <span class="ml-2">{{ item.label }}</span>
+                </a>
+            </ng-container>
+            <ng-template #urlRef>
+                <a *ngIf="item.url; else noLink" [href]="item.url" class="p-menuitem-link">
+                    <span [class]="item.icon"></span>
+                    <span class="ml-2">{{ item.label }}</span>
+                </a>
+            </ng-template>
+            <ng-template #noLink>
+                <div class="p-menuitem-link">
+                    <span [class]="item.icon"></span>
+                    <span class="ml-2">{{ item.label }}</span>
+                    <span class="pi pi-fw pi-angle-down ml-2"></span>
+                </div>
+            </ng-template>
+        </ng-template>
+    </p-menubar>
 </div>
-<!-- Navbar End -->
+<app-top-banner></app-top-banner>

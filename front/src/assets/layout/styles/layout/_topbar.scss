@@ -44,10 +44,6 @@
             background-color: var(--surface-hover);
         }
 
-        &:focus {
-            @include focused();
-        }
-
         i {
             font-size: 1.5rem;
         }

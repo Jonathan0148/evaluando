@@ -69,7 +69,6 @@ import { DockModule } from 'primeng/dock';
 import { DragDropModule } from 'primeng/dragdrop';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { DeferModule } from 'primeng/defer';
-import { EditorModule } from 'primeng/editor';
 import { FieldsetModule } from 'primeng/fieldset';
 import { GalleriaModule } from 'primeng/galleria';
 import { InplaceModule } from 'primeng/inplace';
@@ -145,7 +144,6 @@ import { InputIconModule } from 'primeng/inputicon';
     DropdownModule,
     DynamicDialogModule,
     DeferModule,
-    EditorModule,
     FieldsetModule,
     FileUploadModule,
     FocusTrapModule,
@@ -257,7 +255,6 @@ import { InputIconModule } from 'primeng/inputicon';
     DragDropModule,
     DropdownModule,
     DynamicDialogModule,
-    EditorModule,
     FieldsetModule,
     FileUploadModule,
     FocusTrapModule,

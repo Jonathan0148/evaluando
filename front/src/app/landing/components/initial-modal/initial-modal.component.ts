@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './initial-modal.component.scss'
 })
 export class InitialModalComponent {
-  @Input() visible: boolean;
+  @Input() visible: boolean = false;
 }

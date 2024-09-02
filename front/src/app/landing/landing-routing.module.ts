@@ -4,21 +4,19 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { InstitutionalComponent } from './pages/institutional/institutional.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LayoutComponent } from './pages/layout/layout.component';
-import { BlogsComponent } from './pages/blogs/blogs.component';
 import { ServicesComponent } from './pages/services/services.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'landing',
+    redirectTo: 'inicio',
     pathMatch: 'full'
   },
   {
     path: '', component: LayoutComponent, children: [
-      { path: 'landing', component: LandingComponent },
+      { path: 'inicio', component: LandingComponent },
       { path: 'institutional', component: InstitutionalComponent },
       { path: 'contact', component: ContactComponent },
-      { path: 'blogs', component: BlogsComponent },
       { path: 'services', component: ServicesComponent },
     ]
   },

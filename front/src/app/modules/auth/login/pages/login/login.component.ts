@@ -8,19 +8,10 @@ import { finalize } from 'rxjs';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styles: [ `
-        :host ::ng-deep .pi-eye,
-        :host ::ng-deep .pi-eye-slash {
-            transform:scale(1.6);
-            margin-right: 1rem;
-            color: var(--primary-color) !important;
-        }
-    `]
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
     valCheck: string[] = [ 'remember' ];
-
     form!: UntypedFormGroup;
     loading!: boolean;
 
@@ -29,6 +20,7 @@ export class LoginComponent {
         private readonly authSvc: AuthService,
         private readonly router: Router
     ) { }
+    
     ngOnInit(): void {
         this.form = this.formBuilder.group({
             userName: [ null, [ Validators.required, Validators.maxLength(80) ] ],

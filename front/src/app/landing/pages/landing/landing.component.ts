@@ -13,7 +13,7 @@ export class LandingComponent implements OnInit{
   constructor(public layoutService: LayoutService, public router: Router) { }
   
   ngOnInit(): void {
-    this.visible = true;
+    // this.visible = true;
   }
   
 }

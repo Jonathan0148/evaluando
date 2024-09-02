@@ -56,7 +56,7 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const hasSessionActive = this.verifyToken();
-    if (!hasSessionActive) this.router.navigate([ '/', 'auth', 'selection' ]);
+    if (!hasSessionActive) this.router.navigate([ '/', 'auth', 'login' ]);
     return hasSessionActive;
   }
 
@@ -97,7 +97,7 @@ export class AuthService {
 
   public isAuthenticatedPatient(): boolean {
     const hasSessionActive = this.getTokenPatient() !== null;
-    if (!hasSessionActive) { this.router.navigate([ '/', 'auth', 'selection' ]); }
+    if (!hasSessionActive) { this.router.navigate([ '/', 'auth', 'guest' ]); }
     return hasSessionActive;
   }
 

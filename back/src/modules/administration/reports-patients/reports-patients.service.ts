@@ -7,7 +7,7 @@ import { PageOptionsDto } from 'src/dtos-globals/page-options.dto';
 import { PageDto } from 'src/dtos-globals/page.dto';
 import { PageMetaDto } from 'src/dtos-globals/page-meta.dto';
 import { ReportPatient } from './entities/reports-patient.entity';
-import { FindAllRPDto } from './dto/find-all-Rp.dto';
+import { FindAllRPDto } from './dto/find-all-rp.dto';
 
 @Injectable()
 export class ReportsPatientsService {

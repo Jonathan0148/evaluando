@@ -10,7 +10,7 @@ export const environment = {
     api: 3000
   },
   portsProjects: {
-    pacifica: 4206
+
   },
   maxFileSize: 1000000,
 };

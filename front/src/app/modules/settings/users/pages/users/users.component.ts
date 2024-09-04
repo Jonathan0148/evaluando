@@ -161,7 +161,7 @@ export class UsersComponent implements OnInit {
     }
 
     modulePermissions() {
-        const permissions = this._filterModuleService.modulePermissions('03');
+        const permissions = this._filterModuleService.modulePermissions('01');
 
         this.canSee = permissions.canSee;
         this.canCreate = permissions.canCreate;

@@ -52,7 +52,7 @@ export class HeadquartersComponent extends BaseCrudComponent implements OnInit {
   }
 
   modulePermissions() {
-    const permissions = this._filterModuleService.modulePermissions('02');
+    const permissions = this._filterModuleService.modulePermissions('03');
     this.canSee = permissions.canSee;
     this.canCreate = permissions.canCreate;
     this.canEdit = permissions.canEdit;

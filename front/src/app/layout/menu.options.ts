@@ -5,13 +5,13 @@ export const setting = {
             icon: 'pi pi-cog',
             items: [
                 {
-                    code: '01',
+                    code: '02',
                     label: 'Roles',
                     icon: 'pi pi-fw pi-bookmark',
                     routerLink: [ '/admin/roles' ]
                 },
                 {
-                    code: '03',
+                    code: '01',
                     label: 'Usuarios',
                     icon: 'pi pi-fw pi-users',
                     routerLink: [ '/admin/usuarios' ]
@@ -28,7 +28,7 @@ export const administration = {
             icon: 'pi pi-book',
             items: [
                 {
-                    code: '02',
+                    code: '03',
                     label: 'Sedes',
                     icon: 'pi pi-fw pi-building',
                     routerLink: [ '/admin/sedes' ]

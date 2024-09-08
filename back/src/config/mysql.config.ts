@@ -3,6 +3,8 @@ import { ExamPatient } from "src/modules/administration/exams-patients/entities/
 import { Headquarters } from "src/modules/administration/headquarters/entities/headquarters.entity";
 import { Patient } from "src/modules/administration/patients/entities/patient.entity";
 import { ReportPatient } from "src/modules/administration/reports-patients/entities/reports-patient.entity";
+import { ImageService } from "src/modules/administration/services/entities/image-service.entity";
+import { Service } from "src/modules/administration/services/entities/service.entity";
 import { TypesExam } from "src/modules/administration/types-exams/entities/types-exam.entity";
 import { TypesResult } from "src/modules/administration/types-results/entities/types-result.entity";
 import { ModuleProject } from "src/modules/setting/roles/entities/module-project.entity";
@@ -19,7 +21,7 @@ TypeOrmModuleOptions =>  {
         username: username,
         password: password,
         database: database,
-        entities: [Role, ModuleProject, RoleModule, Headquarters, User, TypesResult, TypesExam, Patient, ReportPatient, ExamPatient],
+        entities: [Role, ModuleProject, RoleModule, Headquarters, User, TypesResult, TypesExam, Patient, ReportPatient, ExamPatient, Service, ImageService],
         synchronize: false,
         logging: false
     }

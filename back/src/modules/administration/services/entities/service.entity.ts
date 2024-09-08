@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ExamPatient } from "../../exams-patients/entities/exams-patient.entity";
+import { ImageService } from "./image-service.entity";
 
 @Entity('services')
 export class Service {
@@ -8,9 +8,6 @@ export class Service {
 
     @Column()
     name: string;
-
-    @Column()
-    image: string;
 
     @Column()
     description: string;
@@ -27,6 +24,6 @@ export class Service {
     @Column()
     updated_by: number;
 
-    @OneToMany(() => ExamPatient, (examPatient) => examPatient.typesExam)
-    examPatient: ExamPatient[];
+    @OneToMany(() => ImageService, (imageService) => imageService.service)
+    imageService: ImageService[];
 }

@@ -17,7 +17,7 @@ export class ServicesController {
   @Get()
   @HttpCode(200)
   @ApiPaginatedResponse(CreateServiceDto)
-  async findAll(@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<CreateServiceDto>> {
+  async findAll(@Query() pageOptionsDto: PageOptionsDto): Promise<any> {
     return this.servicesService.findAll(pageOptionsDto);
   }
 

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SelectionComponent } from './components/selection/selection.component';
 import { loginGuard } from 'src/app/shared/guards/login.guard';
 
 
@@ -10,13 +9,6 @@ const routes: Routes = [
     path: '',
     redirectTo: 'selection',
     pathMatch: 'full'
-  },
-  {
-    path: 'selection',
-    component: SelectionComponent,
-    data: {
-      title: 'Seleccionar'
-    }
   },
   {
     path: 'login',

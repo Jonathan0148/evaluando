@@ -19,6 +19,7 @@ import { FileModule } from './modules/file/file.module';
 import { PatientExamModule } from './modules/patient-rol/patient-exam/patient-exam.module';
 import { PatientReportModule } from './modules/patient-rol/patient-report/patient-report.module';
 import { PatientAuthModule } from './modules/patient-rol/patient-auth/patient-auth.module';
+import { ServicesModule } from './modules/administration/services/services.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { PatientAuthModule } from './modules/patient-rol/patient-auth/patient-au
     PatientExamModule,
     PatientReportModule,
     PatientAuthModule,
+    ServicesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,14 +1,17 @@
 <div class="surface-0">
-  <div id="home">
-    <div class="layout-wrapper">
-      <app-header></app-header>
-      <div class="layout-main-container-patient">
-        <div class="layout-main">
-          <router-outlet></router-outlet>
+    <div id="home">
+      <div class="layout-wrapper">
+        <app-header></app-header>
+        
+        <div class="layout-main-container">
+          <div class="layout-main-content">
+            <router-outlet></router-outlet>
+          </div>
         </div>
+        
+        <app-footer></app-footer>
       </div>
     </div>
-    <app-footer></app-footer>
-  </div>
-  <div class="layout-mask"></div>
-</div>
+    
+    <div class="layout-mask"></div>
+</div>  

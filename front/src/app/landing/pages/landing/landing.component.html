@@ -1,6 +1,71 @@
 <app-initial-modal [visible]="visible"></app-initial-modal>
 
-<a class="layout-topbar-logo" [routerLink]="'/blogs'">
-    <img src="assets/layout/images/banner.png" width="100%" />
-</a>
-<app-carousel></app-carousel>
+<div class="landing-card">
+
+  <div class="welcome-section">
+    <div class="welcome-content">
+      <div class="welcome-text">
+        <h1>Bienvenidos a Evaluando IPS</h1>
+        <p class="accreditation-text">Acreditada por la ONAC y habilitada ante el MINISTERIO DE TRANSPORTE y SECRETARÍA DE SALUD DEPARTAMENTAL en línea para el proceso RUNT.</p>
+        <p>Ofrecemos servicios de evaluación médica y de reconocimiento de conductores, con más de 20 años de experiencia.</p>
+      </div>
+      <div class="welcome-image">
+        <img src="assets/layout/images/banner.png" alt="Bienvenidos a Evaluando IPS">
+      </div>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="buttons-container">
+    <button class="license-button" (click)="navigateToInstitutional()"><span class="pi pi-heart-fill"></span>Licencia Salud Ocupacional</button>
+    <button class="license-button" (click)="navigateToInstitutional()"><span class="pi pi-id-card"></span>Licencia Min. Transporte</button>
+    <button class="license-button" (click)="navigateToInstitutional()"><span class="pi pi-shield"></span>Licencia Min. Defensa</button>
+  </div>
+
+  <!-- Carrusel -->
+  <div class="carousel-container">
+    <p-carousel [value]="images" [numVisible]="2" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [showIndicators]="false">
+      <ng-template pTemplate="item" let-image>
+        <img [src]="image" alt="Imagen del carrusel">
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <!-- Sección de Servicios -->
+  <div class="services-section">
+    <h2>Algunos de nuestros servicios</h2>
+    <div class="services-grid">
+      <div class="service-item">
+        <img src="assets/icons/medico.svg" alt="Servicio Médico">
+        <h3>Evaluación Médica</h3>
+        <p>Realizamos evaluaciones médicas para conductores.</p>
+      </div>
+      <div class="service-item">
+        <img src="assets/icons/laboratorio.svg" alt="Laboratorio">
+        <h3>Laboratorio Clínico</h3>
+        <p>Ofrecemos servicios completos de laboratorio clínico.</p>
+      </div>
+      <div class="service-item">
+        <img src="assets/icons/psicologia.svg" alt="Psicología">
+        <h3>Evaluación Psicológica</h3>
+        <p>Evaluamos la aptitud psicológica de los conductores.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Resultados en Línea -->
+  <div class="results-section" (click)="navigateToResults()">
+    <div class="results-content">
+      <div class="text-content">
+        <h2>Resultados en línea</h2>
+        <p>
+          Consulta de resultados de exámenes en línea, de manera rápida y sencilla, desde cualquier lugar.
+        </p>
+      </div>
+      <div class="image-content">
+        <img src="assets/layout/images/resultados.png" alt="Resultados en línea">
+      </div>
+    </div>
+  </div>
+
+</div>

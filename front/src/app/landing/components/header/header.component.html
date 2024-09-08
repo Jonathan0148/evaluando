@@ -1,16 +1,13 @@
 <div class="layout-topbar">
     <a class="layout-topbar-logo" [routerLink]="''">
-        <img src="assets/layout/images/logo_evaluando_2.png" alt="logo" />
+        <img src="assets/layout/images/logo_evaluando_2.png" alt="Evaluando IPS Logo" />
     </a>
-
-    <p-menubar [model]="items">
+    <p-menubar [model]="menuItems">
         <ng-template pTemplate="item" let-item>
-            <ng-container *ngIf="item.route; else urlRef">
-                <a [routerLink]="item.route" class="p-menuitem-link">
-                    <span [class]="item.icon"></span>
-                    <span class="ml-2">{{ item.label }}</span>
-                </a>
-            </ng-container>
+            <a *ngIf="item.route; else urlRef" [routerLink]="item.route" class="p-menuitem-link">
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+            </a>
             <ng-template #urlRef>
                 <a *ngIf="item.url; else noLink" [href]="item.url" class="p-menuitem-link">
                     <span [class]="item.icon"></span>
@@ -26,5 +23,15 @@
             </ng-template>
         </ng-template>
     </p-menubar>
+
+    <div class="login-buttons">
+        <a [routerLink]="'/auth/guest'" class="login-btn">
+            <span class="pi pi-book"></span>
+            <span class="ml-2">Resultados</span>
+        </a>
+        <a [routerLink]="'/auth/login'" class="login-btn">
+            <span class="pi pi-user"></span>
+            <span class="ml-2">Ingreso</span>
+        </a>
+    </div>
 </div>
-<app-top-banner></app-top-banner>

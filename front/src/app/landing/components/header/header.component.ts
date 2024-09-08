@@ -9,48 +9,20 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
     styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-    items: MenuItem[] | undefined;
+    readonly menuItems: MenuItem[] = [
+        { label: 'Inicio', icon: 'pi pi-home', route: '/' },
+        { label: 'Institucional', icon: 'pi pi-info-circle', route: '/institutional' },
+        { label: 'Servicios', icon: 'pi pi-briefcase', route: '/services' },
+        { label: 'Contáctenos', icon: 'pi pi-envelope', route: '/contact' }
+    ];
 
-    constructor(public layoutService: LayoutService, public router: Router) { }
+    constructor(
+        public layoutService: LayoutService, 
+        public router: Router
+    ) {}
 
     ngOnInit() {
-        this.items = [
-            {
-                label: 'Inicio',
-                icon: 'pi pi-palette',
-                route: '/'
-            },
-            {
-                label: 'Institucional',
-                icon: 'pi pi-palette',
-                route: '/institutional'
-            },
-            {
-                label: 'Servicios',
-                icon: 'pi pi-palette',
-                route: '/services'
-            },
-            {
-                label: 'Blogs',
-                icon: 'pi pi-home',
-                route: '/blogs'
-            },
-            {
-                label: 'Contacto',
-                icon: 'pi pi-envelope',
-                route: '/contact'
-            },            
-            {
-                label: 'Resultados',
-                icon: 'pi pi-book',
-                route: '/auth/guest'
-            },           
-            {
-                label: 'Administrador',
-                icon: 'pi pi-user',
-                route: '/auth/login'
-            },
-        ];
+
     }
 
     onResultsClick(){

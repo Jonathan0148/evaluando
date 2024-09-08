@@ -1,101 +1,38 @@
 <ngx-spinner type="ball-scale-multiple"></ngx-spinner>
-<div
-  class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden"
->
-  <div class="flex flex-column align-items-center justify-content-center">
-    <div
-      style="
-        border-radius: 56px;
-        padding: 0.3rem;
-        background: linear-gradient(
-          180deg,
-          var(--primary-color) 10%,
-          rgba(33, 150, 243, 0) 30%
-        );
-      "
-    >
-      <div
-        class="w-full surface-card p-2 sm:px-8 flex flex-column align-items-center"
-        style="border-radius: 53px"
-      >
-        <div class="text-center mb-3">
-          <img
-            src="assets/layout/images/logo_evaluando_2.png"
-            alt="Image"
-            height="160"
-          />
-          <div class="text-900 text-3xl font-medium mb-1">Empleado</div>
-        </div>
-        <form [formGroup]="form" (submit)="onSubmit()">
-          <div class="px-0 mx-2">
-            <label
-              for="userName"
-              class="block text-900 text-xl font-medium mb-2"
-              >Nombre de Usuario</label
-            >
-            <input
-              formControlName="userName"
-              id="userName"
-              type="text"
-              placeholder="Ingrese Nombre de Usuario"
-              pInputText
-              class="w-full md:w-30rem mb-5"
-              style="padding: 1rem"
-            />
 
-            <label
-              for="password"
-              class="block text-900 font-medium text-xl mb-2"
-              >Contraseña</label
-            >
-            <p-password
-              [feedback]="false"
-              formControlName="password"
-              id="password"
-              placeholder="Ingrese su contraseña"
-              [toggleMask]="true"
-              styleClass="mb-5"
-              inputStyleClass="w-30rem"
-            ></p-password>
-
-            <div
-              class="flex align-items-center justify-content-between mb-5 gap-5"
-            >
-              <div class="flex align-items-center">
-                <p-checkbox
-                  id="rememberme1"
-                  [binary]="true"
-                  styleClass="mr-2"
-                ></p-checkbox>
-                <label for="rememberme1">Recordarme</label>
-              </div>
-              <a
-                class="font-medium no-underline ml-2 text-right cursor-pointer"
-                [routerLink]="['/', 'auth', 'login', 'recuperar-contrasena']"
-                style="color: var(--primary-color)"
-                >¿Olvidó su contraseña?</a
-              >
+<div class="login-container surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="login-wrapper flex flex-column align-items-center justify-content-center">
+        <div class="login-card-container">
+            <div class="login-card w-full surface-card p-2 sm:px-8 flex flex-column align-items-center">
+                <div class="text-center mb-3">
+                    <img src="assets/layout/images/logo_evaluando_2.png" alt="Image" height="160" />
+                    <div class="login-title text-900 text-3xl font-medium mb-1">Empleado</div>
+                </div>
+                <form [formGroup]="form" (submit)="onSubmit()">
+                    <div class="form-group px-0 mx-2">
+                        <label for="userName" class="login-label block text-900 text-xl font-medium mb-2">Nombre de Usuario</label>
+                        <input formControlName="userName" id="userName" type="text" placeholder="Ingrese Nombre de Usuario"
+                            pInputText class="w-full md:w-30rem mb-5 login-input" />
+                        <label for="password" class="login-label block text-900 font-medium text-xl mb-2">Contraseña</label>
+                        <p-password [feedback]="false" formControlName="password" id="password" placeholder="Ingrese su contraseña"
+                            [toggleMask]="true" styleClass="mb-5 login-password" inputStyleClass="w-30rem"></p-password>
+                        <div class="login-options flex align-items-center justify-content-between mb-5 gap-5">
+                            <div class="remember-me flex align-items-center">
+                                <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
+                                <label for="rememberme1">Recordarme</label>
+                            </div>
+                            <a class="forgot-password font-medium no-underline text-right cursor-pointer"
+                                [routerLink]="['/', 'auth', 'login', 'recuperar-contrasena']">
+                                ¿Olvidó su contraseña?
+                            </a>
+                        </div>
+                        <button pButton pRipple label="Iniciar Sesión" type="submit" class="login-button w-full p-3 text-xl" 
+                                [loading]="loading" [disabled]="form.invalid"></button>
+                    </div>
+                </form>
+                <button pButton pRipple icon="pi pi-arrow-left" label="Regresar" class="back-button p-button-text m-3"
+                        [routerLink]="['/']"></button>
             </div>
-            <button
-              pButton
-              pRipple
-              label="Iniciar Sesión"
-              type="submit"
-              class="w-full p-3 text-xl"
-              [loading]="loading"
-              [disabled]="form.invalid"
-            ></button>
-          </div>
-        </form>
-        <button
-          pButton
-          pRipple
-          icon="pi pi-arrow-left"
-          label="Regresar"
-          class="p-button-text m-3"
-          [routerLink]="['/']"
-        ></button>
-      </div>
+        </div>
     </div>
-  </div>
 </div>

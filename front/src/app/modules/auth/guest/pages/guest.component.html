@@ -28,9 +28,11 @@
                     <button pButton pRipple label="Consultar" type="submit" class="w-full p-3 mb-5 text-xl"
                         [loading]="loading" [disabled]="form.invalid"></button>
                 </form>
+                <div class="button-container">
+                    <button pButton pRipple icon="pi pi-arrow-left" label="Regresar" class="p-button-centered p-button-text"
+                        [routerLink]="['/']"></button>
+                </div>
             </div>
-            <button pButton pRipple icon="pi pi-arrow-left" label="Regresar" class="p-button-text m-3"
-                [routerLink]="['/']"></button>
         </div>
     </div>
 </div>

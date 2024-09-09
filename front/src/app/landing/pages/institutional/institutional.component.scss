@@ -88,7 +88,7 @@
   }
 
   .sede-detail.reverse {
-    flex-direction: row-reverse; /* Intercambia la posición del mapa e imagen */
+    flex-direction: row-reverse; 
   }
 
   .p-accordion-header {
@@ -134,9 +134,8 @@
       text-align: center;
     }
 
-    /* Estilos para los textos de licencias */
     .license-text {
-      color: #666; /* Color actualizado a #666 */
+      color: #666;
       font-size: 1.2rem;
       margin-bottom: 10px;
       text-align: center;
@@ -214,11 +213,10 @@
     display: flex;
   }
 
-  /* Separador */
   .section-separator {
     height: 2px;
-    background-color: #007F3B; /* Color del separador */
-    margin: 40px 0; /* Margen superior e inferior */
+    background-color: #007F3B;
+    margin: 40px 0;
     width: 100%;
   }
 }

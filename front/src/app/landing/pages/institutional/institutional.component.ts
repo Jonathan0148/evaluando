@@ -11,7 +11,6 @@ export class InstitutionalComponent implements OnInit, AfterViewInit {
   isModalOpenYopal = false;
   isModalOpenFloridablanca = false;
 
-  // Referencias a los accordion tabs
   @ViewChildren(AccordionTab) accordionTabs!: QueryList<AccordionTab>;
 
   constructor(private route: ActivatedRoute) {}
@@ -23,7 +22,7 @@ export class InstitutionalComponent implements OnInit, AfterViewInit {
       if (fragment) {
         setTimeout(() => {
           this.scrollToSection(fragment);
-        }, 100); // Aseguramos que el DOM esté listo
+        }, 100);
       }
     });
   }
@@ -49,7 +48,6 @@ export class InstitutionalComponent implements OnInit, AfterViewInit {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      // Si es una licencia, abrimos el acordeón correspondiente
       if (sectionId.includes('licencia')) {
         this.openAccordion(sectionId);
       }
@@ -57,7 +55,6 @@ export class InstitutionalComponent implements OnInit, AfterViewInit {
   }
 
   openAccordion(sectionId: string): void {
-    // Buscamos el acordeón correcto basado en el ID
     let accordionToOpen: AccordionTab | undefined;
     
     if (sectionId === 'licencia-salud') {
@@ -68,9 +65,8 @@ export class InstitutionalComponent implements OnInit, AfterViewInit {
       accordionToOpen = this.accordionTabs.find(tab => tab.header === 'Licencia Min. Defensa');
     }
 
-    // Si encontramos el acordeón, lo abrimos
     if (accordionToOpen) {
-      accordionToOpen.selected = true; // Establecemos que este tab está seleccionado
+      accordionToOpen.selected = true;
     }
   }
 }

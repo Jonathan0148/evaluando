@@ -1,3 +1,33 @@
 <div class="card">
-    
+  <div class="services-layout">
+    <div class="services-menu">
+      <h3>Servicios</h3>
+      <ul>
+        <li *ngFor="let service of services; let i = index"
+            (click)="onServiceSelect(i)"
+            [ngClass]="{'active': selectedService === i}">
+          {{ service.name }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="services-content">
+      <h2>{{ services[selectedService]?.name }}</h2>
+      <p>{{ services[selectedService]?.description }}</p>
+
+      <div class="carousel-container" *ngIf="services[selectedService]?.images.length > 0">
+        <p-carousel 
+            [value]="services[selectedService]?.images" 
+            [numVisible]="1"
+            [numScroll]="1" 
+            [circular]="true" 
+            [autoplayInterval]="3000" 
+            [showIndicators]="true">
+          <ng-template pTemplate="item" let-image>
+            <img [src]="_fileSvc.getUrlFile(image)" alt="Imagen del servicio">
+          </ng-template>
+        </p-carousel>
+      </div>
+    </div>
+  </div>
 </div>

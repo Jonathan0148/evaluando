@@ -20,16 +20,4 @@ export class HeaderComponent {
         public layoutService: LayoutService, 
         public router: Router
     ) {}
-
-    ngOnInit() {
-
-    }
-
-    onResultsClick(){
-        this.router.navigate(['auth/guest'])
-    }
-
-    onLogin(){
-        this.router.navigate(['auth/login'])
-    }
 }

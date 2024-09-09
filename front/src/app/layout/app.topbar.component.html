@@ -16,23 +16,12 @@
       'layout-topbar-menu-mobile-active':
         layoutService.state.profileSidebarVisible
     }">
-    <span class="m-4">{{ user?.names ?? "Admin" }}</span>
-    <i class="true-icon pi pi-circle-on text-green-600 mt-4"></i>
-    <span class="m-4">{{
-      user?.role === "admin" ? "Administrador" : user?.role ?? "Admin"
-      }}</span>
-    <button class="p-link layout-topbar-button m-2" (click)="op.toggle($event)">
-      <p-avatar shape="circle" [image]="user?.avatar ?? 'assets/layout/images/logo.png'" severity="danger"
-        size="large" />
-      <span class="m-3">{{ user?.role ?? "Admin" }}</span>
-      <p-overlayPanel #op>
-        <div class="flex flex-column gap-3 w-20rem">
-          <button class="p-link layout-topbar-button" (click)="logout()">
-            <i class="pi pi-sign-out mr-3"></i>
-            <span>Salir</span>
-          </button>
-        </div>
-      </p-overlayPanel>
+    <p-button class="m-2" label="{{
+      user?.names
+      }}" [text]="true" [raised]="true" />
+    <button class=" mt-2 p-link layout-topbar-button" (click)="logout()">
+      <i class="pi pi-sign-out"></i>
+      <span>Salir</span>
     </button>
   </div>
 </div>

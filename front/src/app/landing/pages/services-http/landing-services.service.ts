@@ -15,12 +15,21 @@ export class LandingServicesService {
   }
 
   findAll(): Observable<any> {
-    this.setParams();
+    this._restSvc.endPoint = "landing/getServices";
     return this._restSvc.postPatient<any>();
+  }
+
+  getHeadquarters(): Observable<any> {
+    this._restSvc.endPoint = "landing/getHeadquarters";
+    return this._restSvc.getAll<any>();
+  }
+
+  createContact(data: any): Observable<any> {
+    this._restSvc.endPoint = "landing/createContact";
+    return this._restSvc.create<any>(data);
   }
 
   public setParams(): void {
     this._restSvc.port = environment.portsServices.api;
-    this._restSvc.endPoint = "landing/getServices";
   }
 }

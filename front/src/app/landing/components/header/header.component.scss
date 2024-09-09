@@ -30,9 +30,32 @@
                 background-color: #005c2b;
             }
 
+            &.active-link {
+                font-weight: bold;
+                color: #007F3B;
+                border-bottom: 2px solid #007F3B;
+                background-color: #005f2a;
+            }
+
             .pi {
                 margin-right: 8px;
             }
+        }
+    }
+
+    .p-menuitem-link {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: #005f2a;
+        }
+
+        &.active-link {
+            font-weight: bold;
+            color: #007F3B;
+            border-bottom: 2px solid #007F3B;
         }
     }
 }

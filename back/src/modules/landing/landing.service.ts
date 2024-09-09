@@ -57,7 +57,7 @@ export class LandingService {
     });
     await this.contactUsRepository.save(data);
 
-    return {message: 'Información registrada exitosamente, pronto nos contactaremos con usted'};
+    return {message: 'Información registrada exitosamente'};
   }
 
   async updateStateCase(caseId: number) {

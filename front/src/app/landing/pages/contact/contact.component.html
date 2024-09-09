@@ -1,42 +1,68 @@
-//FORMULARIO Y MAPA 
-
-<!--  
-<div class="row gx-5 mb-5">
-    <div class="col-lg-6 mb-5 mb-lg-0">
-        <div class="mb-4">
-            <h1 class="display-4">Sede Yopal</h1>
-        </div>
-        <div style="height:400px">
-            <div class="position-relative h-100">
-                <iframe class="position-relative w-100 h-100"
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d449.36186661769597!2d-72.3990103!3d5.3421861!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6b0d4e1b47190b%3A0xd8be7d083962f585!2sevaluando!5e1!3m2!1ses-419!2sco!4v1724557420863!5m2!1ses-419!2sco"
-                    width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="card">
+    <div class="contact-content">
+        <h2>Contáctenos llenando este formulario con su información, y nos pondremos en contacto con usted lo más pronto posible.</h2>
+    </div>
+    <form [formGroup]="form" class="contact-form">
+        <div class="formgrid grid">
+            <div class="field col-12 md:col-6">
+                <label for="names">Nombres</label>
+                <input type="text" formControlName="names" pInputText id="names" required maxlength="30" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <small class="p-error" *ngIf="submitted && form.get('names').invalid">Nombre es obligatorio.</small>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="surnames">Apellidos</label>
+                <input type="text" formControlName="surnames" pInputText id="surnames" required maxlength="30" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <small class="p-error" *ngIf="submitted && form.get('surnames').invalid">Apellidos son obligatorios.</small>
             </div>
         </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="bg-light text-center rounded p-5">
-            <h1 class="mb-4">Contáctenos</h1>
-            <form>
-                <div class="row g-3">
-                    <div class="col-12 col-sm-6">
-                        <input type="text" class="form-control bg-white" placeholder="Ingrese nombre"
-                            style="height: 55px;">
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <input type="text" class="form-control bg-white" placeholder="Ingrese mensaje"
-                            style="height: 55px;">
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <input type="email" class="form-control bg-white" placeholder="Ingrese correo"
-                            style="height: 55px;">
-                    </div>
-                    <div class="col-12">
-                        <button class="btn btn-primary w-100 py-3" type="submit">Enviar</button>
-                    </div>
-                </div>
-            </form>
+        <div class="formgrid grid">
+            <div class="field col-12 md:col-6">
+                <label for="address">Dirección</label>
+                <input type="text" formControlName="address" pInputText id="address" maxlength="100" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <small class="p-error" *ngIf="submitted && form.get('address').invalid">Dirección es obligatoria.</small>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="cellphone">Número telefónico</label>
+                <input type="text" formControlName="cellphone" pInputText id="cellphone" required maxlength="20" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <small class="p-error" *ngIf="submitted && form.get('cellphone').invalid">Número telefónico es obligatorio.</small>
+            </div>
         </div>
-    </div>
-</div> -->
+        <div class="formgrid grid">
+            <div class="field col-12 md:col-6">
+                <label for="email">Correo electrónico</label>
+                <input type="text" formControlName="email" pInputText id="email" maxlength="100" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <small class="p-error" *ngIf="submitted && form.get('email').invalid">Correo electrónico es obligatorio.</small>
+                <small class="p-error" *ngIf="submitted && form.get('email').hasError('invalidEmail')">Correo no es válido.</small>
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="headquarters_id">Sede</label>
+                <select formControlName="headquarters_id" id="headquarters_id" required>
+                    <option *ngFor="let headquarters of headquarters" [value]="headquarters.id">
+                        {{headquarters.name}}
+                    </option>
+                </select>
+                <small class="p-error" *ngIf="submitted && form.get('headquarters_id').invalid">Sede es obligatoria.</small>
+            </div>
+        </div>
+
+        <div class="formgrid grid">
+            <div class="field col-12">
+                <label for="comments">Comentarios</label>
+                <textarea formControlName="comments" id="comments" rows="5" maxlength="500" placeholder="Escriba sus comentarios"></textarea>
+                <small class="p-error" *ngIf="submitted && form.get('comments').invalid">Comentarios son obligatorios.</small>
+            </div>
+        </div>
+        <div class="formgrid grid">
+            <div class="field col-12">
+                <button type="button" (click)="onSubmit()">Enviar</button>
+            </div>
+        </div>  
+        <div class="contact-whatsapp">
+            <p>También puede escribirnos directamente a nuestro 
+                <a href="https://wa.me/573163102843" target="_blank">
+                    <i class="pi pi-whatsapp"></i> WhatsApp
+                </a>
+            </p>
+        </div>
+    </form>
+</div>

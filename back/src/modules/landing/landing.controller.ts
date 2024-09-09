@@ -29,6 +29,8 @@ export class LandingController {
     return await this.landingService.createContact(dto);
   }
 
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
   @HttpCode(201)
   @UsePipes(new ValidationPipe({whitelist: true}))
   @Put('/updateStateCase/:caseId')

@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://170.187.157.103:',
+  serverUrl: 'http://154.38.181.43:',
   portsServices: {
-    api: 4207
+    api: 3000
   },
   portsProjects: {
-    pacifica: 4206,
+
   },
   maxFileSize: 1000000,
 };

@@ -62,6 +62,16 @@ export class FileService {
     return true;
   }
 
+  public validateImageFile(file: File): boolean {
+
+    if (file.size > environment.maxFileSize) {
+      this._notificationSvc.show('error', 'Ha ocurrido algo...', 'El peso máximo de los archivos es ' + environment.maxFileSize);
+      return false
+    }
+
+    return true
+  }
+
   public getUrlFile(name: string): string {
     return `${environment.serverUrl}${environment.portsServices.api}/${name}`
   }

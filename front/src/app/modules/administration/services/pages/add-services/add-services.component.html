@@ -1,0 +1,29 @@
+<form [formGroup]="form">
+    <div class="field">
+        <label for="name">Nombre</label>
+        <input type="text" formControlName="name" pInputText id="name" [(ngModel)]="service.name" required
+            maxlength="255" [readOnly]="isDetail" [ngClass]="{ 'ng-invalid ng-dirty': submitted && !service.name }" />
+        <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !service.name">Nombre es obligatorio.</small>
+    </div>
+    <div class="field">
+        <label for="description">Descripción</label>
+        <textarea rows="5" cols="30" type="text" formControlName="description" pInputText id="description"
+            [(ngModel)]="service.description" required [readOnly]="isDetail"
+            [ngClass]="{ 'ng-invalid ng-dirty': submitted && !service.description }"></textarea>
+        <small class="ng-dirty p-error ng-invalid" *ngIf="submitted && !service.description">Descripción es
+            obligatoria.</small>
+    </div>
+
+    <p-fileUpload *ngIf="!isDetail" nameControl="images" uploadLabel="Subir Imágen" chooseLabel="Seleccionar"
+        name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event, form)"
+        [multiple]="true" accept="image/*" maxFileSize="1000000"> </p-fileUpload>
+
+    <div class="field">
+        <ng-container *ngIf="service.images && service.images.length">
+            <div *ngFor="let image of service.images">
+                <img [src]="_fileSvc.getUrlFile(image)" alt="Imagen de servicio"
+                    style="max-width: 200px; max-height: 200px; margin: 5px;" />
+            </div>
+        </ng-container>
+    </div>
+</form>

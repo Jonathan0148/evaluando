@@ -134,7 +134,7 @@ export class RolesComponent implements OnInit {
     }
 
     modulePermissions() {
-        const permissions = this._filterModuleService.modulePermissions('01');
+        const permissions = this._filterModuleService.modulePermissions('02');
         this.canSee = permissions.canSee;
         this.canCreate = permissions.canCreate;
         this.canEdit = permissions.canEdit;

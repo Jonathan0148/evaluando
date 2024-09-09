@@ -16,6 +16,7 @@ const routes: Routes = [
       { path: 'tipos-examenes', data: { title: 'TIPOS DE EXAMEN' }, loadChildren: () => import('./modules/administration/types-exams/types-exams.module').then(m => m.TypesExamsModule) },
       { path: 'tipos-resultados', data: { title: 'TIPOS DE RESULTADOS' }, loadChildren: () => import('./modules/administration/types-results/types-results.module').then(m => m.TypesResultsModule) },
       { path: 'pacientes', data: { title: 'PACIENTES' }, loadChildren: () => import('./modules/administration/patients/patients.module').then(m => m.PatientsModule) },
+      { path: 'servicios', data: { title: 'SERVICIOS' }, loadChildren: () => import('./modules/administration/services/services.module').then(m => m.ServicesModule) },
       { path: 'encuestas', data: { title: 'ENCUESTAS' }, loadChildren: () => import('./modules/administration/surveys/surveys.module').then(m => m.SurveysModule) },
       { path: 'respuestas', data: { title: 'RESPUESTAS' }, loadChildren: () => import('./modules/administration/surveys-answers/surveys-answers.module').then(m => m.SurveysAnswersModule) },
     ]

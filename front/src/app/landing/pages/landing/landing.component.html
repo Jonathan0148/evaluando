@@ -1,6 +1,6 @@
 <app-initial-modal [visible]="visible"></app-initial-modal>
 
-<div class="landing-card">
+<div class="card">
 
   <!-- Welcome -->
   <div class="welcome-section">
@@ -16,11 +16,11 @@
     </div>
   </div>
 
-  <!-- Buttons -->
+  <!-- Botones de Licencias -->
   <div class="buttons-container">
-    <button class="license-button" (click)="navigateToInstitutional()"><span class="pi pi-heart-fill"></span>Licencia Salud Ocupacional</button>
-    <button class="license-button" (click)="navigateToInstitutional()"><span class="pi pi-id-card"></span>Licencia Min. Transporte</button>
-    <button class="license-button" (click)="navigateToInstitutional()"><span class="pi pi-shield"></span>Licencia Min. Defensa</button>
+    <button class="license-button" (click)="navigateToInstitutional('licencia-salud')"><span class="pi pi-heart-fill"></span>Licencia Salud Ocupacional</button>
+    <button class="license-button" (click)="navigateToInstitutional('licencia-transporte')"><span class="pi pi-id-card"></span>Licencia Min. Transporte</button>
+    <button class="license-button" (click)="navigateToInstitutional('licencia-defensa')"><span class="pi pi-shield"></span>Licencia Min. Defensa</button>
   </div>
 
   <!-- Carrusel -->
@@ -77,13 +77,13 @@
         <img src="assets/layout/images/sede-yopal.png" alt="Sede en Yopal">
         <h3>Sede Yopal</h3>
         <p>Yopal, Casanare - Colombia</p>
-        <button (click)="navigateToInstitutional()">Ver más</button>
+        <button (click)="navigateToInstitutional('yopal')">Ver más</button>
       </div>
       <div class="sede-item">
         <img src="assets/layout/images/sede-floridablanca.png" alt="Sede en Floridablanca">
         <h3>Sede Floridablanca</h3>
         <p>Floridablanca, Santander - Colombia</p>
-        <button (click)="navigateToInstitutional()">Ver más</button>
+        <button (click)="navigateToInstitutional('floridablanca')">Ver más</button>
       </div>
     </div>
   </div>

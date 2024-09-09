@@ -1,1 +1,138 @@
-<P>INSTITUTIONAL WORKS!</P>
+<div class="card">
+  <div class="institutional-container">
+    <!-- Acordeón de Misión, Visión y Resultados -->
+    <p-accordion>
+      <p-accordionTab header="Misión">
+        <div class="accordion-content">
+          <img src="assets/layout/images/mision.jpeg" alt="Imagen de Misión">
+          <p class="mission-text">
+            Nuestra misión es proporcionar servicios de salud especializados en la evaluación psicofísica para conductores y portadores de armas.
+          </p>
+          <span class="subtext">Comprometidos con la seguridad vial y la responsabilidad social.</span>
+        </div>
+      </p-accordionTab>
+
+      <p-accordionTab header="Visión">
+        <div class="accordion-content">
+          <img src="assets/layout/images/vision.jpeg" alt="Imagen de Visión">
+          <p class="vision-text">
+            Ser reconocidos a nivel nacional como un centro líder en la evaluación psicofísica, ofreciendo servicios de alta calidad con los más altos estándares profesionales.
+          </p>
+          <span class="subtext">Innovación constante y excelencia en cada evaluación.</span>
+        </div>
+      </p-accordionTab>
+
+      <p-accordionTab header="Estados Financieros 2013">
+        <p>Puedes descargar los estados financieros de 2013 en los siguientes enlaces:</p>
+        <div class="financial-links">
+          <a href="assets/layout/pdf/balance1.pdf" download>
+            <i class="pi pi-file-pdf"></i> Balance General Ain Karim Comparativo 2013 - 2012
+          </a>
+          <a href="assets/layout/pdf/balance2.pdf" download>
+            <i class="pi pi-file-pdf"></i> Estado de Resultados Ain Karim Comparativo 2012 - 2013
+          </a>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+
+    <!-- Separador entre la sección de Misión/Vision y la de Sedes -->
+    <div class="section-separator"></div>
+
+    <!-- Sección de las sedes -->
+    <div class="sede-detail-container" id="sedes">
+      <!-- Sede Yopal -->
+      <div class="sede-detail" id="yopal">
+        <div class="left-section">
+          <img src="assets/layout/images/sede-yopal.png" alt="Sede Yopal" class="sede-image" />
+          <div class="sede-info">
+            <h3>Sede Yopal</h3>
+            <p class="sede-description">
+              La sede de Yopal ofrece servicios especializados en evaluación psicofísica y atención personalizada, enfocada en la seguridad vial y responsabilidad social.
+            </p>
+            <p><strong>Dirección:</strong> Calle 10 #12-34, Yopal, Casanare - Colombia</p>
+            <p><strong>Teléfono:</strong> +57 312 345 6789</p>
+            <p><strong>Correo Electrónico:</strong> yopal&#64;evaluando.com</p>
+          </div>
+        </div>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.520169029157!2d-72.39676598521582!3d5.337156795999323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6a3e4cabcdf45d%3A0x4a654928c9076529!2sYopal%2C%20Casanare!5e0!3m2!1sen!2sco!4v1694190394395!5m2!1sen!2sco"
+            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <button class="expand-map" (click)="openModal('yopalMap')">Expandir mapa</button>
+        </div>
+      </div>
+
+      <!-- Modal para expandir el mapa de Yopal -->
+      <div id="yopalMap" class="modal" [ngClass]="{'show-modal': isModalOpenYopal}">
+        <div class="modal-content">
+          <span class="close" (click)="closeModal('yopal')">&times;</span>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.520169029157!2d-72.39676598521582!3d5.337156795999323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6a3e4cabcdf45d%3A0x4a654928c9076529!2sYopal%2C%20Casanare!5e0!3m2!1sen!2sco!4v1694190394395!5m2!1sen!2sco"
+            width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- Sede Floridablanca -->
+      <div class="sede-detail reverse" id="floridablanca">
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.634780409634!2d-73.09205938525943!3d7.072489094884912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e682eb87f9b4a87%3A0x7b981f6ea8e7fb79!2sFloridablanca%2C%20Santander!5e0!3m2!1sen!2sco!4v1694190417884!5m2!1sen!2sco"
+            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          <button class="expand-map" (click)="openModal('floridablancaMap')">Expandir mapa</button>
+        </div>
+        <div class="left-section">
+          <img src="assets/layout/images/sede-floridablanca.png" alt="Sede Floridablanca" class="sede-image" />
+          <div class="sede-info">
+            <h3>Sede Floridablanca</h3>
+            <p class="sede-description">
+              En Floridablanca, brindamos servicios avanzados de evaluación psicofísica. Con instalaciones modernas y personal capacitado, nuestra sede ofrece una atención de calidad enfocada en la excelencia.
+            </p>
+            <p><strong>Dirección:</strong> Carrera 45 #67-89, Floridablanca, Santander - Colombia</p>
+            <p><strong>Teléfono:</strong> +57 318 765 4321</p>
+            <p><strong>Correo Electrónico:</strong> floridablanca&#64;evaluando.com</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal para expandir el mapa de Floridablanca -->
+      <div id="floridablancaMap" class="modal" [ngClass]="{'show-modal': isModalOpenFloridablanca}">
+        <div class="modal-content">
+          <span class="close" (click)="closeModal('floridablanca')">&times;</span>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.634780409634!2d-73.09205938525943!3d7.072489094884912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e682eb87f9b4a87%3A0x7b981f6ea8e7fb79!2sFloridablanca%2C%20Santander!5e0!3m2!1sen!2sco!4v1694190417884!5m2!1sen!2sco"
+            width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Separador entre la sección de Sedes y la nueva sección de Licencias -->
+    <div class="section-separator"></div>
+
+    <!-- Nueva Sección: Licencias -->
+    <p-accordion>
+      <p-accordionTab header="Licencia Salud Ocupacional" id="licencia-salud">
+        <div class="accordion-content">
+          <p class="license-text">
+            Nuestra licencia en Salud Ocupacional nos autoriza a ofrecer servicios especializados en la evaluación y control de riesgos laborales.
+          </p>
+        </div>
+      </p-accordionTab>
+
+      <p-accordionTab header="Licencia Min. Transporte" id="licencia-transporte">
+        <div class="accordion-content">
+          <p class="license-text">
+            Contamos con la licencia del Ministerio de Transporte que nos permite brindar servicios de evaluación psicofísica a conductores profesionales.
+          </p>
+        </div>
+      </p-accordionTab>
+
+      <p-accordionTab header="Licencia Min. Defensa" id="licencia-defensa">
+        <div class="accordion-content">
+          <p class="license-text">
+            La licencia del Ministerio de Defensa nos permite ofrecer servicios de evaluación a personal de seguridad privada y portadores de armas.
+          </p>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</div>

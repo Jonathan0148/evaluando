@@ -21,7 +21,7 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/auth/guest']);
   }
 
-  navigateToInstitutional(): void {
-    this.router.navigate(['/institutional']);
+  navigateToInstitutional(fragment: string): void {
+    this.router.navigate(['/institutional'], { fragment });
   }
 }

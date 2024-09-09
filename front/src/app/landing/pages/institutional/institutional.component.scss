@@ -1,0 +1,224 @@
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px #46464d;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.institutional-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .sede-detail-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .sede-detail {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+
+      .sede-image {
+        max-width: 100%;
+        height: 200px;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+      }
+
+      .sede-info {
+        h3 {
+          font-size: 1.8rem;
+          color: #007F3B;
+          margin-bottom: 10px;
+          text-align: left;
+        }
+
+        .sede-description {
+          font-size: 1.1rem;
+          margin-bottom: 10px;
+          color: #333;
+          text-align: justify;
+        }
+      }
+    }
+
+    .map-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      iframe {
+        width: 100%;
+        height: 93%;
+        border-radius: 10px;
+      }
+
+      .expand-map {
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #007F3B;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        align-self: center;
+      }
+
+      .expand-map:hover {
+        background-color: #005f2d;
+      }
+    }
+  }
+
+  .sede-detail.reverse {
+    flex-direction: row-reverse; /* Intercambia la posición del mapa e imagen */
+  }
+
+  .p-accordion-header {
+    font-size: 1.8rem;
+    color: #007F3B;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: none;
+    border-bottom: 2px solid #007F3B;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+
+  .accordion-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    img {
+      max-width: 60%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .mission-text,
+    .vision-text {
+      color: #007F3B;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .subtext {
+      color: #333;
+      font-size: 1rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* Estilos para los textos de licencias */
+    .license-text {
+      color: #666; /* Color actualizado a #666 */
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  }
+
+  .financial-links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+
+    a {
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+      color: #007F3B;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+      border: 2px solid #007F3B;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+
+      i {
+        margin-right: 10px;
+        font-size: 1.5rem;
+      }
+
+      &:hover {
+        background-color: rgba(0, 127, 59, 0.1);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 1000px;
+      position: relative;
+
+      iframe {
+        border-radius: 10px;
+        width: 100%;
+        height: 600px;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        color: #333;
+      }
+    }
+  }
+
+  .show-modal {
+    display: flex;
+  }
+
+  /* Separador */
+  .section-separator {
+    height: 2px;
+    background-color: #007F3B; /* Color del separador */
+    margin: 40px 0; /* Margen superior e inferior */
+    width: 100%;
+  }
+}

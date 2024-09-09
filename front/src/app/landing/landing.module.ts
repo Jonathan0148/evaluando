@@ -11,6 +11,7 @@ import { InstitutionalComponent } from './pages/institutional/institutional.comp
 import { ContactComponent } from './pages/contact/contact.component';
 import { SharedModule } from '../shared/shared.module';
 import { ServicesComponent } from './pages/services/services.component';
+import { GalleriaModule } from 'primeng/galleria';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ServicesComponent } from './pages/services/services.component';
   imports: [
     CommonModule,
     LandingRoutingModule,
-    SharedModule
+    SharedModule,
+    GalleriaModule
   ]
 })
 export class LandingModule { }

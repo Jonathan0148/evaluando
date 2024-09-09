@@ -15,6 +15,7 @@ import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastrModule } from 'ngx-toastr';
 import { AppLayoutModule } from './layout/app.layout.module';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AppLayoutModule } from './layout/app.layout.module';
     TooltipModule,
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
     ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
+    GalleriaModule
   ],
   providers: [
     CookieService,

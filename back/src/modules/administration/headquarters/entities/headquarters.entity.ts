@@ -1,6 +1,7 @@
 import { User } from "src/modules/setting/users/entities/user.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ExamPatient } from "../../exams-patients/entities/exams-patient.entity";
+import { ContactUs } from "src/modules/landing/entities/contact-us.entity";
 
 @Entity('headquarters')
 export class Headquarters {
@@ -39,4 +40,7 @@ export class Headquarters {
 
     @OneToMany(() => ExamPatient, (examPatient) => examPatient.headquarters)
     examPatient: ExamPatient[];
+
+    @OneToMany(() => ContactUs, (contactUs) => contactUs.headquarters)
+    contactUs: ContactUs[];
 }

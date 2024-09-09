@@ -140,7 +140,7 @@ export class RestService {
     );
   }
 
-  public postPatient<T>(data: any, paramsData?: any): Observable<T> {
+  public postPatient<T>(data: any = [], paramsData?: any): Observable<T> {
     let params = new HttpParams();
 
     params = params.set('take', paramsData?.take ?? 10)

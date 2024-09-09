@@ -1,6 +1,6 @@
 <app-initial-modal [visible]="visible"></app-initial-modal>
 
-<div class="landing-card">
+<div class="card">
 
   <!-- Welcome -->
   <div class="welcome-section">
@@ -16,11 +16,11 @@
     </div>
   </div>
 
-  <!-- Buttons -->
+  <!-- Botones de Licencias -->
   <div class="buttons-container">
-    <button class="license-button" (click)="navigateToInstitutional()"><span class="pi pi-heart-fill"></span>Licencia Salud Ocupacional</button>
-    <button class="license-button" (click)="navigateToInstitutional()"><span class="pi pi-id-card"></span>Licencia Min. Transporte</button>
-    <button class="license-button" (click)="navigateToInstitutional()"><span class="pi pi-shield"></span>Licencia Min. Defensa</button>
+    <button class="license-button" (click)="navigateToInstitutional('licencia-salud')"><span class="pi pi-heart-fill"></span>Licencia Salud Ocupacional</button>
+    <button class="license-button" (click)="navigateToInstitutional('licencia-transporte')"><span class="pi pi-id-card"></span>Licencia Min. Transporte</button>
+    <button class="license-button" (click)="navigateToInstitutional('licencia-defensa')"><span class="pi pi-shield"></span>Licencia Min. Defensa</button>
   </div>
 
   <!-- Carrusel -->
@@ -35,21 +35,11 @@
   <!-- Sección de Servicios -->
   <div class="services-section">
     <h2>Algunos de nuestros servicios</h2>
+    <button (click)="navigateToServices()">Ver más</button>
     <div class="services-grid">
-      <div class="service-item">
-        <img src="assets/icons/medico.svg" alt="Servicio Médico">
-        <h3>Evaluación Médica</h3>
-        <p>Realizamos evaluaciones médicas para conductores.</p>
-      </div>
-      <div class="service-item">
-        <img src="assets/icons/laboratorio.svg" alt="Laboratorio">
-        <h3>Laboratorio Clínico</h3>
-        <p>Ofrecemos servicios completos de laboratorio clínico.</p>
-      </div>
-      <div class="service-item">
-        <img src="assets/icons/psicologia.svg" alt="Psicología">
-        <h3>Evaluación Psicológica</h3>
-        <p>Evaluamos la aptitud psicológica de los conductores.</p>
+      <div class="service-item" *ngFor="let service of services">
+        <h3>{{ service.name }}</h3>
+        <img [src]="_fileSvc.getUrlFile(service.images[0])" alt="{{ service.name }}" class="service-image"/>
       </div>
     </div>
   </div>
@@ -59,9 +49,7 @@
     <div class="results-content">
       <div class="text-content">
         <h2>Resultados en línea</h2>
-        <p>
-          Consulta de resultados de exámenes en línea, de manera rápida y sencilla, desde cualquier lugar.
-        </p>
+        <p>Consulta de resultados de exámenes en línea, de manera rápida y sencilla, desde cualquier lugar.</p>
       </div>
       <div class="image-content">
         <img src="assets/layout/images/resultados.png" alt="Resultados en línea">
@@ -77,13 +65,13 @@
         <img src="assets/layout/images/sede-yopal.png" alt="Sede en Yopal">
         <h3>Sede Yopal</h3>
         <p>Yopal, Casanare - Colombia</p>
-        <button (click)="navigateToInstitutional()">Ver más</button>
+        <button (click)="navigateToInstitutional('yopal')">Ver más</button>
       </div>
       <div class="sede-item">
         <img src="assets/layout/images/sede-floridablanca.png" alt="Sede en Floridablanca">
         <h3>Sede Floridablanca</h3>
         <p>Floridablanca, Santander - Colombia</p>
-        <button (click)="navigateToInstitutional()">Ver más</button>
+        <button (click)="navigateToInstitutional('floridablanca')">Ver más</button>
       </div>
     </div>
   </div>

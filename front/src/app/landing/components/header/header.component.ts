@@ -10,11 +10,11 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 })
 export class HeaderComponent {
     readonly menuItems: MenuItem[] = [
-        { label: 'Inicio', icon: 'pi pi-home', route: '/' },
+        { label: 'Inicio', icon: 'pi pi-home', route: '/inicio' },
         { label: 'Institucional', icon: 'pi pi-info-circle', route: '/institutional' },
         { label: 'Servicios', icon: 'pi pi-briefcase', route: '/services' },
         { label: 'Contáctenos', icon: 'pi pi-envelope', route: '/contact' }
-    ];
+    ];    
 
     constructor(
         public layoutService: LayoutService, 

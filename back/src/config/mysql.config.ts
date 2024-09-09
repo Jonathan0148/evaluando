@@ -7,6 +7,7 @@ import { ImageService } from "src/modules/administration/services/entities/image
 import { Service } from "src/modules/administration/services/entities/service.entity";
 import { TypesExam } from "src/modules/administration/types-exams/entities/types-exam.entity";
 import { TypesResult } from "src/modules/administration/types-results/entities/types-result.entity";
+import { ContactUs } from "src/modules/landing/entities/contact-us.entity";
 import { ModuleProject } from "src/modules/setting/roles/entities/module-project.entity";
 import { Role } from "src/modules/setting/roles/entities/role.entity";
 import { RoleModule } from "src/modules/setting/roles/entities/roles-module.entity";
@@ -21,7 +22,7 @@ TypeOrmModuleOptions =>  {
         username: username,
         password: password,
         database: database,
-        entities: [Role, ModuleProject, RoleModule, Headquarters, User, TypesResult, TypesExam, Patient, ReportPatient, ExamPatient, Service, ImageService],
+        entities: [Role, ModuleProject, RoleModule, Headquarters, User, TypesResult, TypesExam, Patient, ReportPatient, ExamPatient, Service, ImageService, ContactUs],
         synchronize: false,
         logging: false
     }

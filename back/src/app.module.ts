@@ -21,6 +21,7 @@ import { PatientReportModule } from './modules/patient-rol/patient-report/patien
 import { PatientAuthModule } from './modules/patient-rol/patient-auth/patient-auth.module';
 import { ServicesModule } from './modules/administration/services/services.module';
 import { LandingModule } from './modules/landing/landing.module';
+import { ExamsModule } from './modules/reports/exams/exams.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { LandingModule } from './modules/landing/landing.module';
     PatientAuthModule,
     ServicesModule,
     LandingModule,
+    ExamsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

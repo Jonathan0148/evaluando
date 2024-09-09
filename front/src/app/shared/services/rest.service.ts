@@ -46,7 +46,7 @@ export class RestService {
     return this.headers.set('Authorization', `Bearer ${token}`);
   }
 
-  public getAll<T>(paramsData: any): Observable<T> {
+  public getAll<T>(paramsData: any = null): Observable<T> {
     let params = new HttpParams();
     params = params.set('take', paramsData?.take ?? 10);
     params = params.set('page', paramsData?.page ?? 1);

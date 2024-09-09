@@ -26,6 +26,6 @@ export class CreateContactDto {
     comments: string;
     
     @IsNotEmpty()
-    @IsNumber()
+    @IsString()
     headquarters_id: number;
 }

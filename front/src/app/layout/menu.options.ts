@@ -45,7 +45,6 @@ export const administration = {
                     icon: 'pi pi-fw pi-check',
                     routerLink: [ '/admin/tipos-resultados' ]
                 },
-                
                 {
                     code: '06',
                     label: 'Pacientes',
@@ -55,8 +54,25 @@ export const administration = {
                 {
                     code: '09',
                     label: 'Servicios',
-                    icon: 'pi pi-fw pi-user',
+                    icon: 'pi pi-fw pi-bookmark',
                     routerLink: [ '/admin/servicios' ]
+                },
+            ]
+        }
+    ]
+};
+
+export const reports = {
+    items: [
+        {
+            label: 'Reportes',
+            icon: 'pi pi-list',
+            items: [
+                {
+                    code: '10',
+                    label: 'Reportes por rango de fechas',
+                    icon: 'pi pi-fw pi-calendar',
+                    routerLink: [ '/admin/reportes' ]
                 },
             ]
         }

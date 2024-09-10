@@ -1,0 +1,28 @@
+<div class="card">
+  <form [formGroup]="form">
+    <div class="grid p-fluid">
+      <div class="field col-12 md:col-2">
+        <label for="initialDate">Fecha Inicial</label>
+        <p-calendar
+          [showIcon]="true"
+          formControlName="initialDate"
+          dateFormat="dd/mm/yy"
+          [readonlyInput]="true"
+          id="initialDate"
+          (onSelect)="getInventoryReports()"
+        />
+      </div>
+      <div class="field col-12 md:col-2">
+        <label for="finalDate">Fecha Final</label>
+        <p-calendar
+          [showIcon]="true"
+          formControlName="finalDate"
+          dateFormat="dd/mm/yy"
+          [readonlyInput]="true"
+          id="finalDate"
+          (onSelect)="getInventoryReports()"
+        />
+      </div>
+    </div>
+  </form>
+</div>

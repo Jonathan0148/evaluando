@@ -1,28 +1,109 @@
 <div class="card">
   <form [formGroup]="form">
     <div class="grid p-fluid">
-      <div class="field col-12 md:col-2">
-        <label for="initialDate">Fecha Inicial</label>
-        <p-calendar
-          [showIcon]="true"
-          formControlName="initialDate"
-          dateFormat="dd/mm/yy"
-          [readonlyInput]="true"
-          id="initialDate"
-          (onSelect)="getInventoryReports()"
-        />
+      <div class="col-12 md:col-6">
+        <label for="initDate">Fecha Inicial</label>
+        <p-calendar [showIcon]="true" formControlName="initDate" dateFormat="dd/mm/yy" [readonlyInput]="true"
+          id="initDate" (onSelect)="getReports()" />
       </div>
-      <div class="field col-12 md:col-2">
-        <label for="finalDate">Fecha Final</label>
-        <p-calendar
-          [showIcon]="true"
-          formControlName="finalDate"
-          dateFormat="dd/mm/yy"
-          [readonlyInput]="true"
-          id="finalDate"
-          (onSelect)="getInventoryReports()"
-        />
+      <div class="col-12 md:col-6">
+        <label for="endDate">Fecha Final</label>
+        <p-calendar [showIcon]="true" formControlName="endDate" dateFormat="dd/mm/yy" [readonlyInput]="true"
+          id="endDate" (onSelect)="getReports()" />
       </div>
     </div>
   </form>
+</div>
+
+<div *ngIf="reports" class="grid">
+  <div class="col-12">
+    <div class="card px-6">
+      <h4>Reporte</h4>
+      <p-table #dt [value]="reports" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="[
+          'internal_code',
+          'patient.names',
+          'patient.surnames',
+          'patient.document',
+          'typesExam.description'
+        ]" [paginator]="true" [rowsPerPageOptions]="[10, 20, 30]" styleClass="p-datatable-sm"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+        selectionMode="multiple" [rowHover]="true" dataKey="id" [loading]="loading">
+        <ng-template pTemplate="caption">
+          <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."
+                class="w-full" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="internal_code">
+              No. Exámen <p-sortIcon field="internal_code"></p-sortIcon>
+            </th>
+            <th pSortableColumn="patient.names">
+              Nombres<p-sortIcon field="patient.names"></p-sortIcon>
+            </th>
+            <th pSortableColumn="patient.surnames">
+              Apellidos<p-sortIcon field="patient.surnames"></p-sortIcon>
+            </th>
+            <th pSortableColumn="patient.document">
+              Documento<p-sortIcon field="patient.document"></p-sortIcon>
+            </th>
+            <th pSortableColumn="typesExam.description">
+              Tipo Exámen<p-sortIcon field="typesExam.description"></p-sortIcon>
+            </th>
+            <th pSortableColumn="date_exam">
+              Fecha Exámen <p-sortIcon field="date_exam"></p-sortIcon>
+            </th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-report>
+          <tr>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">No. Exámen</span>
+              {{ report?.internal_code }}
+            </td>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Nombres</span>
+              {{ report?.patient.names }}
+            </td>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Apellidos</span>
+              {{ report?.patient.surnames }}
+            </td>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Documento</span>
+              {{ report?.patient.document }}
+            </td>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Tipo Exámen</span>
+              {{ report?.typesExam.description }}
+            </td>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Fecha Exámen</span>
+              {{ report?.date_exam | date : "dd/MM/yyyy" : "UTC" }}
+            </td>
+            <td style="width: 5%; min-width: 5rem">
+              <div class="flex">
+                <button pTooltip="Ver" tooltipPosition="top" pButton pRipple icon="pi pi-eye"
+                  class="p-button-rounded p-button-secondary mr-2" (click)="seeItem(report)"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">No se han encontrado resultados</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <p-dialog [(visible)]="reportDialog" [style]="{ width: '50%' }" header="Exámen" [modal]="true" [maximizable]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" class="p-fluid">
+    <app-add-reports [report]="report"></app-add-reports>
+  </p-dialog>
 </div>

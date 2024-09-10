@@ -4,7 +4,10 @@
     </a>
     <p-menubar [model]="menuItems">
         <ng-template pTemplate="item" let-item>
-            <a *ngIf="item.route; else urlRef" [routerLink]="item.route" class="p-menuitem-link">
+            <a *ngIf="item.route; else urlRef" 
+                [routerLink]="item.route" 
+                class="p-menuitem-link" 
+                routerLinkActive="active-link">
                 <span [class]="item.icon"></span>
                 <span class="ml-2">{{ item.label }}</span>
             </a>
@@ -25,11 +28,11 @@
     </p-menubar>
 
     <div class="login-buttons">
-        <a [routerLink]="'/auth/guest'" class="login-btn">
+        <a [routerLink]="'/auth/guest'" class="login-btn" routerLinkActive="active-link">
             <span class="pi pi-book"></span>
             <span class="ml-2">Resultados</span>
         </a>
-        <a [routerLink]="'/auth/login'" class="login-btn">
+        <a [routerLink]="'/auth/login'" class="login-btn" routerLinkActive="active-link">
             <span class="pi pi-user"></span>
             <span class="ml-2">Ingreso</span>
         </a>

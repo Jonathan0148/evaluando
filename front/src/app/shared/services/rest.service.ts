@@ -163,6 +163,12 @@ export class RestService {
     );
   }
 
+  public put<T>(id: number, url: string, data?: any): Observable<T> {
+    return this.httpClient.put<T>(
+      `${this.getEndoint()}/${url}/${id}`,
+      data, { headers: this.setHeaders() }
+    );
+  }
 
   public getUrl<T>(url: string): Observable<T> {
     return this.httpClient.get<T>(

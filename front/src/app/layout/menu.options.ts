@@ -57,6 +57,12 @@ export const administration = {
                     icon: 'pi pi-fw pi-bookmark',
                     routerLink: [ '/admin/servicios' ]
                 },
+                {
+                    code: '11',
+                    label: 'Bandeja de Mensajes',
+                    icon: 'pi pi-fw pi-envelope',
+                    routerLink: [ '/admin/mensajes' ]
+                },
             ]
         }
     ]
@@ -70,7 +76,7 @@ export const reports = {
             items: [
                 {
                     code: '10',
-                    label: 'Reportes por rango de fechas',
+                    label: 'Reportes por fechas',
                     icon: 'pi pi-fw pi-calendar',
                     routerLink: [ '/admin/reportes' ]
                 },

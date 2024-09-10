@@ -1,0 +1,105 @@
+<div *ngIf="messages" class="grid">
+  <div class="col-12">
+    <div class="card px-6">
+      <h4>Buzón de Entrada</h4>
+      <p-table #dt [value]="messages" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="[
+          'names',
+          'surnames',
+          'headquarters.name',
+          'stateString'
+        ]" [paginator]="true" [rowsPerPageOptions]="[10, 20, 30]" styleClass="p-datatable-sm"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+        selectionMode="multiple" [rowHover]="true" dataKey="id" [loading]="loading">
+        <ng-template pTemplate="caption">
+          <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."
+                class="w-full" />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="names">
+              Nombres<p-sortIcon field="names"></p-sortIcon>
+            </th>
+            <th pSortableColumn="surnames">
+              Apellidos<p-sortIcon field="surnames"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="cellphone">
+              Teléfono<p-sortIcon field="cellphone"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="email">
+              Correo<p-sortIcon field="email"></p-sortIcon>
+            </th>
+            <th pSortableColumn="headquarters.name">
+              Sede<p-sortIcon field="headquarters.name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="state">
+              Estado<p-sortIcon field="state"></p-sortIcon>
+            </th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-message>
+          <tr>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Nombres</span>
+              {{ message?.names }}
+            </td>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Apellidos</span>
+              {{ message?.surnames }}
+            </td>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Teléfono</span>
+              {{ message?.cellphone }}
+            </td>
+
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Correo</span>
+              {{ message?.email }}
+            </td>
+            <td style="width: 15%; min-width: 8rem">
+              <span class="p-column-title">Sede</span>
+              {{ message?.headquarters.name }}
+            </td>
+            <td style="width: 20%; min-width: 10rem">
+              <p-tag [value]="message.stateString" [severity]="getSeverity(message.state)" />
+            </td>
+            <td style="width: 5%; min-width: 5rem">
+              <div class="flex">
+                <button pTooltip="Ver" tooltipPosition="top" pButton pRipple icon="pi pi-eye"
+                  class="p-button-rounded p-button-secondary mr-2" (click)="seeItem(message)"></button>
+                <button *ngIf="message.state === 1" pTooltip="Resolver" tooltipPosition="top" pButton pRipple
+                  icon="pi pi-check" class="p-button-rounded p-button-succes mr-2"
+                  (click)="resolveItem(message)"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">No se han encontrado resultados</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <p-dialog [(visible)]="messageDialog" [style]="{ width: '50%' }" header="Exámen" [modal]="true" [maximizable]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" class="p-fluid">
+    <app-add-contacts [message]="message"></app-add-contacts>
+  </p-dialog>
+</div>
+<p-toast />
+<p-confirmDialog>
+  <ng-template pTemplate="message" let-message>
+    <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+      <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+      <p>{{ message.message }}</p>
+    </div>
+  </ng-template>
+</p-confirmDialog>

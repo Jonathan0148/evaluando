@@ -18,7 +18,6 @@
 <div *ngIf="reports" class="grid">
   <div class="col-12">
     <div class="card px-6">
-      <h4>Reporte</h4>
       <p-table #dt [value]="reports" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="[
           'internal_code',
           'patient.names',

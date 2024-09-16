@@ -24,8 +24,9 @@
                         <label for="password" class="block text-900 font-medium text-xl mb-2">Contraseña</label>
                         <input formControlName="password" id="password" type="text" placeholder="Ingrese Contraseña"
                         pInputText class="w-full md:w-30rem mb-5" style="padding: 1rem" />
+                    </div><div class="login-options flex align-items-center justify-content-between mb-2 gap-5">
                     </div>
-                    <button pButton pRipple label="Consultar" type="submit" class="w-full p-3 mb-5 text-xl"
+                    <button pButton pRipple label="Consultar" type="submit" class="w-full md:w-30rem mb-5 text-xl"
                         [loading]="loading" [disabled]="form.invalid"></button>
                 </form>
                 <div class="button-container">

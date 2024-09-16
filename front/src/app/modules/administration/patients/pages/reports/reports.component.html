@@ -9,29 +9,29 @@
                 </div>
                 <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
                 <div class="flex align-items-center">
-                    <ul class="list-none p-0 m-0 flex-grow-1">
-                        <li class="flex justify-content-center mb-2">
-                            <i class="pi pi-id-card text-green-500 my-1 ml-3 mr-1"></i>
-                            <span class="font-medium text-600">{{
-                                patientReports[0].patient.document
-                                }}</span>
-                            <i class="pi pi-phone text-green-500 my-1 ml-3 mr-1"></i>
-                            <span class="font-medium text-600">{{
-                                patientReports[0].patient.cellphone
-                                }}</span>
-                            <i class="pi pi-map-marker text-green-500 my-1 ml-3 mr-1"></i>
-                            <span class="font-medium text-600">{{
-                                patientReports[0].patient.address
-                                }}</span>
-                            <i class="pi pi-envelope text-green-500 my-1 ml-3 mr-1"></i>
-                            <span class="font-medium text-600">{{
-                                patientReports[0].patient.email
-                                }}</span>
+                    <ul class="list-none p-0 m-0 w-full">
+                        <li class="flex flex-wrap justify-content-center mb-2 gap-3 md:gap-4">
+                            <div class="flex align-items-center">
+                                <i class="pi pi-id-card text-green-500 my-1 ml-3 mr-1"></i>
+                                <span class="font-medium text-600 text-wrap text-sm md:text-base">{{ patientReports[0].patient.document }}</span>
+                            </div>
+                            <div class="flex align-items-center">
+                                <i class="pi pi-phone text-green-500 my-1 ml-3 mr-1"></i>
+                                <span class="font-medium text-600 text-wrap text-sm md:text-base">{{ patientReports[0].patient.cellphone }}</span>
+                            </div>
+                            <div class="flex align-items-center">
+                                <i class="pi pi-map-marker text-green-500 my-1 ml-3 mr-1"></i>
+                                <span class="font-medium text-600 text-wrap text-sm md:text-base">{{ patientReports[0].patient.address }}</span>
+                            </div>
+                            <div class="flex align-items-center">
+                                <i class="pi pi-envelope text-green-500 my-1 ml-3 mr-1"></i>
+                                <span class="font-medium text-600 text-wrap text-sm md:text-base">{{ patientReports[0].patient.email }}</span>
+                            </div>
                         </li>
-                        <span class="font-bold text-2xl text-900">{{
-                            this.paramsData.take
-                            }}</span>
-                        <span class="ml-2 font-medium text-600">Reportes</span>
+                        <li class="text-center mt-2">
+                            <span class="font-bold text-2xl text-900">{{ this.paramsData.take }}</span>
+                            <span class="ml-2 font-medium text-600">Reportes</span>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -4,9 +4,7 @@
     </a>
     <p-menubar [model]="menuItems">
         <ng-template pTemplate="item" let-item>
-            <a *ngIf="item.route; else urlRef" 
-                [routerLink]="item.route" 
-                class="p-menuitem-link" 
+            <a *ngIf="item.route; else urlRef" [routerLink]="item.route" class="p-menuitem-link"
                 routerLinkActive="active-link">
                 <span [class]="item.icon"></span>
                 <span class="ml-2">{{ item.label }}</span>
@@ -35,6 +33,10 @@
         <a [routerLink]="'/auth/login'" class="login-btn" routerLinkActive="active-link">
             <span class="pi pi-user"></span>
             <span class="ml-2">Ingreso</span>
+        </a>
+        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle"
+            href="https://wa.me/3144132940/?text=Necesito información para un examen médico." Target="_blank">
+            <i class="pi pi-whatsapp" style="font-size: 3rem"></i>
         </a>
     </div>
 </div>

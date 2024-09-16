@@ -7,25 +7,32 @@
     <div class="welcome-content">
       <div class="welcome-text">
         <h1>Bienvenidos a Evaluando IPS</h1>
-        <p class="accreditation-text">Acreditada por la ONAC y habilitada ante el MINISTERIO DE TRANSPORTE y SECRETARÍA DE SALUD DEPARTAMENTAL en línea para el proceso RUNT.</p>
-        <p>Ofrecemos servicios de evaluación médica y de reconocimiento de conductores, con más de 20 años de experiencia.</p>
+        <p class="accreditation-text">Acreditada por la ONAC y habilitada ante el MINISTERIO DE TRANSPORTE y SECRETARÍA
+          DE SALUD DEPARTAMENTAL en línea para el proceso RUNT.</p>
+        <p>Ofrecemos servicios de evaluación médica y de reconocimiento de conductores, con más de 20 años de
+          experiencia.</p>
       </div>
       <div class="welcome-image">
-        <img src="assets/layout/images/banner.png" alt="Bienvenidos a Evaluando IPS">
+        <video src="https://154.38.181.43:3000/Evaluando_Versio%CC%81nCorta.mp4" width="640" height="500" autoplay
+          controls loop></video>
       </div>
     </div>
   </div>
 
   <!-- Botones de Licencias -->
   <div class="buttons-container">
-    <button class="license-button" (click)="navigateToInstitutional('licencia-salud')"><span class="pi pi-heart-fill"></span>Licencia Salud Ocupacional</button>
-    <button class="license-button" (click)="navigateToInstitutional('licencia-transporte')"><span class="pi pi-id-card"></span>Licencia Min. Transporte</button>
-    <button class="license-button" (click)="navigateToInstitutional('licencia-defensa')"><span class="pi pi-shield"></span>Licencia Min. Defensa</button>
+    <button class="license-button" (click)="navigateToInstitutional('licencia-salud')"><span
+        class="pi pi-heart-fill"></span>Licencia Salud Ocupacional</button>
+    <button class="license-button" (click)="navigateToInstitutional('licencia-transporte')"><span
+        class="pi pi-id-card"></span>Licencia Min. Transporte</button>
+    <button class="license-button" (click)="navigateToInstitutional('licencia-defensa')"><span
+        class="pi pi-shield"></span>Licencia Min. Defensa</button>
   </div>
 
   <!-- Carrusel -->
   <div class="carousel-container">
-    <p-carousel [value]="images" [numVisible]="2" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [showIndicators]="false">
+    <p-carousel [value]="images" [numVisible]="2" [numScroll]="1" [circular]="true" [autoplayInterval]="3000"
+      [showIndicators]="false">
       <ng-template pTemplate="item" let-image>
         <img [src]="image" alt="Imagen del carrusel">
       </ng-template>
@@ -39,7 +46,7 @@
     <div class="services-grid">
       <div class="service-item" *ngFor="let service of services">
         <h3>{{ service.name }}</h3>
-        <img [src]="_fileSvc.getUrlFile(service?.images[0])" alt="{{ service?.name }}" class="p-avatar"/>
+        <img [src]="_fileSvc.getUrlFile(service?.images[0])" alt="{{ service?.name }}" class="p-avatar" />
       </div>
     </div>
   </div>

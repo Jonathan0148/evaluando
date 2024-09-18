@@ -1,15 +1,17 @@
+<ngx-spinner *ngIf="loading" type="ball-scale-multiple"></ngx-spinner>
+
 <div class="card">
   <form [formGroup]="form">
     <div class="grid p-fluid">
       <div class="col-12 md:col-6">
         <label for="initDate">Fecha Inicial</label>
         <p-calendar [showIcon]="true" formControlName="initDate" dateFormat="dd/mm/yy" [readonlyInput]="true"
-          id="initDate" (onSelect)="getReports()" />
+          id="initDate" (onSelect)="getParamsData()" />
       </div>
       <div class="col-12 md:col-6">
         <label for="endDate">Fecha Final</label>
         <p-calendar [showIcon]="true" formControlName="endDate" dateFormat="dd/mm/yy" [readonlyInput]="true"
-          id="endDate" (onSelect)="getReports()" />
+          id="endDate" (onSelect)="getParamsData()" />
       </div>
     </div>
   </form>

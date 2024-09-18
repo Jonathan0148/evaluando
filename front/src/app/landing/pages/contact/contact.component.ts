@@ -11,6 +11,8 @@ export class ContactComponent implements OnInit {
   form!: UntypedFormGroup;
   submitted: boolean = false;
   headquarters = []
+  isModalOpenYopal = false;
+  isModalOpenFloridablanca = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -19,18 +21,18 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      names: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      surnames: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      address: [null, [Validators.maxLength(100)]],
-      cellphone: [null, [Validators.required, Validators.maxLength(20)]],
-      email: [null, [Validators.required, Validators.email, Validators.maxLength(100), ContactComponent.emailValidator]],
-      headquarters_id: [null, [Validators.required]],
-      comments: [null, [Validators.maxLength(500)]],
+      names: [ null, [ Validators.required, Validators.minLength(5), Validators.maxLength(50) ] ],
+      surnames: [ null, [ Validators.required, Validators.minLength(5), Validators.maxLength(50) ] ],
+      address: [ null, [ Validators.maxLength(100) ] ],
+      cellphone: [ null, [ Validators.required, Validators.maxLength(20) ] ],
+      email: [ null, [ Validators.required, Validators.email, Validators.maxLength(100), ContactComponent.emailValidator ] ],
+      headquarters_id: [ null, [ Validators.required ] ],
+      comments: [ null, [ Validators.maxLength(500) ] ],
     });
     this.getHeadquarters()
   }
 
-  public getHeadquarters(){
+  public getHeadquarters() {
     this.landingServicesService.getHeadquarters().subscribe((response: any) => {
       this.headquarters = response;
     });
@@ -53,6 +55,22 @@ export class ContactComponent implements OnInit {
         this.submitted = false;
         this.form.reset();
       });
+    }
+  }
+
+  openModal(modalType: string) {
+    if (modalType === 'yopalMap') {
+      this.isModalOpenYopal = true;
+    } else if (modalType === 'floridablancaMap') {
+      this.isModalOpenFloridablanca = true;
+    }
+  }
+
+  closeModal(modalType: string) {
+    if (modalType === 'yopal') {
+      this.isModalOpenYopal = false;
+    } else if (modalType === 'floridablanca') {
+      this.isModalOpenFloridablanca = false;
     }
   }
 }

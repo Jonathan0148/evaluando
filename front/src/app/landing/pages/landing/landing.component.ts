@@ -7,36 +7,53 @@ import { FileService } from 'src/app/shared/services/file.service';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: [ './landing.component.scss' ]
 })
 export class LandingComponent implements OnInit {
   visible: boolean = false;
-  images: string[] = [];
+  images: any[] | undefined;
   services = [];
-
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1
+    }
+  ];
   constructor(
-    public layoutService: LayoutService, 
+    public layoutService: LayoutService,
     public router: Router,
     private readonly landingServicesService: LandingServicesService,
     public readonly _fileSvc: FileService,
   ) { }
-  
+
   ngOnInit(): void {
-    this.images = Array.from({ length: 21 }, (_, i) => `assets/layout/images/carousel/${i + 1}.jpeg`);
+    this.landingServicesService.getImages().then((images: any) => (this.images = images));
     this.landingServicesService.findAll().subscribe((response: any) => {
       this.services = response.slice(0, 3);
     });
   }
 
   navigateToResults(): void {
-    this.router.navigate(['/auth/guest']);
+    this.router.navigate([ '/auth/guest' ]);
   }
 
   navigateToInstitutional(fragment: string): void {
-    this.router.navigate(['/institutional'], { fragment });
+    this.router.navigate([ '/institutional' ], { fragment });
+  }
+
+  navigateToContact(): void {
+    this.router.navigate([ '/contact' ]);
   }
 
   navigateToServices(): void {
-    this.router.navigate(['/services']);
+    this.router.navigate([ '/services' ]);
   }
 }

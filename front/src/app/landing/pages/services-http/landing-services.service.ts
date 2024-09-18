@@ -32,4 +32,55 @@ export class LandingServicesService {
   public setParams(): void {
     this._restSvc.port = environment.portsServices.api;
   }
+
+  getData() {
+    return [
+      {
+        itemImageSrc: 'assets/layout/images/carousel/9.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 9',
+        title: 'Title 9'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/carousel/10.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 10',
+        title: 'Title 7'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/carousel/11.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 11',
+        title: 'Title 7'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/carousel/12.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 12',
+        title: 'Title 7'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/carousel/13.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 13',
+        title: 'Title 7'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/carousel/14.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 14',
+        title: 'Title 7'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/carousel/15.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 15',
+        title: 'Title 7'
+      },
+    ];
+  }
+
+  getImages() {
+    return Promise.resolve(this.getData());
+  }
 }

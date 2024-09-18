@@ -8,8 +8,6 @@ import { AccordionTab } from 'primeng/accordion';
   styleUrls: ['./institutional.component.scss']
 })
 export class InstitutionalComponent implements OnInit, AfterViewInit {
-  isModalOpenYopal = false;
-  isModalOpenFloridablanca = false;
 
   @ViewChildren(AccordionTab) accordionTabs!: QueryList<AccordionTab>;
 
@@ -25,22 +23,6 @@ export class InstitutionalComponent implements OnInit, AfterViewInit {
         }, 100);
       }
     });
-  }
-
-  openModal(modalType: string) {
-    if (modalType === 'yopalMap') {
-      this.isModalOpenYopal = true;
-    } else if (modalType === 'floridablancaMap') {
-      this.isModalOpenFloridablanca = true;
-    }
-  }
-
-  closeModal(modalType: string) {
-    if (modalType === 'yopal') {
-      this.isModalOpenYopal = false;
-    } else if (modalType === 'floridablanca') {
-      this.isModalOpenFloridablanca = false;
-    }
   }
 
   scrollToSection(sectionId: string): void {

@@ -1,64 +1,169 @@
-<div class="card fadein">
+<div class="institutional-container fadein">
+    <div class="sede-detail-container" id="sedes">
+        <!-- Sede Yopal -->
+        <div class="sede-detail" id="yopal">
+            <div class="left-section">
+                <img src="assets/layout/images/sede-yopal.png" alt="Sede Yopal" class="sede-image" />
+                <div class="sede-info">
+                    <h3>Sede Yopal</h3>
+                    <p class="sede-description">
+                        La sede de Yopal ofrece servicios especializados en evaluación
+                        psicofísica y atención personalizada, enfocada en la seguridad vial
+                        y responsabilidad social.
+                    </p>
+                    <p>
+                        <strong>Dirección:</strong> Calle 15 No.18 - 42, Yopal, Casanare -
+                        Colombia
+                    </p>
+                    <p><strong>Teléfono:</strong> +57 314 413 2940</p>
+                    <p>
+                        <strong>Correo Electrónico:</strong>
+                        ips.evaluando.yopal&#64;gmail.com
+                    </p>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d305.5014129163473!2d-72.3990103!3d5.3421861!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6b0d4e1b47190b%3A0xd8be7d083962f585!2sevaluando!5e1!3m2!1ses-419!2sco!4v1726464520993!5m2!1ses-419!2sco"
+                    width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <button class="expand-map" (click)="openModal('yopalMap')">
+                    Expandir mapa
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal para expandir el mapa de Yopal -->
+        <div id="yopalMap" class="modal" [ngClass]="{ 'show-modal': isModalOpenYopal }">
+            <div class="modal-content">
+                <span class="close" (click)="closeModal('yopal')">&times;</span>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d305.5014129163473!2d-72.3990103!3d5.3421861!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6b0d4e1b47190b%3A0xd8be7d083962f585!2sevaluando!5e1!3m2!1ses-419!2sco!4v1726464520993!5m2!1ses-419!2sco"
+                    width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <!-- Sede Floridablanca -->
+        <div class="sede-detail reverse" id="floridablanca">
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.634780409634!2d-73.09205938525943!3d7.072489094884912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e682eb87f9b4a87%3A0x7b981f6ea8e7fb79!2sFloridablanca%2C%20Santander!5e0!3m2!1sen!2sco!4v1694190417884!5m2!1sen!2sco"
+                    width="100%" height="300" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
+                <button class="expand-map" (click)="openModal('floridablancaMap')">
+                    Expandir mapa
+                </button>
+            </div>
+            <div class="left-section">
+                <img src="assets/layout/images/sede-floridablanca.png" alt="Sede Floridablanca" class="sede-image" />
+                <div class="sede-info">
+                    <h3>Sede Floridablanca</h3>
+                    <p class="sede-description">
+                        En Floridablanca, brindamos servicios avanzados de evaluación
+                        psicofísica. Con instalaciones modernas y personal capacitado,
+                        nuestra sede ofrece una atención de calidad enfocada en la
+                        excelencia.
+                    </p>
+                    <p><strong>Dirección:</strong> Floridablanca, Santander - Colombia</p>
+                    <p><strong>Teléfono:</strong> +57 314 413 2940</p>
+                    <p>
+                        <strong>Correo Electrónico:</strong>
+                        ips.evaluando.yopal&#64;gmail.com
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para expandir el mapa de Floridablanca -->
+        <div id="floridablancaMap" class="modal" [ngClass]="{ 'show-modal': isModalOpenFloridablanca }">
+            <div class="modal-content">
+                <span class="close" (click)="closeModal('floridablanca')">&times;</span>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.634780409634!2d-73.09205938525943!3d7.072489094884912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e682eb87f9b4a87%3A0x7b981f6ea8e7fb79!2sFloridablanca%2C%20Santander!5e0!3m2!1sen!2sco!4v1694190417884!5m2!1sen!2sco"
+                    width="100%" height="600" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fadein">
+    <p-divider></p-divider>
     <div class="contact-content">
-        <h2>Contáctenos llenando este formulario con su información, y nos pondremos en contacto con usted lo más pronto posible.</h2>
+        <div class="login-title text-primary text-3xl font-bold mb-1">
+            Contáctenos llenando este formulario con su información y nos pondremos en
+            contacto con usted lo más pronto posible.
+        </div>
     </div>
     <form [formGroup]="form" class="contact-form">
         <div class="formgrid grid">
             <div class="field col-12 md:col-6">
                 <label for="names">Nombres</label>
-                <input type="text" formControlName="names" pInputText id="names" required maxlength="30" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <input type="text" formControlName="names" pInputText id="names" required maxlength="30"
+                    [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
                 <small class="p-error" *ngIf="submitted && form.get('names').invalid">Nombre es obligatorio.</small>
             </div>
             <div class="field col-12 md:col-6">
                 <label for="surnames">Apellidos</label>
-                <input type="text" formControlName="surnames" pInputText id="surnames" required maxlength="30" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
-                <small class="p-error" *ngIf="submitted && form.get('surnames').invalid">Apellidos son obligatorios.</small>
+                <input type="text" formControlName="surnames" pInputText id="surnames" required maxlength="30"
+                    [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <small class="p-error" *ngIf="submitted && form.get('surnames').invalid">Apellidos son
+                    obligatorios.</small>
             </div>
         </div>
         <div class="formgrid grid">
             <div class="field col-12 md:col-6">
                 <label for="address">Dirección</label>
-                <input type="text" formControlName="address" pInputText id="address" maxlength="100" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
-                <small class="p-error" *ngIf="submitted && form.get('address').invalid">Dirección es obligatoria.</small>
+                <input type="text" formControlName="address" pInputText id="address" maxlength="100"
+                    [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <small class="p-error" *ngIf="submitted && form.get('address').invalid">Dirección es
+                    obligatoria.</small>
             </div>
             <div class="field col-12 md:col-6">
                 <label for="cellphone">Número telefónico</label>
-                <input type="text" formControlName="cellphone" pInputText id="cellphone" required maxlength="20" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
-                <small class="p-error" *ngIf="submitted && form.get('cellphone').invalid">Número telefónico es obligatorio.</small>
+                <input type="text" formControlName="cellphone" pInputText id="cellphone" required maxlength="20"
+                    [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <small class="p-error" *ngIf="submitted && form.get('cellphone').invalid">Número telefónico es
+                    obligatorio.</small>
             </div>
         </div>
         <div class="formgrid grid">
             <div class="field col-12 md:col-6">
                 <label for="email">Correo electrónico</label>
-                <input type="text" formControlName="email" pInputText id="email" maxlength="100" [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
-                <small class="p-error" *ngIf="submitted && form.get('email').invalid">Correo electrónico es obligatorio.</small>
-                <small class="p-error" *ngIf="submitted && form.get('email').hasError('invalidEmail')">Correo no es válido.</small>
+                <input type="text" formControlName="email" pInputText id="email" maxlength="100"
+                    [ngClass]="{ 'ng-invalid ng-dirty': submitted }" />
+                <small class="p-error" *ngIf="submitted && form.get('email').invalid">Correo electrónico es
+                    obligatorio.</small>
+                <small class="p-error" *ngIf="submitted && form.get('email').hasError('invalidEmail')">Correo no es
+                    válido.</small>
             </div>
             <div class="field col-12 md:col-6">
                 <label for="headquarters_id">Sede</label>
                 <select formControlName="headquarters_id" id="headquarters_id" required>
                     <option *ngFor="let headquarters of headquarters" [value]="headquarters.id">
-                        {{headquarters.name}}
+                        {{ headquarters.name }}
                     </option>
                 </select>
-                <small class="p-error" *ngIf="submitted && form.get('headquarters_id').invalid">Sede es obligatoria.</small>
+                <small class="p-error" *ngIf="submitted && form.get('headquarters_id').invalid">Sede es
+                    obligatoria.</small>
             </div>
         </div>
 
         <div class="formgrid grid">
             <div class="field col-12">
                 <label for="comments">Comentarios</label>
-                <textarea formControlName="comments" id="comments" rows="5" maxlength="500" placeholder="Escriba sus comentarios"></textarea>
-                <small class="p-error" *ngIf="submitted && form.get('comments').invalid">Comentarios son obligatorios.</small>
+                <textarea formControlName="comments" id="comments" rows="5" maxlength="500"
+                    placeholder="Escriba sus comentarios"></textarea>
+                <small class="p-error" *ngIf="submitted && form.get('comments').invalid">Comentarios son
+                    obligatorios.</small>
             </div>
         </div>
         <div class="formgrid grid">
             <div class="field col-12">
                 <button type="button" (click)="onSubmit()">Enviar</button>
             </div>
-        </div>  
+        </div>
         <div class="contact-whatsapp">
-            <p>También puede escribirnos directamente a nuestro 
+            <p>
+                También puede escribirnos directamente a nuestro
                 <a href="https://wa.me/573144132940" target="_blank">
                     <i class="pi pi-whatsapp"></i> WhatsApp
                 </a>

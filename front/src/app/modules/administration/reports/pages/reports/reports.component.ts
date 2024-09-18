@@ -3,6 +3,7 @@ import { FormBuilder, UntypedFormGroup } from '@angular/forms';
 import { ReportsService } from '../../services/reports.service';
 import { RestService } from 'src/app/shared/services/rest.service';
 import { Table } from 'primeng/table';
+import { IParamsIndex } from 'src/app/shared/utils';
 
 @Component({
   selector: 'app-reports',
@@ -15,6 +16,7 @@ export class ReportsComponent implements OnInit {
   loading: boolean = false;
   reportDialog: boolean = false;
   report: any = {};
+  paramsData: IParamsIndex = { take: 10, page: 1 };
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -27,8 +29,23 @@ export class ReportsComponent implements OnInit {
       initDate: [ null ],
       endDate: [ new Date() ],
     });
-    this.getReports();
+    this.getParamsData();
   }
+
+  public getParamsData(): void {
+    this._reportsSvc.setParams();
+
+    if (!this.form.get('initDate').value || !this.form.get('endDate').value) return;
+    this.loading = true;
+
+    this._restSvc.post(this.form.value, 'exams', this.paramsData).subscribe((res: any) => {
+      const { meta } = res;
+
+      this.reports = res.data;
+      this.paramsData.take = meta.itemCount || 1;
+      this.getReports();
+    });
+}
 
   public getReports() {
     this._reportsSvc.setParams();
@@ -36,7 +53,7 @@ export class ReportsComponent implements OnInit {
     if (!this.form.get('initDate').value || !this.form.get('endDate').value) return;
     this.loading = true;
 
-    this._restSvc.methodPost(this.form.value, 'exams').subscribe((res: any) => {
+    this._restSvc.post(this.form.value, 'exams', this.paramsData).subscribe((res: any) => {
       this.reports = res.data;
       this.loading = false;
     });

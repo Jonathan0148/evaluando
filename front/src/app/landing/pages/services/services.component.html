@@ -1,11 +1,10 @@
-<div class="card fadein">
+<div class="fadein">
   <div class="services-layout">
     <div class="services-menu">
       <h3>Servicios</h3>
       <ul>
-        <li *ngFor="let service of services; let i = index"
-            (click)="onServiceSelect(i)"
-            [ngClass]="{'active': selectedService === i}">
+        <li *ngFor="let service of services; let i = index" (click)="onServiceSelect(i)"
+          [ngClass]="{'active': selectedService === i}">
           {{ service.name }}
         </li>
       </ul>
@@ -16,13 +15,8 @@
       <p>{{ services[selectedService]?.description }}</p>
 
       <div class="carousel-container" *ngIf="services[selectedService]?.images.length > 0">
-        <p-carousel 
-            [value]="services[selectedService]?.images" 
-            [numVisible]="1"
-            [numScroll]="1" 
-            [circular]="true" 
-            [autoplayInterval]="3000" 
-            [showIndicators]="true">
+        <p-carousel [value]="services[selectedService]?.images" [numVisible]="1" [numScroll]="1" [circular]="true"
+          [autoplayInterval]="3000" [showIndicators]="true">
           <ng-template pTemplate="item" let-image>
             <img [src]="_fileSvc.getUrlFile(image)" alt="Imagen del servicio">
           </ng-template>

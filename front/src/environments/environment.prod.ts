@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://154.38.181.43:',
+  serverUrl: 'https://evaluandoips.com:',
   portsServices: {
     api: 3000
   },

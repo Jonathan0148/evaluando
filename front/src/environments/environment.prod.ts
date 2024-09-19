@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   serverUrl: 'https://evaluandoips.com:',
-  portsServices: {
+  portsServices: { 
     api: 3000
   },
   portsProjects: {

@@ -45,7 +45,6 @@ export class HeadquartersService {
 
   async create(dto: CreateHeadquartersDto, user: UserLoginDto): Promise<Headquarters | any> {
     const data = this.headquartersRepository.create({
-      code: dto.code,
       name: dto.name,
       address: dto.address,
       cellphone: dto.cellphone,

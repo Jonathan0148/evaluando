@@ -73,7 +73,7 @@ export class TypesExamsService {
   async remove(id: number) {
     await this.findOne(id);
 
-    const dataTE = await this.examPatientRepository.findOneBy({patient_id: id});
+    const dataTE = await this.examPatientRepository.findOneBy({type_exam_id: id});
 
     if (dataTE) throw new NotFoundException({message: 'El tipo de examen no puede ser eliminado porque tiene exámenes relacionados'});
 

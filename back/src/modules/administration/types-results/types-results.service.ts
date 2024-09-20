@@ -12,12 +12,12 @@ import { ExamPatient } from '../exams-patients/entities/exams-patient.entity';
 @Injectable()
 export class TypesResultsService {
   constructor(
-    @InjectRepository(TypesResult) private typesExamRepository: Repository<TypesResult>,
+    @InjectRepository(TypesResult) private typesResultRepository: Repository<TypesResult>,
     @InjectRepository(ExamPatient) private examPatientRepository: Repository<ExamPatient>,
   ) { }
 
   async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<TypesResult>> {
-    const queryBuilder = this.typesExamRepository.createQueryBuilder("query")
+    const queryBuilder = this.typesResultRepository.createQueryBuilder("query")
       .andWhere(qb => {
         qb.where('(query.description LIKE :term)', {
           term: `%${pageOptionsDto.term}%`
@@ -36,7 +36,7 @@ export class TypesResultsService {
   }
 
   async findOne(id: number) {
-    const data = await this.typesExamRepository.createQueryBuilder("query")
+    const data = await this.typesResultRepository.createQueryBuilder("query")
       .where("query.id= :id", { id: id })
       .getOne();
 
@@ -46,12 +46,12 @@ export class TypesResultsService {
   }
 
   async create(dto: CreateTypesResultDto, user: UserLoginDto): Promise<TypesResult | any> {
-    const data = this.typesExamRepository.create({
+    const data = this.typesResultRepository.create({
       description: dto.description,
       created_at: this.formatDate(new Date()),
       created_by: user.userId
     });
-    await this.typesExamRepository.save(data);
+    await this.typesResultRepository.save(data);
 
     return {message: 'Tipo de resultado registrado exitosamente'};
   }
@@ -61,7 +61,7 @@ export class TypesResultsService {
 
     if (!data) throw new NotFoundException({message: 'No existe el tipo de resultado solicitado'});
 
-    await this.typesExamRepository.update(id, {
+    await this.typesResultRepository.update(id, {
       description: dto.description,
       updated_at: this.formatDate(new Date()),
       updated_by: user.userId
@@ -73,11 +73,11 @@ export class TypesResultsService {
   async remove(id: number) {
     await this.findOne(id);
 
-    const dataTE = await this.examPatientRepository.findOneBy({patient_id: id});
+    const dataTE = await this.examPatientRepository.findOneBy({type_result_id: id});
 
     if (dataTE) throw new NotFoundException({message: 'El tipo de resultado no puede ser eliminado porque tiene exámenes relacionados'});
 
-    await this.typesExamRepository.delete(id);
+    await this.typesResultRepository.delete(id);
 
     return {message: 'Tipo de resultado eliminado exitosamente'};
   }

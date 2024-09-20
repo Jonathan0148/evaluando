@@ -36,7 +36,7 @@ export class LandingServicesService {
   getData() {
     return [
       {
-        itemImageSrc: 'assets/layout/images/carousel/9.jpeg',
+        itemImageSrc: 'assets/layout/images/carousel/9.webp',
         thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
         alt: 'Description for Image 9',
         title: 'Title 9'

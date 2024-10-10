@@ -36,12 +36,6 @@ export class LandingServicesService {
   getData() {
     return [
       {
-        itemImageSrc: 'assets/layout/images/carousel/9.webp',
-        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
-        alt: 'Description for Image 9',
-        title: 'Title 9'
-      },
-      {
         itemImageSrc: 'assets/layout/images/carousel/10.jpeg',
         thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
         alt: 'Description for Image 10',
@@ -82,5 +76,74 @@ export class LandingServicesService {
 
   getImages() {
     return Promise.resolve(this.getData());
+  }
+
+  getDataFlorida() {
+    return [
+      {
+        itemImageSrc: 'assets/layout/images/florida/1.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/florida/1alleria7s.jpg',
+        alt: 'Description for Image 9',
+        title: 'Title 9'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/florida/2.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/florida/1alleria7s.jpg',
+        alt: 'Description for Image 10',
+        title: 'Title 7'
+      },
+    ];
+  }
+  
+  getImagesFlorida() {
+    return Promise.resolve(this.getDataFlorida());
+  }
+
+  getDataYopal() {
+    return [
+      {
+        itemImageSrc: 'assets/layout/images/yopal/1.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 9',
+        title: 'Title 9'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/yopal/2.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 10',
+        title: 'Title 7'
+      },
+    ];
+  }
+  
+  getImagesYopal() {
+    return Promise.resolve(this.getDataYopal());
+  }
+
+  getDataPatios() {
+    return [
+      {
+        itemImageSrc: 'assets/layout/images/patios/1.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 9',
+        title: 'Title 9'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/patios/2.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 10',
+        title: 'Title 7'
+      },
+      {
+        itemImageSrc: 'assets/layout/images/patios/3.jpeg',
+        thumbnailImageSrc: 'https://primefaces.org/cdn/primeng/images/galleria/galleria7s.jpg',
+        alt: 'Description for Image 11',
+        title: 'Title 7'
+      },
+    ];
+  }
+  
+  getImagesPatios() {
+    return Promise.resolve(this.getDataPatios());
   }
 }

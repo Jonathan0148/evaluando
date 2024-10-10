@@ -3,7 +3,13 @@
         <!-- Sede Yopal -->
         <div class="sede-detail" id="yopal">
             <div class="left-section">
-                <img src="assets/layout/images/sede-yopal.webp" alt="Sede Yopal" class="sede-image" />
+                <p-galleria [(value)]="imagesYopal" [numVisible]="5" [circular]="true" [autoPlay]="true"
+                    [showItemNavigators]="true" [showThumbnails]="false" [responsiveOptions]="responsiveOptions"
+                    [containerStyle]="{ 'max-width': '100%' }">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item.itemImageSrc" style="width: 100%; display: block" />
+                    </ng-template>
+                </p-galleria>
                 <div class="sede-info">
                     <h3>Sede Yopal</h3>
                     <p class="sede-description">
@@ -24,7 +30,7 @@
             </div>
             <div class="map-container">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d305.5014129163473!2d-72.3990103!3d5.3421861!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6b0d4e1b47190b%3A0xd8be7d083962f585!2sevaluando!5e1!3m2!1ses-419!2sco!4v1726464520993!5m2!1ses-419!2sco"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d471.99154552168255!2d-72.398873!3d5.342258!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6b0d4e1b47190b%3A0xd8be7d083962f585!2sevaluando!5e1!3m2!1ses-419!2sco!4v1728599040333!5m2!1ses-419!2sco"
                     width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <button class="expand-map" (click)="openModal('yopalMap')">
@@ -48,14 +54,21 @@
         <div class="sede-detail reverse" id="floridablanca">
             <div class="map-container">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.634780409634!2d-73.09205938525943!3d7.072489094884912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e682eb87f9b4a87%3A0x7b981f6ea8e7fb79!2sFloridablanca%2C%20Santander!5e0!3m2!1sen!2sco!4v1694190417884!5m2!1sen!2sco"
-                    width="100%" height="300" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.6567374036367!2d-73.08761972524155!3d7.059339492943115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e68409fa64a1d0b%3A0x9031ca2c1ea28f67!2sCra.%208%20%239-8%2C%20Floridablanca%2C%20Santander!5e1!3m2!1ses-419!2sco!4v1728599910486!5m2!1ses-419!2sco"
+                    width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <button class="expand-map" (click)="openModal('floridablancaMap')">
                     Expandir mapa
                 </button>
             </div>
             <div class="left-section">
-                <img src="assets/layout/images/sede-floridablanca.webp" alt="Sede Floridablanca" class="sede-image" />
+                <p-galleria [(value)]="imagesFlorida" [numVisible]="5" [circular]="true" [autoPlay]="true"
+                    [showItemNavigators]="true" [showThumbnails]="false" [responsiveOptions]="responsiveOptions"
+                    [containerStyle]="{ 'max-width': '100%' }">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item.itemImageSrc" style="width: 100%; display: block" />
+                    </ng-template>
+                </p-galleria>
                 <div class="sede-info">
                     <h3>Sede Floridablanca</h3>
                     <p class="sede-description">
@@ -64,7 +77,10 @@
                         nuestra sede ofrece una atención de calidad enfocada en la
                         excelencia.
                     </p>
-                    <p><strong>Dirección:</strong>Cra 8 No. 9 - 08 - PISO 1 - Floridablanca Santander</p>
+                    <p>
+                        <strong>Dirección:</strong> Cra 8 No. 9 - 08 - PISO 1 -
+                        Floridablanca Santander
+                    </p>
                     <p><strong>Teléfono:</strong> +57 314 413 2940</p>
                     <p>
                         <strong>Correo Electrónico:</strong>
@@ -79,8 +95,62 @@
             <div class="modal-content">
                 <span class="close" (click)="closeModal('floridablanca')">&times;</span>
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.634780409634!2d-73.09205938525943!3d7.072489094884912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e682eb87f9b4a87%3A0x7b981f6ea8e7fb79!2sFloridablanca%2C%20Santander!5e0!3m2!1sen!2sco!4v1694190417884!5m2!1sen!2sco"
-                    width="100%" height="600" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.6567374036367!2d-73.08761972524155!3d7.059339492943115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e68409fa64a1d0b%3A0x9031ca2c1ea28f67!2sCra.%208%20%239-8%2C%20Floridablanca%2C%20Santander!5e1!3m2!1ses-419!2sco!4v1728599910486!5m2!1ses-419!2sco"
+                    width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <!-- Sede Los Patios -->
+        <div class="sede-detail reverse" id="los-patios">
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.54500979808!2d-72.50860733268834!3d7.837882285992874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e66460f875dc2cb%3A0x48dc962841f1ca3!2sAv.%2010%20%2328-3%2C%20Los%20Patios%2C%20Norte%20de%20Santander!5e0!3m2!1ses-419!2sco!4v1728599775319!5m2!1ses-419!2sco"
+                    width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <button class="expand-map" (click)="openModal('patiosMap')">
+                    Expandir mapa
+                </button>
+            </div>
+            <div class="left-section">
+                <p-galleria [(value)]="imagesPatios" [numVisible]="5" [circular]="true" [autoPlay]="true"
+                    [showItemNavigators]="true" [showThumbnails]="false" [responsiveOptions]="responsiveOptions"
+                    [containerStyle]="{ 'max-width': '100%' }">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item.itemImageSrc" style="width: 100%; display: block" />
+                    </ng-template>
+                </p-galleria>
+                <div class="sede-info">
+                    <h3>Sede Los Patios</h3>
+                    <p class="sede-description">
+                        En la sede de Los Patios, ofrecemos servicios avanzados de
+                        evaluación psicofísica, respaldados por instalaciones modernas y
+                        personal altamente capacitado. Nos comprometemos a brindar una
+                        atención de calidad, enfocada en la excelencia y en la seguridad
+                        vial, garantizando un servicio personalizado para cada uno de
+                        nuestros usuarios.
+                    </p>
+                    <p>
+                        <strong>Dirección:</strong> AV 10 NRO. 28-03 - Pato Antiguo - Los
+                        Patios, Norte de Santander
+                    </p>
+                    <p><strong>Teléfono:</strong> 314 413 2940 - 313 210 6885</p>
+                    <p>
+                        <strong>Correo Electrónico:</strong>
+                        ips.evaluando.yopal&#64;gmail.com
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para expandir el mapa de Los Patios -->
+        <div id="patiosMap" class="modal" [ngClass]="{ 'show-modal': isModalOpenPatios }">
+            <div class="modal-content">
+                <span class="close" (click)="closeModal('patios')">&times;</span>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.54500979808!2d-72.50860733268834!3d7.837882285992874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e66460f875dc2cb%3A0x48dc962841f1ca3!2sAv.%2010%20%2328-3%2C%20Los%20Patios%2C%20Norte%20de%20Santander!5e0!3m2!1ses-419!2sco!4v1728599775319!5m2!1ses-419!2sco"
+                    width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>

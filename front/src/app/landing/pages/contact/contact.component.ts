@@ -13,7 +13,24 @@ export class ContactComponent implements OnInit {
   headquarters = []
   isModalOpenYopal = false;
   isModalOpenFloridablanca = false;
-
+  isModalOpenPatios = false;
+  imagesYopal: any[] | undefined;
+  imagesFlorida: any[] | undefined;
+  imagesPatios: any[] | undefined;
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1
+    }
+  ];
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly landingServicesService: LandingServicesService,
@@ -30,6 +47,10 @@ export class ContactComponent implements OnInit {
       comments: [ null, [ Validators.maxLength(500) ] ],
     });
     this.getHeadquarters()
+    this.landingServicesService.getImagesYopal().then((images: any) => (this.imagesYopal = images));
+    this.landingServicesService.getImagesFlorida().then((images: any) => (this.imagesFlorida = images));
+    this.landingServicesService.getImagesPatios().then((images: any) => (this.imagesPatios = images));
+
   }
 
   public getHeadquarters() {
@@ -48,7 +69,7 @@ export class ContactComponent implements OnInit {
 
   public onSubmit(): void {
     this.submitted = true;
-    
+
     if (this.form.valid) {
       this.landingServicesService.createContact(this.form.value).subscribe((response: any) => {
         console.log(response);
@@ -63,14 +84,19 @@ export class ContactComponent implements OnInit {
       this.isModalOpenYopal = true;
     } else if (modalType === 'floridablancaMap') {
       this.isModalOpenFloridablanca = true;
+    } else if (modalType === 'patiosMap') {
+      this.isModalOpenPatios = true;
     }
   }
-
+  
   closeModal(modalType: string) {
     if (modalType === 'yopal') {
       this.isModalOpenYopal = false;
     } else if (modalType === 'floridablanca') {
       this.isModalOpenFloridablanca = false;
+    } else if (modalType === 'patios') {
+      this.isModalOpenPatios = false;
     }
   }
+  
 }
